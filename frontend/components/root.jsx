@@ -1,4 +1,16 @@
-// import React from 'react';
-// import { Provider } from 'react-redux';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+import App from './app';
 
-// const Root = ({store})
+const Root = ({store}) => (
+        <Provider store={store}>
+            <h1>Hello IdeaBooster, here is root</h1>
+            <HashRouter>
+                <App />
+            </HashRouter>
+            
+        </Provider>
+)
+
+export default Root;
