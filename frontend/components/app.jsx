@@ -10,7 +10,6 @@ const App = () => (
         <SessionShowContainer/>
         <Route path="/signup" component={SignupContainer}/>
         <Route path="/login" component={LoginContainer}/>
-
     </div>
 )
 

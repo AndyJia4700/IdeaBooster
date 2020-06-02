@@ -11,7 +11,7 @@ const mSTP = (state) =>({
 })
 
 const mDTP = dispatch => ({
-    processForm: user => dispatch(signup(user))
+    processForm: formUser => dispatch(signup(formUser))
 });
 
 export default connect(mSTP, mDTP)(SignupForm)

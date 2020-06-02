@@ -3,12 +3,12 @@ import { logout } from "../../actions/session_actions";
 import SessionShow from "./session_show";
 
 
-// const mSTP = ({session, entities:{users}})=> ({
-//     currentUser: users[session.id]
-// });
+const mSTP = (state)=> ({
+    currentUser: state.session.currentUser
+});
 
 const mDTP = dispatch => ({
     logout: () => dispatch(logout())
 });
 
-export default connect(mDTP)(SessionShow)
+export default connect(mSTP,mDTP)(SessionShow)

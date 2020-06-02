@@ -4,22 +4,23 @@ class Api::SessionsController < ApplicationController
             params[:user][:email],
             params[:user][:password]
         )
-
         if @user
             login(@user)
-            # render "api/users/show"
+            render "api/users/show"
         else
             render json: ["Invalid credentials"], status: 401
         end
     end
 
     def destroy
-        @user = current_user
-        if @user
-            logout
-            render "api/users/show"
-        else
-            render json: ["please sign in"], status: 404
-        end
+        # @user = current_user
+        # if @user
+        #     logout
+        #     render "api/users/show"
+        # else
+        #     render json: ["please sign in"]
+        # end
+        logout
+        render json: {message: 'please sign in'}
     end
 end

@@ -5,11 +5,10 @@ import App from './app';
 
 const Root = ({store}) => (
         <Provider store={store}>
-            <h1>Hello IdeaBooster, here is root</h1>
+            <h1>IdeaBooster, here is root</h1>
             <HashRouter>
                 <App />
             </HashRouter>
-            
         </Provider>
 )
 
