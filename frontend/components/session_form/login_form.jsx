@@ -1,7 +1,7 @@
 import React from 'react';
 
-class SessionForm extends React.Component{
-    constructor(props){
+class LoginForm extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             username: "",
@@ -11,18 +11,18 @@ class SessionForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    update(field){
+    update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
         });
     }
 
-    handleSubmit(e){
+    handleSubmit(e) {
         e.preventDefault()
         this.props.processForm(Object.assign({}, this.state));
     }
 
-    renderErrors(){
+    renderErrors() {
         return (
             <ul>
                 {
@@ -36,20 +36,29 @@ class SessionForm extends React.Component{
         )
     }
 
-    render(){
+    render() {
         return (
             <div className="login-form-container">
                 <form onSubmit={this.handleSubmit} className="login-form">
-                    New to IdeaBooster? {this.props.formType} or {this.props.navLink}
+                    <h2>Log in</h2>
+
                     <div className="login-box">
-                        <label>Username
+                        {/* <label>Username
                             <input type="text"
                                 value={this.state.username}
                                 onChange={this.update('username')}
                                 className="login-input"
                             />
+                        </label> */}
+                        <br />
+                        <label>Email
+                            <input type="text"
+                                value={this.state.email}
+                                onChange={this.update('email')}
+                                className="login-input"
+                            />
                         </label>
-
+                        <br />
                         <label>Password
                             <input type="password"
                                 value={this.state.password}
@@ -58,7 +67,9 @@ class SessionForm extends React.Component{
                             />
                         </label>
 
-                        <input type="submit" value={this.props.formType} className="session-submit"/>
+                        <input type="submit" value={this.props.formType} className="session-submit" />
+                        <br/>
+                        New to IdeaBooster? {this.props.navLink}
                     </div>
                 </form>
             </div>
@@ -66,4 +77,4 @@ class SessionForm extends React.Component{
     }
 }
 
-export default SessionForm;
+export default LoginForm;
