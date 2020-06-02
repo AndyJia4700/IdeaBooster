@@ -4,8 +4,8 @@ class SignupForm extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: "",
             email: "",
+            username: "",
             password: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,19 +22,19 @@ class SignupForm extends React.Component{
         this.props.processForm(Object.assign({}, this.state));
     }
 
-    renderErrors(){
-        return (
-            <ul>
-                {
-                    this.props.errors.map((error, i) => (
-                        <li key={i}>
-                            {error}
-                        </li>
-                    ))
-                }
-            </ul>
-        )
-    }
+    // renderErrors(){
+    //     return (
+    //         <ul>
+    //             {
+    //                 this.props.errors.map((error, i) => (
+    //                     <li key={i}>
+    //                         {error}
+    //                     </li>
+    //                 ))
+    //             }
+    //         </ul>
+    //     )
+    // }
 
     render(){
         return (
@@ -43,18 +43,18 @@ class SignupForm extends React.Component{
                     Have an account? {this.props.navLink}
                     <h2>Sign Up</h2>
                     <div className="signup-box">
-                        <label>Username
+                        <label>email
                             <input type="text"
-                                value={this.state.username}
-                                onChange={this.update('username')}
+                                value={this.state.email}
+                                onChange={this.update('email')}
                                 className="signup-input"
                             />
                         </label>
                         <br/>
-                        <label>Email
+                        <label>username
                             <input type="text"
-                                value={this.state.email}
-                                onChange={this.update('email')}
+                                value={this.state.username}
+                                onChange={this.update('username')}
                                 className="signup-input"
                             />
                         </label>

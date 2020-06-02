@@ -4,8 +4,8 @@ class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
             email: "",
+            // username: "",
             password: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,19 +22,19 @@ class LoginForm extends React.Component {
         this.props.processForm(Object.assign({}, this.state));
     }
 
-    renderErrors() {
-        return (
-            <ul>
-                {
-                    this.props.errors.map((error, i) => (
-                        <li key={i}>
-                            {error}
-                        </li>
-                    ))
-                }
-            </ul>
-        )
-    }
+    // renderErrors() {
+    //     return (
+    //         <ul>
+    //             {
+    //                 this.props.errors.map((error, i) => (
+    //                     <li key={i}>
+    //                         {error}
+    //                     </li>
+    //                 ))
+    //             }
+    //         </ul>
+    //     )
+    // }
 
     render() {
         return (
@@ -43,15 +43,7 @@ class LoginForm extends React.Component {
                     <h2>Log in</h2>
 
                     <div className="login-box">
-                        {/* <label>Username
-                            <input type="text"
-                                value={this.state.username}
-                                onChange={this.update('username')}
-                                className="login-input"
-                            />
-                        </label> */}
-                        <br />
-                        <label>Email
+                        <label>email
                             <input type="text"
                                 value={this.state.email}
                                 onChange={this.update('email')}
@@ -59,6 +51,14 @@ class LoginForm extends React.Component {
                             />
                         </label>
                         <br />
+                        {/* <label>username
+                            <input type="text"
+                                value={this.state.username}
+                                onChange={this.update('username')}
+                                className="login-input"
+                            />
+                        </label>
+                        <br /> */}
                         <label>Password
                             <input type="password"
                                 value={this.state.password}
