@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { signup } from "../../actions/session_actions";
+import { createNewUser } from "../../actions/session_actions";
 import SignupForm from "./signup_form";
 
 const mSTP = (state) =>({
@@ -11,7 +11,7 @@ const mSTP = (state) =>({
 })
 
 const mDTP = dispatch => ({
-    processForm: formUser => dispatch(signup(formUser))
+    createNewUser: formUser => dispatch(createNewUser(formUser))
 });
 
 export default connect(mSTP, mDTP)(SignupForm)

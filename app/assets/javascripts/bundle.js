@@ -321,8 +321,8 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch) {
   return {
-    processForm: function processForm(user) {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
+    login: function login(formUser) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(formUser));
     }
   };
 };
@@ -401,7 +401,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.processForm(Object.assign({}, this.state));
+      this.props.login(Object.assign({}, this.state));
     } // renderErrors() {
     //     return (
     //         <ul>
@@ -484,8 +484,8 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch) {
   return {
-    processForm: function processForm(formUser) {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["signup"])(formUser));
+    createNewUser: function createNewUser(formUser) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["createNewUser"])(formUser));
     }
   };
 };
@@ -564,7 +564,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.processForm(Object.assign({}, this.state));
+      this.props.createNewUser(Object.assign({}, this.state));
     } // renderErrors(){
     //     return (
     //         <ul>
@@ -834,7 +834,7 @@ var deleteSession = function deleteSession() {
 var postUser = function postUser(user) {
   return $.ajax({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/user',
     data: {
       user: user
     }

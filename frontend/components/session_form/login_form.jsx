@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.processForm(Object.assign({}, this.state));
+        this.props.login(Object.assign({}, this.state));
     }
 
     // renderErrors() {
