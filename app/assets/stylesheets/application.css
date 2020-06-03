@@ -13,3 +13,109 @@
  *= require_tree .
  *= require_self
  */
+
+.top-bar {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.explore-start {
+    display: flex;
+    width: 33%;
+}
+
+.explore {
+    padding-right: 20px;
+}
+
+.ideaBooster-icon {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    color: #05ce78;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: sans-serif;
+}
+
+.search-login {
+    width: 33%;
+    justify-content: flex-end;
+    display: flex;
+    padding-top: 15px;
+}
+
+.search{
+    padding-right: 30px;
+}
+
+
+
+.signup-form-container {
+    text-align: center;
+    /* width: 33%; */
+    /* justify-content: center; */
+    border: 3px solid green;
+    font-size: 25px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+
+}
+
+.div-session-background {
+    background: #f5f3f3;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+
+}
+
+.div-session-box {
+    background: white;
+}
+
+.signup-input {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px
+}
+
+.signup-submit {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px;
+    background-color: green;
+    color: white;
+}
+
+.signup-lable {
+    display: flex;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.have-account-msg {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    font-size: 15px;
+}
+
+.signup-errors {
+    background: red;
+    font-size: 20px;
+    color: white;
+    margin: 40px;
+}

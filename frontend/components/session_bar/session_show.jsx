@@ -6,14 +6,14 @@ const SessionShow = ({ currentUser, logout}) => {
     const sessionLinks = () => (
         <nav>
         <Link to="/login">login</Link>
-        <Link to="/signup">Sign Up</Link>
+        {/* <Link to="/signup">Sign Up</Link> */}
         </nav>
     );
     // return sessionLinks();
 
     const greeting = () => (
-        <nav>
-            <h2>Hi,{currentUser.username}</h2>
+        <nav className="nav-greeting">
+            <h4>Hi {currentUser.username}</h4>
             <button onClick={logout}>Logout</button>
         </nav>
     );

@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import { login } from "../../actions/session_actions";
 import LoginForm from "./login_form";
 
-const mSTP = (state) => ({
+// const mSTP = (state) => ({
+//     formType: 'login',
+//     navLink: <Link to="/signup">Please Sign up</Link>
+// });
+
+const mSTP = ({errors}) => ({
+    errors: errors,
     formType: 'login',
     navLink: <Link to="/signup">Please Sign up</Link>
 });

@@ -9,6 +9,7 @@ class LoginForm extends React.Component {
             password: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this)
     }
 
     update(field) {
@@ -22,56 +23,59 @@ class LoginForm extends React.Component {
         this.props.login(Object.assign({}, this.state));
     }
 
-    // renderErrors() {
-    //     return (
-    //         <ul>
-    //             {
-    //                 this.props.errors.map((error, i) => (
-    //                     <li key={i}>
-    //                         {error}
-    //                     </li>
-    //                 ))
-    //             }
-    //         </ul>
-    //     )
-    // }
+    renderErrors() {
+        return (
+            <ul>
+                {
+                    Object.values(this.props.errors)
+                }
+            </ul>
+        );
+    }
+
+    handleClick(e){
+        e.preventDefault();
+
+        this.setState({
+            email: "welcome@demo.com",
+            password: "123456"
+        }, () => this.props.login(Object.assign({}, this.state)))
+    }
 
     render() {
         return (
-            <div className="login-form-container">
-                <form onSubmit={this.handleSubmit} className="login-form">
-                    <h2>Log in</h2>
-
-                    <div className="login-box">
-                        <label>email
-                            <input type="text"
-                                value={this.state.email}
-                                onChange={this.update('email')}
-                                className="login-input"
-                            />
-                        </label>
+            <div className="div-session-background">
+                <div className="signup-form-container">
+                    <form onSubmit={this.handleSubmit} className="signup-form">
+                    <h4 className="signup-lable">Log in</h4>
+                    <div className="signup-errors">{this.renderErrors()}</div>
+                    <div className="signup-box">
+                        
+                        <input type="text"
+                            placeholder="Email"
+                            value={this.state.email}
+                            onChange={this.update('email')}
+                            className="signup-input"
+                        />
+                        
                         <br />
-                        {/* <label>username
-                            <input type="text"
-                                value={this.state.username}
-                                onChange={this.update('username')}
-                                className="login-input"
-                            />
-                        </label>
-                        <br /> */}
-                        <label>Password
-                            <input type="password"
-                                value={this.state.password}
-                                onChange={this.update('password')}
-                                className="login-input"
-                            />
-                        </label>
-
-                        <input type="submit" value={this.props.formType} className="session-submit" />
+                    
+                        <input type="password"
+                            placeholder="password"
+                            value={this.state.password}
+                            onChange={this.update('password')}
+                            className="signup-input"
+                        />
+                       
                         <br/>
-                        New to IdeaBooster? {this.props.navLink}
+                        <input type="submit" value={this.props.formType} className="signup-submit" />
+                        <br/>
+                        <button onClick={this.handleClick}>Demo Login</button>
+                        <br/>
+                        <span>New to IdeaBooster? {this.props.navLink}</span>
                     </div>
                 </form>
+                </div>
             </div>
         )
     }
