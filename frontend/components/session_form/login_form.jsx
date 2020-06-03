@@ -70,7 +70,7 @@ class LoginForm extends React.Component {
                         <br/>
                         <input type="submit" value={this.props.formType} className="signup-submit" />
                         <br/>
-                            <button onClick={this.handleClick} className="signup-submit" >Demo Login</button>
+                            <button onClick={this.handleClick} className="signup-submit">Demo Login</button>
                         <br/>
                             <span className="have-account-msg">New to IdeaBooster? {this.props.navLink}</span>
                     </div>

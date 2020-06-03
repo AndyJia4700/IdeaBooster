@@ -5,7 +5,7 @@ const SessionShow = ({ currentUser, logout}) => {
 // const SessionShow = () => {
     const sessionLinks = () => (
         <nav>
-        <Link to="/login">login</Link>
+        <Link to="/login" className="login-button">login</Link>
         {/* <Link to="/signup">Sign Up</Link> */}
         </nav>
     );
@@ -13,7 +13,7 @@ const SessionShow = ({ currentUser, logout}) => {
 
     const greeting = () => (
         <nav className="nav-greeting">
-            <h4>Hi {currentUser.username}</h4>
+            <a className="login-button">Hi {currentUser.username}</a>
             <button onClick={logout}>Logout</button>
         </nav>
     );
