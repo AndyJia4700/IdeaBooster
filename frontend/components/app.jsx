@@ -23,8 +23,9 @@ class App extends React.Component{
                         </div>
                     </div>
 
-                    <div className="ideaBooster-icon">IdeaBooster</div>
-
+                    {/* <div className="ideaBooster-icon">IdeaBooster</div> */}
+                    <a href="/" className="ideaBooster-icon">IdeaBooster</a>
+                    <br/>
                     <div className="search-login">
                         <div className="search">Search</div>
                         <div className="login-button"><SessionShowContainer /></div>
