@@ -13,8 +13,12 @@ const SessionShow = ({ currentUser, logout}) => {
 
     const greeting = () => (
         <nav className="nav-greeting">
-            <a className="login-button">Hi {currentUser.username}</a>
-            <button onClick={logout}>Logout</button>
+            <div className="dropdown">
+                 <a className="login-button">{currentUser.username}</a>
+                <div className="dropdown-content">
+                     <button onClick={logout}>Logout</button>
+                </div>
+            </div>
         </nav>
     );
     return currentUser ? greeting() : sessionLinks();

@@ -311,11 +311,15 @@ var SessionShow = function SessionShow(_ref) {
   var greeting = function greeting() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "nav-greeting"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "dropdown"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       className: "login-button"
-    }, "Hi ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "dropdown-content"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: logout
-    }, "Logout"));
+    }, "Logout"))));
   };
 
   return currentUser ? greeting() : sessionLinks();
@@ -521,7 +525,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-input"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
-        placeholder: "password",
+        placeholder: "Password",
         value: this.state.password,
         onChange: this.update('password'),
         className: "signup-input"
@@ -531,7 +535,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-submit"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick,
-        className: "signup-submit"
+        className: "signup-submit-Demo"
       }, "Demo Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "have-account-msg"
       }, "New to IdeaBooster? ", this.props.navLink)))));

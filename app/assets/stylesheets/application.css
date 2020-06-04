@@ -120,6 +120,16 @@ div {
     color: white;
 }
 
+.signup-submit-Demo {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px;
+    background-color: #39579A;
+    color: white;
+}
+
 .signup-lable {
     display: flex;
     padding-left: 40px;
@@ -139,4 +149,23 @@ div {
     font-size: 20px;
     color: white;
     margin: 40px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
