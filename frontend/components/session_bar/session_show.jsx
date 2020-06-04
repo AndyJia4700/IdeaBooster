@@ -14,7 +14,7 @@ const SessionShow = ({ currentUser, logout}) => {
     const greeting = () => (
         <nav className="nav-greeting">
             <div className="dropdown">
-                 <a className="login-button">{currentUser.username}</a>
+                <a className="login-button"><span className="modal-button">{currentUser.username}</span></a>
                 <div className="dropdown-content">
                      <button onClick={logout}>Logout</button>
                 </div>
