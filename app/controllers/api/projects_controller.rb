@@ -21,7 +21,7 @@ class Api::ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         if @project.save
-            render "api/projects/show"
+            # render "api/projects/show"
             ##create show page for each project id
         else
             render json: @project.errors.full_messages, status: 422
@@ -32,7 +32,8 @@ class Api::ProjectsController < ApplicationController
         @project = Project.find_by(params[:id])
         if @project && @project.creator_id == current_user.id
             if @project.update_attributes(project_params)
-                render "api/projects/show"
+                # render "api/projects/show"
+            end
 
     end
 
