@@ -44,12 +44,12 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className="div-session-background">
+            // <div className="div-session-background">
                 <div className="signup-form-container">
                     <form onSubmit={this.handleSubmit} className="signup-form">
+                    <div className="signup-box">
                     <h4 className="signup-lable">Log in</h4>
                     <div className="signup-errors">{this.renderErrors()}</div>
-                    <div className="signup-box">
                         
                         <input type="text"
                             placeholder="Email"
@@ -70,13 +70,23 @@ class LoginForm extends React.Component {
                         <br/>
                         <input type="submit" value={this.props.formType} className="signup-submit" />
                         <br/> 
+                            <div>
+                                <div className="text-or">
+
+                                    <div className="text">
+                                        or
+                                    </div>
+
+                                </div>
+                                
+                            </div>
                             <button onClick={this.handleClick} className="signup-submit-Demo">Demo Login</button>
                         <br/>
-                            <span className="have-account-msg">New to IdeaBooster? {this.props.navLink}</span>
+                            <div className="have-account-msg">New to IdeaBooster?{this.props.navLink}</div>
                     </div>
                 </form>
                 </div>
-            </div>
+            // </div>
         )
     }
 }

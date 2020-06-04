@@ -10,16 +10,16 @@ class App extends React.Component{
 
     render(){
         return(
-            <div>
+            <div >
 
                 <nav className="top-bar">
                     <div className="explore-start">
                         <div className="explore">
-                            <h4>Explore</h4>
+                            <h4 className="top-font">Explore</h4>
                         </div>
 
                         <div className="start">
-                            <h4>Start a project</h4>
+                            <h4 className="top-font">Start a project</h4>
                         </div>
                     </div>
 
@@ -27,14 +27,18 @@ class App extends React.Component{
                     <a href="/" className="ideaBooster-icon">IdeaBooster</a>
                     <br/>
                     <div className="search-login">
-                        <div className="search">Search</div>
-                        <div className="login-button"><SessionShowContainer /></div>
+                        <div className="search">
+                            <h4 className="top-font">Search<i className="fas fa-search"></i></h4>
+                        </div>
+
+                        <div className="login-button">
+                            <h4 className="top-font"><SessionShowContainer /></h4>
+                        </div>
                     </div>
 
                 </nav>
 
-                <div>
-
+                <div className="div-session-background">
                     <br />
                     <div className="div-session-box">
                         <AuthRoute path="/signup" component={SignupContainer} />

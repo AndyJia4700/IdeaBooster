@@ -12,7 +12,7 @@ import SignupForm from "./signup_form";
 const mSTP = ({errors}) =>({
     errors: errors,
     formType: 'Create account',
-    navLink: <Link to="/login">Log in</Link>
+    navLink: <Link to="/login" className="sign-in-or-up">Log in</Link>
 })
 
 const mDTP = dispatch => ({
