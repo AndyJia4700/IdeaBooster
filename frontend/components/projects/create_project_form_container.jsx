@@ -12,6 +12,7 @@ const mSTP = state => ({
         funding_goal: '',
         launch_date: '',
         end_date: '',
+        picture: null
     },
     formType: 'Start a project'
 });

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchProjects, deleProject } from '../../actions/project_actions';
+import { fetchProjects, deleteProject } from '../../actions/project_actions';
 import ProjectIndex from "./project_index";
 
 
@@ -9,7 +9,7 @@ const mSTP = state => ({
 
 const mDTP = dispatch => ({
     fetchProjects: () => dispatch(fetchProjects()),
-    deleProject: projectId => dispatch(deleProject(projectId))
+    deleteProject: projectId => dispatch(deleteProject(projectId))
 });
 
 export default connect(mSTP, mDTP)(ProjectIndex);

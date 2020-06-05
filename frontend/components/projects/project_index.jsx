@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectIndexItem from './project_index_item';
 
 
-class ProjectIndex extends ProjectIndex.Component {
+class ProjectIndex extends React.Component {
     constructor(props){
         super(props);
     }

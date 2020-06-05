@@ -4,7 +4,9 @@ import SignupContainer from './session_form/signup_container';
 import LoginContainer from './session_form/login_container';
 import SessionShowContainer from './session_bar/session_show_container';
 import { AuthRoute } from '../util/route_utils';
-// import welcomeBarContainer from './session_bar/welcome_bar_container';
+
+import ProjectIndexContainer from './projects/project_index_container';
+import ProjectCreateContainer from './projects/create_project_form_container';
 
 class App extends React.Component{
 
@@ -43,6 +45,8 @@ class App extends React.Component{
                     <div className="div-session-box">
                         <AuthRoute path="/signup" component={SignupContainer} />
                         <AuthRoute path="/login" component={LoginContainer} />
+                        <Route path="/projects" component={ProjectIndexContainer} />
+                        <Route path="/projects/new" component={ProjectCreateContainer} />
                     </div>
                     <br />
                 </div>

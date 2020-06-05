@@ -131,29 +131,39 @@ var removeProject = function removeProject(projectId) {
 };
 
 var fetchProjects = function fetchProjects() {
-  return dispatch(_util_project_util__WEBPACK_IMPORTED_MODULE_0__["fetchProjects"]().then(function (projects) {
-    return dispatch(receiveAllProjects(projects));
-  }));
+  return function (dispatch) {
+    return _util_project_util__WEBPACK_IMPORTED_MODULE_0__["fetchProjects"]().then(function (projects) {
+      return dispatch(receiveAllProjects(projects));
+    });
+  };
 };
 var fetchProject = function fetchProject(projectId) {
-  return dispatch(_util_project_util__WEBPACK_IMPORTED_MODULE_0__["fetchProject"](projectId).then(function (project) {
-    return dispatch(receiveProject(project));
-  }));
+  return function (dispatch) {
+    return _util_project_util__WEBPACK_IMPORTED_MODULE_0__["fetchProject"](projectId).then(function (project) {
+      return dispatch(receiveProject(project));
+    });
+  };
 };
 var createProject = function createProject(project) {
-  return dispatch(_util_project_util__WEBPACK_IMPORTED_MODULE_0__["createProject"](project).then(function (project) {
-    return dispatch(receiveProject(project));
-  }));
+  return function (dispatch) {
+    return _util_project_util__WEBPACK_IMPORTED_MODULE_0__["createProject"](project).then(function (project) {
+      return dispatch(receiveProject(project));
+    });
+  };
 };
 var updateProject = function updateProject(project) {
-  return dispatch(_util_project_util__WEBPACK_IMPORTED_MODULE_0__["updateProject"](project).then(function (project) {
-    return dispatch(receiveProject(project));
-  }));
+  return function (dispatch) {
+    return _util_project_util__WEBPACK_IMPORTED_MODULE_0__["updateProject"](project).then(function (project) {
+      return dispatch(receiveProject(project));
+    });
+  };
 };
 var deleteProject = function deleteProject(projectId) {
-  return dispatch(_util_project_util__WEBPACK_IMPORTED_MODULE_0__["deleteProject"](projectId).then(function () {
-    return dispatch(removeProject(projectId));
-  }));
+  return function (dispatch) {
+    return _util_project_util__WEBPACK_IMPORTED_MODULE_0__["deleteProject"](projectId).then(function () {
+      return dispatch(removeProject(projectId));
+    });
+  };
 };
 
 /***/ }),
@@ -243,6 +253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form_login_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_form/login_container */ "./frontend/components/session_form/login_container.jsx");
 /* harmony import */ var _session_bar_session_show_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_bar/session_show_container */ "./frontend/components/session_bar/session_show_container.js");
 /* harmony import */ var _util_route_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/route_utils */ "./frontend/util/route_utils.jsx");
+/* harmony import */ var _projects_project_index_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./projects/project_index_container */ "./frontend/components/projects/project_index_container.jsx");
+/* harmony import */ var _projects_create_project_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./projects/create_project_form_container */ "./frontend/components/projects/create_project_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -270,7 +282,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import welcomeBarContainer from './session_bar/welcome_bar_container';
+
+
+
 
 var App = /*#__PURE__*/function (_React$Component) {
   _inherits(App, _React$Component);
@@ -323,6 +337,12 @@ var App = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_utils__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
         path: "/login",
         component: _session_form_login_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/projects",
+        component: _projects_project_index_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/projects/new",
+        component: _projects_create_project_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -340,6 +360,415 @@ var App = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/projects/create_project_form_container.jsx":
+/*!************************************************************************!*\
+  !*** ./frontend/components/projects/create_project_form_container.jsx ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _project_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project_form */ "./frontend/components/projects/project_form.jsx");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    project: {
+      title: '',
+      subtitle: '',
+      creator_id: '',
+      category_id: '',
+      location_id: '',
+      funding_goal: '',
+      launch_date: '',
+      end_date: '',
+      picture: null
+    },
+    formType: 'Start a project'
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    action: function action(project) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["createProject"])(project));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_project_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_form.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/projects/project_form.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ProjectForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProjectForm, _React$Component);
+
+  var _super = _createSuper(ProjectForm);
+
+  function ProjectForm(props) {
+    var _this;
+
+    _classCallCheck(this, ProjectForm);
+
+    _this = _super.call(this, props);
+    _this.state = _this.props.project;
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ProjectForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        creator_id: currentUser.id,
+        launch_date: "2020 - 05- 05",
+        end_date: "2020 - 05 - 05"
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.action(this.state);
+    }
+  }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      e.preventDefault();
+      var formData = new FormFata();
+      formData.append('project[title]', this.state.title);
+
+      if (this.state.picture) {
+        formaData.append('project[picture]', this.state.picture);
+      } // this.setState({picture: e.currentTarget.files[0]})
+
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.state.location_id);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Project title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Write a clear, brief title that helps people quickly understand the gist of your project")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "project-basic"
+      }, "Title", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.update('title'),
+        placeholder: "Radiotopia: A Storytelling Revolution"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "project-basic"
+      }, "Subtitle", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        value: this.state.subtitle,
+        onChange: this.update('subtitle'),
+        placeholder: "We are a collective of amazing storytelling radio show. Let's remake public raido together."
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Project category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Choose the category that most closely aligns with your project.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "project-basic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.update('category_id')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1"
+      }, "Arts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "2"
+      }, "Comic & Illustration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "3"
+      }, "Design & Tech"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "4"
+      }, "Film"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "5"
+      }, "Food & Craft"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "6"
+      }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "7"
+      }, "Music"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "8"
+      }, "Publishing"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Project location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Enter the location that best describles where your project is based.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "project-basic"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.update('location_id')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1"
+      }, "Australia"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "2"
+      }, "Austria"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "3"
+      }, "Belgium"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "4"
+      }, "Canada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "5"
+      }, "France"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "6"
+      }, "Germany"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "7"
+      }, "Italy"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "8"
+      }, "Japan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "9"
+      }, "the United Kingdom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "10"
+      }, "the United States"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Project image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Add an image that clearly represents your projects.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "file",
+        onChange: this.update(this.handleFile)
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Funding goal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Set an achievable goal that covers what you need to complete your project.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "project-basic"
+      }, "Goal amount", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        value: this.state.funding_goal,
+        onChange: this.update('funding_goal'),
+        placeholder: "0"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        value: this.props.formType
+      }, "Test Submit"));
+    }
+  }]);
+
+  return ProjectForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ProjectForm);
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_index.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/projects/project_index.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _project_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project_index_item */ "./frontend/components/projects/project_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ProjectIndex = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProjectIndex, _React$Component);
+
+  var _super = _createSuper(ProjectIndex);
+
+  function ProjectIndex(props) {
+    _classCallCheck(this, ProjectIndex);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ProjectIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchProjects();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          projects = _this$props.projects,
+          deleteProject = _this$props.deleteProject;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, projects.map(function (project) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          project: project,
+          deleteProject: deleteProject,
+          key: project.id
+        });
+      })));
+    }
+  }]);
+
+  return ProjectIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ProjectIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_index_container.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/projects/project_index_container.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _project_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project_index */ "./frontend/components/projects/project_index.jsx");
+
+
+
+
+var mSTP = function mSTP(state) {
+  return {
+    projects: Object.values(state.projects)
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
+    },
+    deleteProject: function deleteProject(projectId) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["deleteProject"])(projectId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_project_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/projects/project_index_item.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/projects/project_index_item.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var ProjectIndexItem = function ProjectIndexItem(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects/".concat(props.project.id)
+  }, props.project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/projects/".concat(props.project.id, "/edit")
+  }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return props.deleteProject(props.project.id);
+    }
+  }, "Delete"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProjectIndexItem);
 
 /***/ }),
 
@@ -1145,7 +1574,9 @@ var createProject = function createProject(project) {
     url: '/api/projects',
     data: {
       project: project
-    }
+    },
+    contentType: false,
+    processData: false
   });
 };
 var updateProject = function updateProject(project) {

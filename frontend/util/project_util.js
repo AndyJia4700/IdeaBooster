@@ -16,7 +16,10 @@ export const createProject = project => (
         url: '/api/projects',
         data: {
             project
-        }
+        },
+        contentType: false,
+        processData: false
+
     })
 )
 

@@ -21,8 +21,9 @@ class Api::ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
+        # debugger
         if @project.save
-            render "api/projects/show"
+            render :show
             ##create show page for each project id
         else
             render json: @project.errors.full_messages, status: 422
@@ -51,6 +52,8 @@ class Api::ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :subtitle, :creator_id, :category_id, :location_id, :funding_goal, :launch_date, :end_date )
+        params.require(:project).permit(:title, :subtitle, :creator_id, :category_id, :location_id, :funding_goal, :launch_date, :end_date, :picture)
+        # params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal )
+
     end
 end
