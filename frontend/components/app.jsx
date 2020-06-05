@@ -28,7 +28,7 @@ class App extends React.Component{
                     <br/>
                     <div className="search-login">
                         <div className="search">
-                            <h4 className="top-font">Search<i className="fas fa-search"></i></h4>
+                            <h4 className="top-font">Search <i className="fas fa-search"></i></h4>
                         </div>
 
                         <div className="login-button">
@@ -45,6 +45,13 @@ class App extends React.Component{
                         <AuthRoute path="/login" component={LoginContainer} />
                     </div>
                     <br />
+                </div>
+
+                <div className="footer">
+                    <p className="footer">Cloned by Andrew Jia</p>
+                    <div className="github">
+                        <a className="github" href="https://github.com/AndyJia4700">github</a>
+                    </div>
                 </div>
 
             </div>
