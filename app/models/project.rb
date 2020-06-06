@@ -22,5 +22,10 @@ class Project < ApplicationRecord
     class_name: "User"
     
     has_one_attached :picture
+    def ensure_picture
+        unless self.picture.attached?
+            errors[:picture] << 'a picture must be attached'
+        end
+    end
 
 end

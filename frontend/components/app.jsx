@@ -5,8 +5,10 @@ import LoginContainer from './session_form/login_container';
 import SessionShowContainer from './session_bar/session_show_container';
 import { AuthRoute } from '../util/route_utils';
 
+import WelcomeBar from './session_bar/welcome_bar';
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
+
 
 class App extends React.Component{
 
@@ -17,11 +19,13 @@ class App extends React.Component{
                 <nav className="top-bar">
                     <div className="explore-start">
                         <div className="explore">
-                            <h4 className="top-font">Explore</h4>
+                            {/* <h4 className="top-font">Explore</h4> */}
+                            <a className="top-font" href="/#/projects">Explore</a>
                         </div>
 
                         <div className="start">
-                            <h4 className="top-font">Start a project</h4>
+                            {/* <h4 className="top-font">Start a project</h4> */}
+                            <a className="top-font" href="/#/projects/hello">Start a project</a>
                         </div>
                     </div>
 
@@ -45,6 +49,7 @@ class App extends React.Component{
                     <div className="div-session-box">
                         <AuthRoute path="/signup" component={SignupContainer} />
                         <AuthRoute path="/login" component={LoginContainer} />
+                        <Route path="/projects/hello" component={WelcomeBar} />
                         <Route path="/projects" component={ProjectIndexContainer} />
                         <Route path="/projects/new" component={ProjectCreateContainer} />
                     </div>

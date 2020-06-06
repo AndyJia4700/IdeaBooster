@@ -6,13 +6,13 @@ const mSTP = state => ({
     project: {
         title: '',
         subtitle: '',
-        creator_id: '',
         category_id: '',
         location_id: '',
         funding_goal: '',
         launch_date: '',
         end_date: '',
-        picture: null
+        pictureUrl: null,
+        pictureFile: null
     },
     formType: 'Start a project'
 });

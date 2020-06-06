@@ -3,12 +3,12 @@ class Api::ProjectsController < ApplicationController
 
     def index
         @projects = Project.all.includes(:creator)
-        # render :index
+        render :index
     end
 
     def show
         @project = Project.find(params[:id])
-        # render :show
+        render :show
     end
 
     def new
@@ -21,11 +21,13 @@ class Api::ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
+        @project.creator_id = current_user.id
         # debugger
         if @project.save
-            render :show
+            render :index
             ##create show page for each project id
         else
+            # debugger
             render json: @project.errors.full_messages, status: 422
         end
     end
@@ -52,8 +54,7 @@ class Api::ProjectsController < ApplicationController
     private
 
     def project_params
-        params.require(:project).permit(:title, :subtitle, :creator_id, :category_id, :location_id, :funding_goal, :launch_date, :end_date, :picture)
-        # params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal )
-
+        params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal, :end_date, :picture)
+        # params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal, :end_date)
     end
 end

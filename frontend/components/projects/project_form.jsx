@@ -12,25 +12,46 @@ class ProjectForm extends React.Component{
     componentDidMount(){
         this.setState({
             creator_id: currentUser.id,
-            launch_date: "2020 - 05- 05",
-            end_date: "2020 - 05 - 05",
-
+            category_id: '1',
+            location_id: '1'
         })
-    }
-
-    handleSubmit(e){
-        e.preventDefault();
-        this.props.action(this.state);
     }
 
     handleFile(e){
         e.preventDefault();
-        const formData = new FormFata();
-        formData.append('project[title]', this.state.title);
-        if (this.state.picture){
-            formaData.append('project[picture]', this.state.picture)
+        // debugger;
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            this.setState({
+                pictureFile: file,
+                pictureUrl: fileReader.result
+            });
+        };
+        if (file) {
+            fileReader.readAsDataURL(file);
+        } else {
+            this.setState({ pictureUrl:"", pictureFile: null});
         }
-        // this.setState({picture: e.currentTarget.files[0]})
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.action(this.state);
+        // debugger;
+        const formData = new FormData();
+        formData.append('project[title]', this.state.title);
+        if (this.state.pictureFile){
+            formData.append('project[picture]', this.state.pictureFile);
+        } 
+        $.ajax({
+            method: 'POST',
+            url: '/api/projects',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "json"
+        });
     }
 
     update(field){
@@ -38,7 +59,9 @@ class ProjectForm extends React.Component{
     }
 
     render(){
-        console.log(this.state.location_id);
+        console.log(this.state);
+        
+        const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
         
         return (
             <form onSubmit={this.handleSubmit}>
@@ -124,10 +147,11 @@ class ProjectForm extends React.Component{
                     </div>
 
                     <div className="project-basic-subdiv2">
-                        <div onSubmit={this.handleSubmit}>
+                        <div>
                             <input type="file"
-                                onChange={this.update(this.handleFile)}
+                                onChange={this.handleFile}
                             />
+                            {preview}
                         </div>
                     </div>
                 </div>
@@ -144,6 +168,40 @@ class ProjectForm extends React.Component{
                                 value={this.state.funding_goal}
                                 onChange={this.update('funding_goal')}
                                 placeholder="0"
+                            />
+                        </label>
+                    </div>
+                    <br />
+                </div>
+
+                <div className="project-basic-div">
+                    <div className="project-basic-subdiv1">
+                        <p className="project-basic-hilight">Target launch date</p>
+                        <p>Enter a date when you plan to launch, we won't automatically launch your project.</p>
+                    </div>
+
+                    <div className="project-basic-subdiv2">
+                        <label className="project-basic">
+                            <input type="date"
+                                value={this.state.launch_date}
+                                onChange={this.update('launch_date')}
+                            />
+                        </label>
+                    </div>
+                    <br />
+                </div>
+
+                <div className="project-basic-div">
+                    <div className="project-basic-subdiv1">
+                        <p className="project-basic-hilight">Campaign duration</p>
+                        <p>Set a time limit for your campaign.</p>
+                    </div>
+
+                    <div className="project-basic-subdiv2">
+                        <label className="project-basic">
+                            <input type="date"
+                                value={this.state.end_date}
+                                onChange={this.update('end_date')}
                             />
                         </label>
                     </div>
