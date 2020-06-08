@@ -4,21 +4,23 @@ export const fetchProjects = () => (
     })
 )
 
-export const fetchProject = projectId => (
-    $.ajax({
+export const fetchProject = projectId => {
+
+    // debugger;
+    
+    return $.ajax({
         url: `/api/projects/${projectId}`
     })
-)
+}
 
-export const createProject = project => (
+export const createProject = formData => (
     $.ajax({
         method: 'POST',
         url: '/api/projects',
-        data: {
-            project
-        },
+        data: formData,
         contentType: false,
-        processData: false
+        processData: false,
+        dataType: 'json'
         
     })
 )

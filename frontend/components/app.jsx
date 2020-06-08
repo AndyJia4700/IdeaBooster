@@ -8,6 +8,9 @@ import { AuthRoute } from '../util/route_utils';
 import WelcomeBar from './session_bar/welcome_bar';
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
+import ProjectShowContainer from './projects/project_show_container';
+import ProjectEditContainer from './projects/edit_project_form_container';
+import splashPage from './projects/splash_page';
 
 
 class App extends React.Component{
@@ -44,14 +47,21 @@ class App extends React.Component{
 
                 </nav>
 
+                <Route exact path="/projects/hello" component={WelcomeBar} />
+                <Route exact path="/" component={splashPage} />     
+                <Route exact path="/projects" component={ProjectIndexContainer} />
+                <Route exact path="/projects/:projectId" component={ProjectShowContainer}/>
+                <Route exact path="/projects/:projectId/edit" component={ProjectEditContainer}/>
+                <Route exact path="/projects/new" component={ProjectCreateContainer} />
+                
                 <div className="div-session-background">
                     <br />
                     <div className="div-session-box">
+
                         <AuthRoute path="/signup" component={SignupContainer} />
                         <AuthRoute path="/login" component={LoginContainer} />
-                        <Route path="/projects/hello" component={WelcomeBar} />
-                        <Route path="/projects" component={ProjectIndexContainer} />
-                        <Route path="/projects/new" component={ProjectCreateContainer} />
+                
+                    
                     </div>
                     <br />
                 </div>

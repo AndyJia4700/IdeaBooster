@@ -47,7 +47,7 @@ class Api::ProjectsController < ApplicationController
         @project = Project.find_by(params[:id])
         if @project && @project.creator_id == current_user.id
             @project.destroy
-            render "api/projects/show"
+            # render "api/projects/show"
         end
     end
 

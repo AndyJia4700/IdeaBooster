@@ -37,21 +37,28 @@ class ProjectForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.action(this.state);
+        // this.props.action(this.state);
         // debugger;
         const formData = new FormData();
         formData.append('project[title]', this.state.title);
+        formData.append('project[subtitle]',this.state.subtitle);
+        formData.append('project[funding_goal]', this.state.funding_goal);
+        formData.append('project[category_id]', this.state.category_id);
+        formData.append('project[location_id]', this.state.location_id);
+
         if (this.state.pictureFile){
             formData.append('project[picture]', this.state.pictureFile);
         } 
-        $.ajax({
-            method: 'POST',
-            url: '/api/projects',
-            data: formData,
-            contentType: false,
-            processData: false,
-            dataType: "json"
-        });
+
+        this.props.action(formData)
+        // $.ajax({
+        //     method: 'POST',
+        //     url: '/api/projects',
+        //     data: formData,
+        //     contentType: false,
+        //     processData: false,
+        //     dataType: "json"
+        // });
     }
 
     update(field){
@@ -59,8 +66,7 @@ class ProjectForm extends React.Component{
     }
 
     render(){
-        console.log(this.state);
-        
+        // console.log(this.state);
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
         
         return (

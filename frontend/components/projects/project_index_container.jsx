@@ -8,6 +8,7 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => ({
+    // action: postId => dispatch(fetchProject(postId)),
     fetchProjects: () => dispatch(fetchProjects()),
     deleteProject: projectId => dispatch(deleteProject(projectId))
 });

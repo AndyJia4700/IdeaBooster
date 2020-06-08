@@ -1,6 +1,5 @@
 import React from 'react';
 import ProjectIndexItem from './project_index_item';
-import CreateProjectFormContainer from './create_project_form_container'
 
 class ProjectIndex extends React.Component {
     constructor(props){
@@ -12,16 +11,17 @@ class ProjectIndex extends React.Component {
     }
 
     render () {
-        const {projects, deleteProject} = this.props
+        const {projects} = this.props
         return (
             <div>
+                
 
                 <ul>
                     {
                         projects.map(project => (
                             <ProjectIndexItem
                                 project={project}
-                                deleteProject={deleteProject}
+                                // deleteProject={deleteProject}
                                 key={project.id}
                             />
                         ))
