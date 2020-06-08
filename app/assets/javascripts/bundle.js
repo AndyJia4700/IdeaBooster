@@ -604,7 +604,9 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         category_id: '1',
         location_id: '1'
       });
-    }
+    } // componentDidUpdate(){
+    // }
+
   }, {
     key: "handleFile",
     value: function handleFile(e) {
@@ -1053,24 +1055,33 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProjectShow);
 
   function ProjectShow(props) {
+    var _this;
+
     _classCallCheck(this, ProjectShow);
 
-    return _super.call(this, props); // debugger
+    _this = _super.call(this, props);
+    debugger;
+    return _this;
   }
 
   _createClass(ProjectShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger;
+      debugger;
       var projectId = this.props.match.params.projectId;
       this.props.fetchProject(projectId);
     }
   }, {
     key: "render",
     value: function render() {
-      var project = this.props.project; // debugger;
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var project = this.props.project;
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "project-detail-picture",
+        src: project.pictureUrl
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.location_id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Back this project"))));
     }
   }]);
 
@@ -1106,17 +1117,17 @@ __webpack_require__.r(__webpack_exports__);
 // }
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
   // const project = state.projects[index(state, ownProps)]
   var projectId = ownProps.match.params.projectId;
   var project = state.projects[projectId - 19];
+  debugger;
   return {
     project: project
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger;
+  debugger;
   return {
     fetchProject: function fetchProject(projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProject"])(projectId));
@@ -1213,41 +1224,49 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "splash-category-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "1",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Arts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "2",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Comics & Illustration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "3",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Design & Tech")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "4",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Film")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "5",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Food & Craft")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "6",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Games")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "7",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
         href: ""
       }, "Music")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        value: "8",
         className: "splash-category-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "splash-category-a",
@@ -1452,7 +1471,7 @@ var WelcomeBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "Big-font"
       }, "Bring your creative project to life."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/projects/new"
+        href: "/projects/new"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "welcomebutton"
       }, "Get started")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -5,24 +5,37 @@ import {Link} from 'react-router-dom';
 class ProjectShow extends React.Component{
     constructor(props){
         super(props);
-        // debugger
+        debugger
     }
 
     componentDidMount(){
-        // debugger;
+        debugger;
         const projectId = this.props.match.params.projectId
         this.props.fetchProject(projectId);
     }
+
+
     render(){
         const {project} = this.props
-        // debugger;
+        debugger;
         return(
             <div>
-                {/* <p>start this is details</p> */}
-                {/* <h1>{project.title}</h1>
-                <p>{project.subtitle}</p> */}
-                {/* <img className="project-id-picture" src={project.pictureUrl} /> */}
-                {/* <p>end</p> */}
+                <div>
+                    <h1>{project.title}</h1>
+                    <p>{project.subtitle}</p>
+                </div>
+
+                <div>
+                    <img className="project-detail-picture" src={project.pictureUrl} />
+                    <p>{project.location_id}</p>
+                </div>
+
+                <div>
+
+                    <a href="">
+                        <button>Back this project</button>
+                    </a>
+                </div>
             </div>
         );
     }

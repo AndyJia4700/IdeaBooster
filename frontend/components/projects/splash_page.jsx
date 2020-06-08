@@ -34,14 +34,14 @@ class splashPage extends React.Component{
             <div>
                 <div className="splash-category-div">
                     <ul className="splash-category-ul">
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Arts</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Comics & Illustration</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Design & Tech</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Film</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Food & Craft</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Games</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Music</a></li>
-                        <li className="splash-category-li"><a className="splash-category-a" href="">Publishing</a></li>
+                        <li value="1" className="splash-category-li"><a className="splash-category-a" href="">Arts</a></li>
+                        <li value="2" className="splash-category-li"><a className="splash-category-a" href="">Comics & Illustration</a></li>
+                        <li value="3" className="splash-category-li"><a className="splash-category-a" href="">Design & Tech</a></li>
+                        <li value="4" className="splash-category-li"><a className="splash-category-a" href="">Film</a></li>
+                        <li value="5" className="splash-category-li"><a className="splash-category-a" href="">Food & Craft</a></li>
+                        <li value="6" className="splash-category-li"><a className="splash-category-a" href="">Games</a></li>
+                        <li value="7" className="splash-category-li"><a className="splash-category-a" href="">Music</a></li>
+                        <li value="8" className="splash-category-li"><a className="splash-category-a" href="">Publishing</a></li>
                     </ul>
                 </div>
 

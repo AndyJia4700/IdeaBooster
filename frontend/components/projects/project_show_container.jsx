@@ -13,17 +13,17 @@ import ProjectShow from "./project_show";
 // }
 
 const mSTP = (state, ownProps) => {
-    // debugger;
     // const project = state.projects[index(state, ownProps)]
     const projectId = ownProps.match.params.projectId
     const project = state.projects[projectId - 19]
+    debugger;
     return {
         project
     }
 };
 
 const mDTP = dispatch => {
-    // debugger;
+    debugger;
     return {
     fetchProject: projectId => dispatch(fetchProject(projectId)),
     // action: projectId => dispatch(fetchProject(projectId)),

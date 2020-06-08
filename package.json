@@ -1,5 +1,5 @@
 {
-  "name": "IdeaBooster",
+  "name": "ideabooster",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.10.2",
