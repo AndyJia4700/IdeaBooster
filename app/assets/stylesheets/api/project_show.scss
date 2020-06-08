@@ -1,3 +1,10 @@
-.project-detail-picture {
+.project-show-pic {
     height: 200px;
+}
+
+.project-show-subdiv1{
+    display: inline-flex;
+    flex-direction: column;
+    // background: blue;
+    background: url(window.linkedinURL);
 }

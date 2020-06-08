@@ -5,11 +5,16 @@ import {Link} from 'react-router-dom';
 class ProjectShow extends React.Component{
     constructor(props){
         super(props);
-        debugger
+        // debugger
     }
 
     componentDidMount(){
-        debugger;
+        // debugger;
+        const projectId = this.props.match.params.projectId
+        this.props.fetchProject(projectId);
+    }
+
+    componentDidUpdate(){
         const projectId = this.props.match.params.projectId
         this.props.fetchProject(projectId);
     }
@@ -17,16 +22,17 @@ class ProjectShow extends React.Component{
 
     render(){
         const {project} = this.props
-        debugger;
+        // debugger;
+        if (!project) return null;
         return(
             <div>
-                <div>
+                <div className="project-show-subdiv1">
                     <h1>{project.title}</h1>
                     <p>{project.subtitle}</p>
                 </div>
 
                 <div>
-                    <img className="project-detail-picture" src={project.pictureUrl} />
+                    <img className="project-show-pic" src={project.pictureUrl} />
                     <p>{project.location_id}</p>
                 </div>
 

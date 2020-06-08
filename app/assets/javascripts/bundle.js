@@ -106,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_project_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/project_util */ "./frontend/util/project_util.js");
 
 var RECEIVE_ALL_PROJECTS = 'RECEIVE_ALL_PROJECTS';
-var RECEIVE_PROJECT = 'RECEIVE_ALL_PROJECTS';
+var RECEIVE_PROJECT = 'RECEIVE_PROJECT';
 var REMOVE_PROJECT = 'REMOVE_PROJECT';
 
 var receiveAllProjects = function receiveAllProjects(projects) {
@@ -1055,29 +1055,34 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProjectShow);
 
   function ProjectShow(props) {
-    var _this;
-
     _classCallCheck(this, ProjectShow);
 
-    _this = _super.call(this, props);
-    debugger;
-    return _this;
+    return _super.call(this, props); // debugger
   }
 
   _createClass(ProjectShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
+      // debugger;
+      var projectId = this.props.match.params.projectId;
+      this.props.fetchProject(projectId);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
       var projectId = this.props.match.params.projectId;
       this.props.fetchProject(projectId);
     }
   }, {
     key: "render",
     value: function render() {
-      var project = this.props.project;
-      debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "project-detail-picture",
+      var project = this.props.project; // debugger;
+
+      if (!project) return null;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-show-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "project-show-pic",
         src: project.pictureUrl
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.location_id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: ""
@@ -1106,28 +1111,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _project_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./project_show */ "./frontend/components/projects/project_show.jsx");
 
 
- // const index = (state, ownProps) => {
-//     const projectId = ownProps.match.params.projectId;
-//     const projects = Object.values(state.projects)
-//     for (let i = 0; i < projects.length; i++) {
-//         if (projects[i].id === projectId)
-//         // debugger;
-//             return i
-//     }
-// }
+
 
 var mSTP = function mSTP(state, ownProps) {
-  // const project = state.projects[index(state, ownProps)]
   var projectId = ownProps.match.params.projectId;
-  var project = state.projects[projectId - 19];
-  debugger;
+  var project = state.projects[projectId];
   return {
     project: project
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  debugger;
+  // debugger;
   return {
     fetchProject: function fetchProject(projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProject"])(projectId));
@@ -1471,7 +1466,7 @@ var WelcomeBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "Big-font"
       }, "Bring your creative project to life."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/projects/new"
+        href: "#/projects/new"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "welcomebutton"
       }, "Get started")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1967,7 +1962,7 @@ var ProjectReducer = function ProjectReducer() {
 
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROJECT"]:
       // debugger;
-      return Object.assign({}, oldState, _defineProperty({}, action.project.id, action.payload.project));
+      return Object.assign({}, oldState, _defineProperty({}, action.projectId, action.project));
 
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PROJECT"]:
       var nextState = Object.assign({}, oldState);
