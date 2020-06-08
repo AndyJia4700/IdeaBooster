@@ -13,10 +13,8 @@ class ProjectIndex extends React.Component {
     render () {
         const {projects} = this.props
         return (
-            <div>
-                
-
-                <ul>
+            <div className="project-index-div">
+                <ul className="project-index-ul">
                     {
                         projects.map(project => (
                             <ProjectIndexItem

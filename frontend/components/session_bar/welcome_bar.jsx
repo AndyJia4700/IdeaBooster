@@ -10,12 +10,26 @@ class WelcomeBar extends React.Component{
                 <div className="welcome-word">
                     <div>
                     <h1 className="Big-font">Bring your creative project to life.</h1>
-                        <button className="start-button">
-                            Get started
-                        </button>
+                        
+                        {/* <button className="start-button" href="#/projects/new" >
+                            Get started */}
+                            <a href="#/projects/new">
+                            <button className="welcomebutton">Get started</button>
+                            </a>
+                        {/* </button> */}
                     </div>
                 </div>
-                <p>end</p>
+
+                <div className="Welcome-intro-div">
+                    <ul className="Welcome-intro-li">
+                        <li>How it works</li>
+                        <li>Inspiration</li>
+                        <li>Why Ideabooster</li>
+                        <li>Open calls</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+
             </div>
         )
     }

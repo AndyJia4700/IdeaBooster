@@ -238,11 +238,13 @@ div {
     padding-left: 10px;
     font-size: 15px;
     font-weight: 200;
+    display: flex;
 }
 
 .github{
     position: relative;
     width: 100%;
     height: 200px;
-    // background: url("../../images/GitHub-Mark-Light-32px.png")
+    // background-image: url(window.githubURL);
 }
+

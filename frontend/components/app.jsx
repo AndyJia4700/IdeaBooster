@@ -67,9 +67,18 @@ class App extends React.Component{
                 </div>
 
                 <div className="footer">
-                    <p className="footer">Cloned by Andrew Jia</p>
-                    <div className="github">
-                        <a className="github" href="https://github.com/AndyJia4700">github</a>
+                    <div>
+                        <p className="footer">Cloned by Andrew Jia</p>
+                    </div>
+                    
+                    <div className="logo">
+                        <a className="github" href="https://github.com/AndyJia4700">
+                            <img src={window.githubURL} className="logo-icon"/>
+                        </a>
+                        
+                        <a className="linkedin" href="https://www.linkedin.com/in/andy-jia-89a261114/">
+                            <img src={window.linkedinURL} className="logo-icon"/>
+                        </a>
                     </div>
                 </div>
 

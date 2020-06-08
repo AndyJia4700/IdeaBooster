@@ -1,0 +1,34 @@
+.project-index-div {
+    // display: flex;
+    
+}
+
+.project-index-ul {
+    // display: flex;
+    // width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.project-id-picture{
+    width: 300px;
+}
+
+.project-id-li{
+    display: inline-block;
+    // display: flex;
+    vertical-align: top;
+    flex-direction: column;
+}
+
+.project-id-a{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E8E8E8;
+    padding: 0px;
+    padding-bottom: 50px;
+}
+
+.project-id-outdiv{
+    padding:20px;
+}

@@ -70,28 +70,40 @@ class ProjectForm extends React.Component{
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
         
         return (
+
             <form onSubmit={this.handleSubmit}>
+                <div className="project-basic-top-div">
+                    <div className="project-basic-top-subdiv">
+                        <h4 className="project-basic-top-h4">Start with the basics</h4>
+                        <p className="project-basic-top-p">Make it easy for people to learn about your project.</p>
+                    </div>
+                </div>
+                <br/>
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Project title</p>
-                        <p>Write a clear, brief title that helps people quickly understand the gist of your project</p>
+                        <p className="project-basic-hilight-p">Write a clear, brief title that helps people quickly understand the gist of your project</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
-                        <label className="project-basic">Title
+                        <label className="project-basic"> 
+                            <span className="project-basic-span">Title</span>
                         <input type="text"
                             value={this.state.title}
                             onChange={this.update('title')}
                             placeholder="Radiotopia: A Storytelling Revolution"
+                            className="project-basic-input"
                         />
                         </label>
 
                         <br />
                         
-                        <label className="project-basic">Subtitle
+                        <label className="project-basic">
+                            <span className="project-basic-span">Subtitle</span>
                         <textarea
                                 value={this.state.subtitle}
                                 onChange={this.update('subtitle')}
+                                className="project-basic-input"
                                 placeholder="We are a collective of amazing storytelling radio show. Let's remake public raido together."
                             />
                         </label>
@@ -103,12 +115,12 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Project category</p>
-                        <p>Choose the category that most closely aligns with your project.</p>
+                        <p className="project-basic-hilight-p">Choose the category that most closely aligns with your project.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
                         <label className="project-basic">
-                            <select onChange={this.update('category_id')}>
+                            <select onChange={this.update('category_id')} className="project-basic-input">
                                 <option value="1">Arts</option>
                                 <option value="2">Comic & Illustration</option>
                                 <option value="3">Design & Tech</option>
@@ -125,12 +137,12 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Project location</p>
-                        <p>Enter the location that best describles where your project is based.</p>
+                        <p className="project-basic-hilight-p">Enter the location that best describles where your project is based.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
                         <label className="project-basic">
-                            <select onChange={this.update('location_id')}>
+                            <select onChange={this.update('location_id')} className="project-basic-input">
                                 <option value='1'>Australia</option>
                                 <option value='2'>Austria</option>
                                 <option value='3'>Belgium</option>
@@ -149,12 +161,13 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Project image</p>
-                        <p>Add an image that clearly represents your projects.</p>
+                        <p className="project-basic-hilight-p">Add an image that clearly represents your projects.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
                         <div>
                             <input type="file"
+                                className="project-basic-input"
                                 onChange={this.handleFile}
                             />
                             {preview}
@@ -165,15 +178,18 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Funding goal</p>
-                        <p>Set an achievable goal that covers what you need to complete your project.</p>
+                        <p className="project-basic-hilight-p">Set an achievable goal that covers what you need to complete your project.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
-                        <label className="project-basic">Goal amount
+                        <label className="project-basic">
+                            <span className="project-basic-span">Goal amount</span>
+                        
                             <input type="number"
                                 value={this.state.funding_goal}
                                 onChange={this.update('funding_goal')}
                                 placeholder="0"
+                                className="project-basic-input"
                             />
                         </label>
                     </div>
@@ -183,7 +199,7 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Target launch date</p>
-                        <p>Enter a date when you plan to launch, we won't automatically launch your project.</p>
+                        <p className="project-basic-hilight-p">Enter a date when you plan to launch, we won't automatically launch your project.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">
@@ -191,6 +207,7 @@ class ProjectForm extends React.Component{
                             <input type="date"
                                 value={this.state.launch_date}
                                 onChange={this.update('launch_date')}
+                                // className="project-basic-input"
                             />
                         </label>
                     </div>
@@ -200,7 +217,7 @@ class ProjectForm extends React.Component{
                 <div className="project-basic-div">
                     <div className="project-basic-subdiv1">
                         <p className="project-basic-hilight">Campaign duration</p>
-                        <p>Set a time limit for your campaign.</p>
+                        <p className="project-basic-hilight-p">Set a time limit for your campaign.</p>
                     </div>
 
                     <div className="project-basic-subdiv2">

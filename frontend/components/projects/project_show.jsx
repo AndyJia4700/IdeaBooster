@@ -18,11 +18,11 @@ class ProjectShow extends React.Component{
         // debugger;
         return(
             <div>
-                <p>start this is details</p>
+                {/* <p>start this is details</p> */}
                 {/* <h1>{project.title}</h1>
                 <p>{project.subtitle}</p> */}
                 {/* <img className="project-id-picture" src={project.pictureUrl} /> */}
-                <p>end</p>
+                {/* <p>end</p> */}
             </div>
         );
     }
