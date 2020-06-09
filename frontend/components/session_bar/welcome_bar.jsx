@@ -4,19 +4,16 @@ import { Link } from 'react-router-dom';
 class WelcomeBar extends React.Component{
     render() {
         return(
-            <div className="">
-                {/* <p>start</p> */}
-                <img src={window.welcomeURL} className="welcome-gif"/>
-                <div className="welcome-word">
-                    <div>
-                    <h1 className="Big-font">Bring your creative project to life.</h1>
-                        
-                        {/* <button className="start-button" href="#/projects/new" >
-                            Get started */}
+            <div className="welcome">
+                <div>
+                    <img src={window.welcomeURL} className="welcome-gif"/>
+                    <div className="welcome-word">
+                        <div>
+                            <h1 className="Big-font">Bring your creative project to life.</h1>
                             <a href="#/projects/hello1">
                             <button className="welcomebutton">Get started</button>
                             </a>
-                        {/* </button> */}
+                        </div>
                     </div>
                 </div>
 

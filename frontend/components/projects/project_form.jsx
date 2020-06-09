@@ -10,8 +10,11 @@ class ProjectForm extends React.Component{
     }
 
     componentDidMount(){
+        // subtitle = document.getElementById('welcome-subtitle')
+
         this.setState({
             creator_id: currentUser.id,
+            // subtitle: subtitle,
             category_id: '1',
             location_id: '1'
         })
@@ -44,6 +47,7 @@ class ProjectForm extends React.Component{
         // this.props.action(this.state);
         // debugger;
         const formData = new FormData();
+        // formData.append('project[id]', this.state.id);
         formData.append('project[title]', this.state.title);
         formData.append('project[subtitle]',this.state.subtitle);
         formData.append('project[funding_goal]', this.state.funding_goal);
@@ -54,7 +58,7 @@ class ProjectForm extends React.Component{
             formData.append('project[picture]', this.state.pictureFile);
         } 
 
-        this.props.action(formData)
+        this.props.action(formData).then()
         // $.ajax({
         //     method: 'POST',
         //     url: '/api/projects',
@@ -63,6 +67,7 @@ class ProjectForm extends React.Component{
         //     processData: false,
         //     dataType: "json"
         // });
+
     }
 
     update(field){
@@ -125,6 +130,7 @@ class ProjectForm extends React.Component{
                     <div className="project-basic-subdiv2">
                         <label className="project-basic">
                             <select onChange={this.update('category_id')} className="project-basic-input">
+                                {/* <option value={document.getElementById('welcome-')}></option> */}
                                 <option value="1">Arts</option>
                                 <option value="2">Comic & Illustration</option>
                                 <option value="3">Design & Tech</option>
@@ -235,8 +241,9 @@ class ProjectForm extends React.Component{
                     <br />
                 </div>
                 
-
-                <button type="submit" value={this.props.formType}>Test Submit</button>
+                
+                <button type="submit" value={this.props.formType}>Next</button>
+                
                 
             </form>
 

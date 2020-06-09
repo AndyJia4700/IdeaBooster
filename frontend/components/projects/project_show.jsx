@@ -46,7 +46,7 @@ class ProjectShow extends React.Component{
 
                         <div className="project-show-subdiv2-back-money-div">
                             <p className="project-show-subdiv2-back-money">$500</p>
-                            <p>pledged of $1,020 goal</p>
+                            <p>pledged of ${project.funding_goal} goal</p>
                         </div>
 
                         <div className="project-show-subdiv2-back-backer">

@@ -81,3 +81,32 @@
     padding-top: 120px;
     padding-bottom: 120px;
 }
+
+.welcome-title{
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.welcome-intro{
+    font-size: 20px;
+    font-weight: 200;
+    color: rgba(0,0,0,0.6);
+}
+
+.welcome-category{
+    height: 50px;
+    width: 48%;
+}
+
+.welcome-div-select{
+    padding-bottom: 50px;
+}
+
+// .welcome-div-button{
+//     // width: 50%;
+// }
+
+.welcome-button::after{
+    position: absolute;
+}
+

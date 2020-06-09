@@ -57,9 +57,10 @@ class splashPage extends React.Component{
                                 projects.slice(0, 1).map(project => (
                                     <div>
                                         <Link to={`/projects/${project.id}`}>
-                                            <img className="project-feature-picture1" src={project.pictureUrl}/>
-                                            <br/>
-                                            {project.title}
+                                            <img className="project-feature-picture1" src={project.pictureUrl}/>                                    
+                                            <div>{project.title}</div>
+                                                <br/>
+                                            <div>{project.subtitle}</div>
                                             {/* {this.state.entites.users[project.creator_id].username} */}
                                         </Link>
                                     </div>
@@ -69,16 +70,24 @@ class splashPage extends React.Component{
                     </div>
 
                     <div className="splash-recommend-div">
-                        <h4 className="splash-projects-font">RECOMMENDED FOR YOU</h4>
-                        <ul>
+                        <h4 className="splash-projects-font-rec">RECOMMENDED FOR YOU</h4>
+                        <ul className="splash-projects-ul">
                             <div>
                             {
-                                projects.slice(3,6).map(project => (
-                                    <li key={project.id}>
+                                projects.slice(2,5).map(project => (
+                                    <li key={project.id} >
                                         <Link to={`/projects/${project.id}`} >
-                                            <img className="project-feature-picturelist" src={project.pictureUrl} />
-                                            <br />
-                                            {project.title}
+                                            <div className="project-rec-li">
+                                                <div>
+                                                    <img className="project-feature-picturelist" src={project.pictureUrl} />
+                                                </div>
+
+                                                <div className="project-rec-title-li">
+                                                    {project.title}
+                                                    <br/>
+                                                    <span>55% funded</span>
+                                                </div>
+                                            </div>
                                         </Link>
                                     </li>
                                 ))

@@ -15,8 +15,8 @@
 #  updated_at   :datetime         not null
 #
 class Project < ApplicationRecord
-    validates :title, :subtitle, :funding_goal, presence: true, uniqueness: true
-
+    validates :title, :subtitle, presence: true, uniqueness: true
+    validates :funding_goal, presence: true
     belongs_to :creator,
     foreign_key: :creator_id,
     class_name: "User"

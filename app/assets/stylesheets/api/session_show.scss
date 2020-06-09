@@ -41,12 +41,6 @@
   src: url(./font/RNS-B.ttf);
 }
 
-div {
-  font-family: kickstarter;
-  font-family: sans-serif;
-}
-
-
 .ideaBooster-icon {
     display: flex;
     justify-content: center;
@@ -62,6 +56,10 @@ div {
     font-family: kickstarter;
     text-decoration: none;
     padding-top: 10px;
+}
+
+div {
+  font-family: sans-serif;
 }
 
 .search-login {

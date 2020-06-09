@@ -5,11 +5,11 @@ class WelcomeBar3 extends React.Component {
         return (
             <div className="welcome-div">
                 <div className="welcome-div-title">
-                    <h1>Finally, let's confirm your eligibility.</h1>
+                    <h1 className="welcome-title">Finally, let's confirm your eligibility.</h1>
                 </div>
 
                 <div className="welcome-div-intro">
-                    <p>Tell us where you're based and confirm a few other details before we proceed.</p>
+                    <p className="welcome-intro">Tell us where you're based and confirm a few other details before we proceed.</p>
                 </div>
 
                 <div className="welcome-div-select">
