@@ -1,10 +1,67 @@
+.project-show-div{
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    // width: 60%;
+
+}
+
+.project-show-pic-div {
+    // width: cal(100% * 8/12);
+    width: 66%;
+    padding-right: 50px;
+}
+
 .project-show-pic {
-    height: 200px;
+    // height: 480px;
+    // width: 830px;
+    width: 100%;
+    //  50px;
+    // object-fit: cover;
 }
 
 .project-show-subdiv1{
     display: inline-flex;
     flex-direction: column;
-    // background: blue;
-    // background: url(window.linkedinURL);
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+
+.project-show-subdiv2{
+    display: flex;
+}
+
+.project-show-h {
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+.project-show-subdiv2-back {
+    // width: cal(100% * 4/12);
+    width: 34%;
+}
+
+
+.project-show-subdiv2-back-top{
+    background: #009E74;
+    padding-top: 8px;
+    margin-right: 50px;
+}
+
+.project-show-subdiv2-back-button{
+    background: #009E74;
+    border: none;
+    color: white;
+    width: 85%;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.project-show-subdiv2-back-money{
+    color: #009E74;
+    font-size: 30px;
+    font-weight: 500;
+}
+

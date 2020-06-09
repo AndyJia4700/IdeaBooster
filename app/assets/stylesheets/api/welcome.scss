@@ -73,3 +73,11 @@
     justify-content: space-between;
     list-style-type: none;
 }
+
+.welcome-div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}

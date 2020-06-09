@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const SessionShow = ({ currentUser, logout}) => {
+const SessionShow = ({ currentUser, logout, openModal}) => {
 // const SessionShow = () => {
     const sessionLinks = () => (
         <nav>
@@ -14,10 +14,14 @@ const SessionShow = ({ currentUser, logout}) => {
     const greeting = () => (
         <nav className="nav-greeting">
             <div className="dropdown">
-                <a className="login-button"><span className="modal-button">{currentUser.username}</span></a>
-                <div className="dropdown-content">
+                <a className="login-button" onClick={() => openModal('profileDropDown')}>
+                    <span className="modal-button">
+                        {currentUser.username}
+                    </span>
+                </a>
+                {/* <div className="dropdown-content">
                      <button onClick={logout}>Logout</button>
-                </div>
+                </div> */}
             </div>
         </nav>
     );

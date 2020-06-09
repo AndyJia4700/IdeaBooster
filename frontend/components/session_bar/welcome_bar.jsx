@@ -13,7 +13,7 @@ class WelcomeBar extends React.Component{
                         
                         {/* <button className="start-button" href="#/projects/new" >
                             Get started */}
-                            <a href="#/projects/new">
+                            <a href="#/projects/hello1">
                             <button className="welcomebutton">Get started</button>
                             </a>
                         {/* </button> */}

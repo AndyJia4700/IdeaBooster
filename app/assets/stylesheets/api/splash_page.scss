@@ -30,3 +30,43 @@
 .splash-category-li:hover {
     text-decoration: underline;
 }
+
+.empty-div{
+    width: 100%;
+    background-color: khaki;
+    padding: 10px;
+}
+
+.splash-feature-recommend {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.splash-featured-div {
+    width: 55%;
+}
+
+.project-feature-picture1{
+    width: 90%;
+    margin-right: 50px;
+}
+
+
+.splash-recommend-div{
+    width: 45%;
+}
+
+.project-feature-picturelist{
+    width: 50%;
+    height: 100px;
+}
+
+.splash-projects-font{
+    margin-top: 0;
+    // padding-left: 50px;
+}
+
+
+

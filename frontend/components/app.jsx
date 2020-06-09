@@ -6,11 +6,16 @@ import SessionShowContainer from './session_bar/session_show_container';
 import { AuthRoute } from '../util/route_utils';
 
 import WelcomeBar from './session_bar/welcome_bar';
+import WelcomeBar1 from './session_bar/welcome_bar_1';
+import WelcomeBar2 from './session_bar/welcome_bar_2';
+import WelcomeBar3 from './session_bar/welcome_bar_3';
+
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
 import ProjectShowContainer from './projects/project_show_container';
 import ProjectEditContainer from './projects/edit_project_form_container';
 import splashPage from './projects/splash_page';
+import Modal from './modal/modal';
 
 
 class App extends React.Component{
@@ -18,7 +23,7 @@ class App extends React.Component{
     render(){
         return(
             <div >
-
+                <Modal />   
                 <nav className="top-bar">
                     <div className="explore-start">
                         <div className="explore">
@@ -48,13 +53,17 @@ class App extends React.Component{
                 </nav>
 
                 <Route exact path="/projects/hello" component={WelcomeBar} />
+                <Route exact path="/projects/hello1" component={WelcomeBar1} />
+                <Route exact path="/projects/hello2" component={WelcomeBar2} />
+                <Route exact path="/projects/hello3" component={WelcomeBar3} />
+
                 <Route exact path="/" component={splashPage} />     
                 <Route exact path="/projects" component={ProjectIndexContainer} />
                 <Route exact path="/projects/:projectId" component={ProjectShowContainer}/>
                 <Route exact path="/projects/:projectId/edit" component={ProjectEditContainer}/>
                 <Route exact path="/projects/new" component={ProjectCreateContainer} />
                 
-                <div className="div-session-background">
+                {/* <div className="div-session-background"> */}
                     <br />
                     <div className="div-session-box">
 
@@ -64,11 +73,11 @@ class App extends React.Component{
                     
                     </div>
                     <br />
-                </div>
+                {/* </div> */}
 
                 <div className="footer">
                     <div>
-                        <p className="footer">Cloned by Andrew Jia</p>
+                        <p className="footer-1">Cloned by Andrew Jia</p>
                     </div>
                     
                     <div className="logo">
