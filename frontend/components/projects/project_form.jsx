@@ -11,7 +11,6 @@ class ProjectForm extends React.Component{
 
     componentDidMount(){
         // subtitle = document.getElementById('welcome-subtitle')
-
         this.setState({
             creator_id: currentUser.id,
             // subtitle: subtitle,

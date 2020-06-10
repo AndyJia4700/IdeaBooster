@@ -197,6 +197,63 @@ var deleteProject = function deleteProject(projectId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/reward_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/reward_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_REWARD, REMOVE_REWARD, fetchReward, createReward, deleteReward */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REWARD", function() { return RECEIVE_REWARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_REWARD", function() { return REMOVE_REWARD; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReward", function() { return fetchReward; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReward", function() { return createReward; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReward", function() { return deleteReward; });
+/* harmony import */ var _util_reward_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reward_util */ "./frontend/util/reward_util.js");
+
+var RECEIVE_REWARD = 'RECEIVE_REWARD';
+var REMOVE_REWARD = 'REMOVE_REWARD';
+
+var receiveReward = function receiveReward(reward) {
+  return {
+    type: RECEIVE_REWARD,
+    reward: reward
+  };
+};
+
+var removeReward = function removeReward(rewardId) {
+  return {
+    type: REMOVE_REWARD,
+    rewardId: rewardId
+  };
+};
+
+var fetchReward = function fetchReward(projectId) {
+  return function (dispatch) {
+    return _util_reward_util__WEBPACK_IMPORTED_MODULE_0__["fetchReward"](projectId).then(function (project) {
+      return dispatch(receiveReward(project));
+    });
+  };
+};
+var createReward = function createReward(project, reward) {
+  return function (dispatch) {
+    return _util_reward_util__WEBPACK_IMPORTED_MODULE_0__["createReward"](project, reward).then(function (project, reward) {
+      return dispatch(receiveReward(project, reward));
+    });
+  };
+};
+var deleteReward = function deleteReward(projectId) {
+  return function (dispatch) {
+    return _util_reward_util__WEBPACK_IMPORTED_MODULE_0__["deleteReward"](projectId).then(function () {
+      return dispatch(removeReward(projectId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -636,7 +693,7 @@ var EditPostForm = /*#__PURE__*/function (_React$Component) {
   _createClass(EditPostForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchProject(this.props.match.params.postId);
+      this.props.fetchProject(this.props.match.params.projectId);
     }
   }, {
     key: "render",
@@ -647,7 +704,8 @@ var EditPostForm = /*#__PURE__*/function (_React$Component) {
       if (!project) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
         action: action,
-        project: project
+        project: project,
+        formType: formType
       });
     }
   }]);
@@ -667,8 +725,8 @@ var mDTP = function mDTP(dispatch) {
     fetchProject: function fetchProject(projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
     },
-    action: function action(post) {
-      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(post));
+    action: function action(project) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(project));
     }
   };
 };
@@ -1194,9 +1252,14 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProjectShow);
 
   function ProjectShow(props) {
+    var _this;
+
     _classCallCheck(this, ProjectShow);
 
-    return _super.call(this, props); // debugger
+    _this = _super.call(this, props); // debugger
+
+    _this.state = _this.props.poject;
+    return _this;
   }
 
   _createClass(ProjectShow, [{
@@ -1205,13 +1268,12 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       // debugger;
       var projectId = this.props.match.params.projectId;
       this.props.fetchProject(projectId);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var projectId = this.props.match.params.projectId;
-      this.props.fetchProject(projectId);
-    }
+    } // update(field){
+    //     return e => this.setState({
+    //         [field]: e.currentTarget.value
+    //     })
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -1370,7 +1432,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
   function splashPage(props) {
     _classCallCheck(this, splashPage);
 
-    return _super.call(this, props); // this.state = this.props.projects[0]
+    return _super.call(this, props);
   }
 
   _createClass(splashPage, [{
@@ -1381,8 +1443,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var projects = this.props.projects; // const featureProject = this.props.projects[0]
-      // debugger;
+      var projects = this.props.projects; // debugger;
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-category-div"
@@ -2613,6 +2674,41 @@ var ProjectReducer = function ProjectReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/rewards_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/rewards_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+
+
+var rewardsReducer = function rewardsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_reward_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REWARD"]:
+      return Object.assign({}, state, action.reward);
+
+    case _actions_reward_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_REWARD"]:
+      var nextState = Object.assign({}, state);
+      delete nextState[action.rewardId];
+      return nextState;
+
+    default:
+      return null;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (rewardsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -2628,6 +2724,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
 /* harmony import */ var _projects_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./projects_reducer */ "./frontend/reducers/projects_reducer.js");
 /* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
+/* harmony import */ var _rewards_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./rewards_reducer */ "./frontend/reducers/rewards_reducer.js");
+
 
 
 
@@ -2639,6 +2737,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   projects: _projects_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  rewards: _rewards_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
   ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
@@ -2848,6 +2947,41 @@ var deleteProject = function deleteProject(projectId) {
   return $.ajax({
     method: 'DELETE',
     url: "/api/projects/".concat(projectId)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/reward_util.js":
+/*!**************************************!*\
+  !*** ./frontend/util/reward_util.js ***!
+  \**************************************/
+/*! exports provided: fetchReward, createReward, deleteReward */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReward", function() { return fetchReward; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReward", function() { return createReward; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteReward", function() { return deleteReward; });
+var fetchReward = function fetchReward(projectId) {
+  return $.ajax({
+    url: "/api/projects/".concat(projectId, "/rewards")
+  });
+};
+var createReward = function createReward(project, reward) {
+  return $.ajax({
+    method: 'POST',
+    url: "/api/projects/".concat(project.id, "/rewards"),
+    data: {
+      reward: reward
+    }
+  });
+};
+var deleteReward = function deleteReward(projectId) {
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/projects/".concat(projectId, "/rewards")
   });
 };
 

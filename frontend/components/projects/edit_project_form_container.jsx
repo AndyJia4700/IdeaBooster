@@ -5,7 +5,7 @@ import ProjectForm from './project_form';
 
 class EditPostForm extends React.Component{
     componentDidMount(){
-        this.props.fetchProject(this.props.match.params.postId);
+        this.props.fetchProject(this.props.match.params.projectId);
     }
 
     render(){
@@ -15,6 +15,7 @@ class EditPostForm extends React.Component{
             <ProjectForm
                 action={action}
                 project={project}
+                formType={formType}
             />
         );
     }
@@ -27,7 +28,7 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = dispatch => ({
     fetchProject: projectId => dispatch(fetchProject(projectId)),
-    action: post => dispatch(updateProject(post))
+    action: project => dispatch(updateProject(project))
 })
 
 export default connect(mSTP, mDTP)(EditPostForm)

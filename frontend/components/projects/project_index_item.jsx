@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import { createStore } from 'redux';
 
 const ProjectIndexItem = props => (
+    
     <li className="project-id-li">
         <div className="project-id-outdiv">
             <div className="project-id-div">      

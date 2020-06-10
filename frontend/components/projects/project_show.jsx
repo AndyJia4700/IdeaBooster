@@ -6,6 +6,7 @@ class ProjectShow extends React.Component{
     constructor(props){
         super(props);
         // debugger
+        this.state = this.props.poject;
     }
 
     componentDidMount(){
@@ -14,11 +15,11 @@ class ProjectShow extends React.Component{
         this.props.fetchProject(projectId);
     }
 
-    componentDidUpdate(){
-        const projectId = this.props.match.params.projectId
-        this.props.fetchProject(projectId);
-    }
-
+    // update(field){
+    //     return e => this.setState({
+    //         [field]: e.currentTarget.value
+    //     })
+    // }
 
     render(){
         const {project} = this.props

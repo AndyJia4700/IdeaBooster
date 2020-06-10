@@ -17,9 +17,14 @@
 class Project < ApplicationRecord
     validates :title, :subtitle, presence: true, uniqueness: true
     validates :funding_goal, presence: true
+
     belongs_to :creator,
     foreign_key: :creator_id,
     class_name: "User"
+
+    has_one :reward,
+    foreign_key: :project_id,
+    class_name: "Reward"
     
     has_one_attached :picture
     def ensure_picture

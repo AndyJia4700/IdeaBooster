@@ -4,8 +4,8 @@ import ProjectShow from "./project_show";
 
 
 const mSTP = (state, ownProps) => {
-    const projectId = ownProps.match.params.projectId
-    const project = state.projects[projectId]
+    const projectId = ownProps.match.params.projectId;
+    const project = state.projects[projectId];
     return {
         project
     }

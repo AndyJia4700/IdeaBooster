@@ -17,7 +17,6 @@ class splashPage extends React.Component{
 
     constructor(props) {
         super(props);
-        // this.state = this.props.projects[0]
     }
 
     componentDidMount() {
@@ -28,7 +27,6 @@ class splashPage extends React.Component{
     render() {
         
         const { projects } = this.props;
-        // const featureProject = this.props.projects[0]
         // debugger;
         return (
 

@@ -15,4 +15,11 @@
 #  updated_at         :datetime         not null
 #
 class Reward < ApplicationRecord
+    validates :title, presence: true, uniqueness: true
+    validates :pledge_amount, :description, presence: true
+    
+    belongs_to :project,
+    foreign_key: :project_id,
+    class_name: "Project"
+    
 end
