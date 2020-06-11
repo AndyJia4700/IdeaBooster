@@ -1,17 +1,16 @@
 import { connect } from "react-redux";
-import { fetchProject, fetchProjects } from "../../actions/project_actions";
-import { fetchReward } from "../../actions/reward_actions";
-import ProjectShow from "./project_show";
+import { fetchReward, deleteReward } from '../../actions/reward_actions';
+import rewardsShow from "./rewards_show";
 
 
 const mSTP = (state, ownProps) => {
+    // debugger;
     const projectId = ownProps.match.params.projectId;
     const project = state.projects[projectId];
-    // debugger;
-    if (state.rewards === null) {
+
+    if (state.rewards === null){
         // debugger;
         return {
-            project,
             reward: {
                 title: '',
                 description: '',
@@ -21,13 +20,14 @@ const mSTP = (state, ownProps) => {
                 shipping_option: '',
                 time_limit: '',
                 estimated_delivery: ''
-            }
-        }
-    } else {
+            },
+
+            project,
+        };
+    } else{
         // debugger;
         return {
-            project,
-            reward: Object.values(state.rewards)
+            project: Object.values(state.rewards)
         }
     }
 };
@@ -35,10 +35,10 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
     // debugger;
     return {
-        fetchProjects: () => dispatch(fetchProjects()),
-        fetchProject: projectId => dispatch(fetchProject(projectId)),
+    // action: postId => dispatch(fetchProject(postId)),
         fetchReward: (projectId) => dispatch(fetchReward(projectId)),
+        deleteReward: projectId => dispatch(deleteReward(projectId))
     }
 };
 
-export default connect(mSTP, mDTP)(ProjectShow)
+export default connect(mSTP, mDTP)(rewardsShow);

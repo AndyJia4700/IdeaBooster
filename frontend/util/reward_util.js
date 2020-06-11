@@ -4,11 +4,10 @@ export const fetchReward = (projectId) => (
     })
 )
 
-
-export const createReward = (project, reward) => (
+export const createReward = (projectId, reward) => (
     $.ajax({
         method: 'POST',
-        url: `/api/projects/${project.id}/rewards`,
+        url: `/api/projects/${projectId}/rewards`,
         data: {
             reward
         }

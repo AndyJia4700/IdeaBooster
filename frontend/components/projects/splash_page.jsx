@@ -72,7 +72,7 @@ class splashPage extends React.Component{
                         <ul className="splash-projects-ul">
                             <div>
                             {
-                                projects.slice(2,5).map(project => (
+                                projects.slice(1,4).map(project => (
                                     <li key={project.id} >
                                         <Link to={`/projects/${project.id}`} >
                                             <div className="project-rec-li">
@@ -92,10 +92,68 @@ class splashPage extends React.Component{
                             }
                             </div>
                         </ul>
-                    </div>
-
-                    
+                    </div> 
                 </div>
+
+                <div className="empty-div">
+                </div>
+                <div className="empty-div">
+                </div>
+
+                <div className="splash-fresh-div">
+                    <h4 className="splash-projects-font-rec">RECOMMENDED FOR YOU</h4>
+                    <ul className="splash-projects-ul">
+                        <div className="fresh-div">
+                            {
+                                projects.slice(4, 8).map(project => (
+                                    <li key={project.id} className="fresh-li">
+                                        <Link to={`/projects/${project.id}`} >
+                                            <div className="project-fresh-li">
+                                                <div>
+                                                    <img className="project-feature-picturelist" src={project.pictureUrl} />
+                                                </div>
+
+                                                <div className="project-fresh-title-li">
+                                                    {project.title}
+                                                    <br />
+                                                    {project.subtitle}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </div>
+                    </ul>
+                </div>
+
+                <div className="splash-fresh-div">
+                    <h4 className="splash-projects-font-rec">TAKING OFF</h4>
+                    <ul className="splash-projects-ul">
+                        <div className="fresh-div">
+                            {
+                                projects.slice(8, 20).map(project => (
+                                    <li key={project.id} className="fresh-li">
+                                        <Link to={`/projects/${project.id}`} >
+                                            <div className="project-fresh-li">
+                                                <div>
+                                                    <img className="project-feature-picturelist" src={project.pictureUrl} />
+                                                </div>
+
+                                                <div className="project-fresh-title-li">
+                                                    {project.title}
+                                                    <br />
+                                                    {project.subtitle}
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </div>
+                    </ul>
+                </div>
+                
                 
             </div>
         )

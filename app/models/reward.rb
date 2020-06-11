@@ -16,7 +16,7 @@
 #
 class Reward < ApplicationRecord
     validates :title, presence: true, uniqueness: true
-    validates :pledge_amount, :description, presence: true
+    validates :pledge_amount, presence: true
     
     belongs_to :project,
     foreign_key: :project_id,

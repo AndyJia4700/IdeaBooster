@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import rewardsForm from "./rewards_form";
+import { createReward } from "../../actions/reward_actions";
 
 const mSTP = state =>({
+    // reward: state.projects[ownProps.match.params.projectId].reward,
     reward: {
         title: '',
         description: '',
@@ -12,6 +14,7 @@ const mSTP = state =>({
         time_limit: '',
         estimated_delivery: ''
     },
+    
     formType: 'Create a reward'
 });
 

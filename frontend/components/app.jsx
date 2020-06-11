@@ -16,6 +16,7 @@ import ProjectShowContainer from './projects/project_show_container';
 import ProjectEditContainer from './projects/edit_project_form_container';
 import splashPage from './projects/splash_page';
 import Modal from './modal/modal';
+import rewardsCreateContainer from './rewards/create_rewards_form_container';
 
 
 class App extends React.Component{
@@ -60,6 +61,8 @@ class App extends React.Component{
                 <Route exact path="/" component={splashPage} />     
                 <Route exact path="/projects" component={ProjectIndexContainer} />
                 <Route exact path="/projects/:projectId" component={ProjectShowContainer}/>
+                <Route exact path="/projects/:projectId/rewards" component={rewardsCreateContainer}/>
+
                 <Route exact path="/projects/:projectId/edit" component={ProjectEditContainer}/>
                 <Route exact path="/projects/new" component={ProjectCreateContainer} />
                 

@@ -14,7 +14,6 @@ const removeReward = rewardId => ({
     rewardId
 });
 
-
 export const fetchReward = projectId => dispatch => (
     RewardUtil.fetchReward(projectId)
         .then(project => dispatch(receiveReward(project)))

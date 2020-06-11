@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
+import { fetchProjects, deleteProject } from '../../util/project_util';
+import { Link } from 'react-router-dom';
+
 
 const mSTP = (state) => ({
     currentUser: state.session.currentUser,
@@ -9,7 +12,8 @@ const mSTP = (state) => ({
 
 const mDTP = dispatch => ({
     logout: () => dispatch(logout()),
-    fetchProjects: () => dispatch(fetchProjects())
+    fetchProjects: () => dispatch(fetchProjects()),
+    deleteProject: projectId => dispatch(deleteProject(projectId))
 });
 
 
@@ -19,12 +23,17 @@ class profileDropDown extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    componentDidUpdate(){
+        this.props.fetchProjects();
+    }
+
     handleClick(e){
         e.preventDefault();
         this.props.logout().then(this.props.closeModal);
     }
     render(){
         // debugger;
+        const { projects, deleteProject } = this.props
         return (
             <div className="modal-child-div">
                 <div className="profile-drop-div1">
@@ -51,7 +60,25 @@ class profileDropDown extends React.Component {
                     <div className="profile-drop-subdiv2">
                         <p className="profile-drop-title">CREATED PROJECTS</p>
                         <ul>
-                            your created project
+                            <li>
+                                {
+
+                                    projects.map(project => {
+                                        if (project.creator_id === currentUser.id) {
+                                            return(
+                                                <li>
+                                                    <div>
+                                                        <Link to={`/projects/${project.id}/edit`}>
+                                                                <img className="profile-pictures" src={project.pictureUrl} />
+                                                                {project.title}
+                                                        </Link>
+                                                    </div>
+                                                </li>
+                                            )
+                                        }             
+                                    })
+                                }
+                            </li>
                         </ul>
 
                     </div>

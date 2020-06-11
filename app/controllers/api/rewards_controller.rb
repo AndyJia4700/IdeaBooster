@@ -1,6 +1,6 @@
-class Api::SessionsController < ApplicationController
+class Api::RewardsController < ApplicationController
     def index
-        @rewards = Reward.all.includes(:project)
+        @rewards = Reward.all
         render :index
     end
 

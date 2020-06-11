@@ -43,6 +43,7 @@
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 30px;
+    // border-bottom: 1px solid  #eee4e7e7;;
 }
 
 .splash-featured-div {
@@ -101,3 +102,29 @@
 .project-rec-title-li{
     padding-left: 30px;
 }
+
+
+
+.fresh-div {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+
+.fresh-li{
+    display: block;
+    padding-right: 20px;
+}
+
+
+.splash-fresh-div{
+    padding-top: 30px;
+    border-top: 1px solid #eee4e7e7;
+    overflow: auto;
+    white-space: nowrap;
+}
+

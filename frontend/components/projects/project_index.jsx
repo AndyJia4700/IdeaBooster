@@ -11,7 +11,7 @@ class ProjectIndex extends React.Component {
     }
 
     render () {
-        const {projects} = this.props
+        const {projects, deleteProject} = this.props
         return (
             <div className="project-index-div">
                 <ul className="project-index-ul">
@@ -19,7 +19,7 @@ class ProjectIndex extends React.Component {
                         projects.map(project => (
                             <ProjectIndexItem
                                 project={project}
-                                // deleteProject={deleteProject}
+                                deleteProject={deleteProject}
                                 key={project.id}
                             />
                         ))

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // import { createStore } from 'redux';
 
@@ -12,13 +12,14 @@ const ProjectIndexItem = props => (
                     <br/>
                     {props.project.title}
                     <br/>
+                    {props.project.subtitle}
+                    <br/>
 
-                    {/* {props.project.subtitle} */}
+                {/* <button onClick={() => props.deleteProject(props.project.id)}>Delete</button>
+                <Link to={`/projects/${props.project.id}/edit`}>Edit</Link> */}
                 </Link>
                 
                 {/* <h4>{creator.username}</h4> */}
-                {/* <button onClick={() => props.deleteProject(props.project.id)}>Delete</button> */}
-                {/* <Link to={`/projects/${props.project.id}/edit`}>Edit</Link> */}
             </div>
         </div>
     </li>

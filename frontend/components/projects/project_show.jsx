@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import { fetchProject } from '../../actions/project_actions';
+// import { fetchProjects } from '../../actions/project_actions';
+import RewardsShowContainer from '../rewards/rewards_show_container'
 
 class ProjectShow extends React.Component{
     constructor(props){
@@ -11,18 +12,13 @@ class ProjectShow extends React.Component{
 
     componentDidMount(){
         // debugger;
+        this.props.fetchProjects();
         const projectId = this.props.match.params.projectId
         this.props.fetchProject(projectId);
     }
 
-    // update(field){
-    //     return e => this.setState({
-    //         [field]: e.currentTarget.value
-    //     })
-    // }
-
     render(){
-        const {project} = this.props
+        const {project, reward} = this.props
         // debugger;
         if (!project) return null;
         return(
@@ -92,6 +88,25 @@ class ProjectShow extends React.Component{
                         </div>
                         
                     </div>
+                </div>
+
+                {/* <div>
+                    <RewardsShowContainer/>
+                </div> */}
+
+                <div>
+                    <h4> Pledge ${reward.pledge_amount}</h4>
+                    <label>INCLUDES
+                    <span>{reward.title}e</span>
+                    </label>
+
+                    <label htmlFor="">ESTIMATED DELIVERY
+                    <span>{reward.estimated_delivery}</span>
+                    </label>
+
+                    <label htmlFor="">REWARD QUANTITY
+                    <span>{reward.reward_quantity}</span>
+                    </label>
                 </div>
 
             </div>

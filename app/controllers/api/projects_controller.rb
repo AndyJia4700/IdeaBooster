@@ -35,18 +35,23 @@ class Api::ProjectsController < ApplicationController
     end
 
     def update
-        @project = Project.find_by(params[:id])
+        # debugger
+        @project = Project.find(params[:id])
+        
         if @project && @project.creator_id == current_user.id
-            if @project.update_attributes(project_params)
-                render "api/projects/show"
+            # debugger
+            if @project.update(project_params)
+                render :show
             else
+                # debugger
                 render json: @project.errors.full_messages, status: 422
             end
         end
     end
 
     def destroy
-        @project = Project.find_by(params[:id])
+
+        @project = Project.find(params[:id])
         if @project && @project.creator_id == current_user.id
             @project.destroy
             # render "api/projects/show"

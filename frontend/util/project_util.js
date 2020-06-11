@@ -21,19 +21,21 @@ export const createProject = formData => (
         contentType: false,
         processData: false,
         dataType: 'json'
-        
     })
 )
 
-export const updateProject = project => (
-    $.ajax({
+
+export const updateProject = (formData, projectId)=> {
+    // debugger;
+    return $.ajax({
         method: 'PATCH',
-        url: `/api/projects/${project.id}`,
-        data: {
-            project
-        }
+        url: `/api/projects/${projectId}`,
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: 'json'
     })
-)
+}
 
 export const deleteProject = projectId => (
     $.ajax({

@@ -1,5 +1,8 @@
 import React from 'react';
+import { updateProject } from '../../actions/project_actions';
 
+
+updateProject
 class ProjectForm extends React.Component{
     constructor(props){
         super(props);
@@ -44,20 +47,23 @@ class ProjectForm extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         // this.props.action(this.state);
-        // debugger;
+        
         const formData = new FormData();
-        // formData.append('project[id]', this.state.id);
+        formData.append('project[id]', this.state.id);
         formData.append('project[title]', this.state.title);
         formData.append('project[subtitle]',this.state.subtitle);
         formData.append('project[funding_goal]', this.state.funding_goal);
         formData.append('project[category_id]', this.state.category_id);
         formData.append('project[location_id]', this.state.location_id);
-
         if (this.state.pictureFile){
             formData.append('project[picture]', this.state.pictureFile);
         } 
+        this.props.action(formData)
 
-        this.props.action(formData).then()
+        const id = this.state.id
+        // debugger;
+        this.props.updateProject(formData, id);
+        
         // $.ajax({
         //     method: 'POST',
         //     url: '/api/projects',

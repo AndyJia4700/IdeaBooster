@@ -32,7 +32,7 @@ function Modal({modal, closeModal}){
             component = <ProfileDropDown closeModal={closeModal}/>;
             break;
         default:
-            debugger;
+            // debugger;
             return null;
     }
 

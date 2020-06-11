@@ -10,7 +10,7 @@ const rewardsReducer = (state={}, action) => {
             delete nextState[action.rewardId]
             return nextState;
         default:
-            return null;
+            return state;
     }
 }
 
