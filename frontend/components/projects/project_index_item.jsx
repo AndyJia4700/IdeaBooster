@@ -13,10 +13,11 @@ const ProjectIndexItem = props => {
                 <Link to={`/projects/${props.project.id}`} className="project-id-a">
                     <img className="project-id-picture" src={props.project.pictureUrl} />
                     <br/>
-                    {props.project.title}
+                        <p className="project-explore-title">{props.project.title}</p>
                     <br/>
-                    {props.project.subtitle}
+                        <p className="project-explore-subtitle">{props.project.subtitle}</p>
                     <br/>
+                    
                     {/* By {props.users[props.project.creator_id - 9].username} */}
                 </Link>
 
