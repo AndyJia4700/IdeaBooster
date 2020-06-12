@@ -5,6 +5,7 @@ class rewardsForm extends React.Component{
         super(props);
         this.state = this.props.reward;
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.update = this.update.bind(this);
         // debugger;
     }
 

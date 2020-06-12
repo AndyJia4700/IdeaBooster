@@ -12,14 +12,15 @@ const mSTP = state =>({
         reward_quantity: '',
         shipping_option: '',
         time_limit: '',
-        estimated_delivery: ''
+        estimated_delivery: '',
+        backer_id: [],
     },
     
     formType: 'Create a reward'
 });
 
 const mDTP = dispatch => ({
-    action: (project, reward) => dispatch(createReward((project, reward)))
+    action: (reward) => dispatch(createReward(reward))
 })
 
 export default connect(mSTP,mDTP)(rewardsForm)

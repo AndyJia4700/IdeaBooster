@@ -18,28 +18,32 @@ class Api::RewardsController < ApplicationController
     end
 
     def create 
+        # debugger;
         @reward = Reward.new(reward_params)
-        @reward.project_id = project.id
+        # debugger;
         if @reward.save        
             render :show
         else
+            # debugger;
             render json: @reward.errors.full_messages, status: 422
         end
     end
 
     def update
-        @reward = Reward.find_by(params[:id])
-        if @reward && @reward.project_id == project_id
-            if @reward.update(reward_params)
-                render "api/rewards/show"
-            else
-                render json: @reward.errors.full_messages, status: 422
-            end
+        # debugger;
+        # @reward = Reward.find_by(project_id: rewards[:project_id])
+        @reward = Reward.find_by(project_id: project_id)
+        # debugger
+        if @reward.update(reward_params)
+            render :show
+        else
+            # debugger
+            render json: @reward.errors.full_messages, status: 422
         end
     end
 
     def destroy
-        @reward = reward.find_by(params[:id])
+        @reward = reward.find(params[:id])
         if @reward && @reward.project_id == project.id
             @reward.destroy
             # render "api/rewards/show"
@@ -49,6 +53,6 @@ class Api::RewardsController < ApplicationController
     private
 
     def reward_params
-        params.require(:reward).permit(:title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
+        params.require(:reward).permit(:title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery, :backer_id)
     end
 end

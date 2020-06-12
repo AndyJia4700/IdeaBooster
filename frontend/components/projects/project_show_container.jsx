@@ -1,35 +1,33 @@
 import { connect } from "react-redux";
 import { fetchProject, fetchProjects } from "../../actions/project_actions";
-import { fetchReward } from "../../actions/reward_actions";
+import { fetchRewards, fetchReward } from "../../actions/reward_actions";
 import ProjectShow from "./project_show";
 
 
 const mSTP = (state, ownProps) => {
     const projectId = ownProps.match.params.projectId;
     const project = state.projects[projectId];
+    const reward = state.rewards[projectId];
     // debugger;
-    if (state.rewards === null) {
-        // debugger;
-        return {
-            project,
-            reward: {
-                title: '',
-                description: '',
-                project_id: '',
-                pledge_amount: '',
-                reward_quantity: '',
-                shipping_option: '',
-                time_limit: '',
-                estimated_delivery: ''
-            }
+
+    if (!reward){
+    return {
+        project,
+        reward:
+        {
+            pledge_amount: 0,
+            title: "",
+            estimated_delivery: "",
+            reward_quantity: "",
+            } 
         }
     } else {
-        // debugger;
         return {
             project,
-            reward: Object.values(state.rewards)
+            reward,
         }
     }
+
 };
 
 const mDTP = dispatch => {
@@ -37,7 +35,9 @@ const mDTP = dispatch => {
     return {
         fetchProjects: () => dispatch(fetchProjects()),
         fetchProject: projectId => dispatch(fetchProject(projectId)),
-        fetchReward: (projectId) => dispatch(fetchReward(projectId)),
+
+        fetchRewards: () => dispatch(fetchRewards()),
+        fetchReward: (rewardId) => dispatch(fetchReward(rewardId)),
     }
 };
 

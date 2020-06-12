@@ -1,6 +1,6 @@
 import React from 'react';
 import { updateProject } from '../../actions/project_actions';
-
+import { Link } from 'react-router-dom';
 
 updateProject
 class ProjectForm extends React.Component{
@@ -10,9 +10,11 @@ class ProjectForm extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.update = this.update.bind(this);
+        // debugger;
     }
 
     componentDidMount(){
+        // debugger
         // subtitle = document.getElementById('welcome-subtitle')
         this.setState({
             creator_id: currentUser.id,
@@ -20,11 +22,8 @@ class ProjectForm extends React.Component{
             category_id: '1',
             location_id: '1'
         })
-    }
-
-    // componentDidUpdate(){
         
-    // }
+    }
 
     handleFile(e){
         e.preventDefault();
@@ -47,9 +46,9 @@ class ProjectForm extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         // this.props.action(this.state);
-        
+        // debugger
         const formData = new FormData();
-        formData.append('project[id]', this.state.id);
+        // formData.append('project[id]', this.state.id);
         formData.append('project[title]', this.state.title);
         formData.append('project[subtitle]',this.state.subtitle);
         formData.append('project[funding_goal]', this.state.funding_goal);
@@ -59,33 +58,84 @@ class ProjectForm extends React.Component{
             formData.append('project[picture]', this.state.pictureFile);
         } 
         this.props.action(formData)
-
-        const id = this.state.id
-        // debugger;
-        this.props.updateProject(formData, id);
-        
-        // $.ajax({
-        //     method: 'POST',
-        //     url: '/api/projects',
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false,
-        //     dataType: "json"
-        // });
-
     }
 
     update(field){
+        // debugger
         return e => this.setState({[field]: e.currentTarget.value})
     }
 
     render(){
-        // console.log(this.state);
+        // debugger
+        // console.log(this.state.id);
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
-        
         return (
 
             <form onSubmit={this.handleSubmit}>
+                <div className="project-new-top-div">
+
+                    <ul className="project-new-top-ul">
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.basicsURL} className="project-new-top-img" />
+                                <br/>
+                                <span>Basics</span>
+                            </a>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.fundingURL} className="project-new-top-img" />
+                                <br />
+                                <span className="not-done">Funding</span>
+                            </a>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <Link to={`/projects/${this.state.id}/rewards`} className="project-new-top-a">
+                                {/* <a href="" className="project-new-top-a"> */}
+                                <img src={window.rewardsURL} className="project-new-top-img" />
+                                <br/>
+                                <span>Rewards</span>
+                            </Link>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.storyURL} className="project-new-top-img" />
+                                <br />
+                                <span className="not-done">Story</span>
+                            </a>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.peopleURL} className="project-new-top-img" />
+                                <br />
+                                <span className="not-done">People</span>
+                            </a>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.paymentURL} className="project-new-top-img" />
+                                <br />
+                                <span className="not-done">Payment</span>
+                            </a>
+                        </li>
+
+                        <li className="project-new-top-li">
+                            <a className="project-new-top-a">
+                                <img src={window.promotionURL} className="project-new-top-img" />
+                                <br />
+                                <span className="not-done">Promotion</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
                 <div className="project-basic-top-div">
                     <div className="project-basic-top-subdiv">
                         <h4 className="project-basic-top-h4">Start with the basics</h4>

@@ -7,11 +7,15 @@ class ProjectIndex extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchProjects();
+        this.props.fetchProjects()
+            .then(this.props.fetchUsers()); 
     }
 
     render () {
-        const {projects, deleteProject} = this.props
+        
+        const {projects, users, deleteProject} = this.props
+        // debugger;
+        
         return (
             <div className="project-index-div">
                 <ul className="project-index-ul">
@@ -19,8 +23,9 @@ class ProjectIndex extends React.Component {
                         projects.map(project => (
                             <ProjectIndexItem
                                 project={project}
+                                // users={users}
                                 deleteProject={deleteProject}
-                                key={project.id}
+                                // key={project.id}
                             />
                         ))
                     }

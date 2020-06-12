@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchProjects, fetchProject, updateProject } from '../../actions/project_actions';
 import ProjectForm from './project_form';
 
+
 class EditPostForm extends React.Component{
     constructor(props){
         super(props)
@@ -40,6 +41,7 @@ const mSTP = (state, ownProps) => {
 };
 
 const mDTP = dispatch => {
+    
     // debugger;
     return {
         fetchProjects: () => dispatch(fetchProjects()),

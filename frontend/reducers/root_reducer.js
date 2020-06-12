@@ -5,6 +5,7 @@ import errorsReducer from "./errors_reducer";
 import ProjectReducer from "./projects_reducer";
 import uiReducer from "./ui_reducer";
 import rewardsReducer from "./rewards_reducer";
+import userReducer from "./users_reducer";
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     errors: errorsReducer,
     projects: ProjectReducer,
     rewards: rewardsReducer,
+    users: userReducer,
     ui: uiReducer
 });
 

@@ -30,6 +30,7 @@ export const updateProject = (formData, projectId)=> {
     return $.ajax({
         method: 'PATCH',
         url: `/api/projects/${projectId}`,
+        // url: `/api/projects/19`,
         data: formData,
         contentType: false,
         processData: false,

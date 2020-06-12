@@ -25,6 +25,8 @@ class Project < ApplicationRecord
     has_one :reward,
     foreign_key: :project_id,
     class_name: "Reward"
+
+    
     
     has_one_attached :picture
     def ensure_picture

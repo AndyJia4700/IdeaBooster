@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import { createStore } from 'redux';
 
-const ProjectIndexItem = props => (
+const ProjectIndexItem = props => {
+    // debugger;
+    
+    return(
     
     <li className="project-id-li">
         <div className="project-id-outdiv">
@@ -14,15 +17,15 @@ const ProjectIndexItem = props => (
                     <br/>
                     {props.project.subtitle}
                     <br/>
-
-                {/* <button onClick={() => props.deleteProject(props.project.id)}>Delete</button>
-                <Link to={`/projects/${props.project.id}/edit`}>Edit</Link> */}
+                    {/* By {props.users[props.project.creator_id - 9].username} */}
                 </Link>
+
                 
                 {/* <h4>{creator.username}</h4> */}
             </div>
         </div>
     </li>
-)
+    )
+}
 
 export default ProjectIndexItem;

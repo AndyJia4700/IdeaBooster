@@ -5,10 +5,13 @@ import { fetchProjects, deleteProject } from '../../util/project_util';
 import { Link } from 'react-router-dom';
 
 
-const mSTP = (state) => ({
-    currentUser: state.session.currentUser,
-    projects: Object.values(state.projects)
-});
+const mSTP = (state) => {
+    // debugger;
+    return {
+        currentUser: state.session.currentUser,
+        projects: Object.values(state.projects)
+    }
+};
 
 const mDTP = dispatch => ({
     logout: () => dispatch(logout()),
@@ -63,7 +66,7 @@ class profileDropDown extends React.Component {
                             <li>
                                 {
 
-                                    projects.map(project => {
+                                    projects.slice(0,3).map(project => {
                                         if (project.creator_id === currentUser.id) {
                                             return(
                                                 <li>
@@ -80,7 +83,9 @@ class profileDropDown extends React.Component {
                                 }
                             </li>
                         </ul>
-
+                        {/* <Link to={`/projects/new`}>New</Link> */}
+                            <a href="#/projects/new">New</a>
+                            <span>View All</span>
                     </div>
                 </div>
 

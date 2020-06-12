@@ -35,9 +35,9 @@ class Api::ProjectsController < ApplicationController
     end
 
     def update
-        # debugger
-        @project = Project.find(params[:id])
         
+        @project = Project.find(params[:id])
+        # debugger
         if @project && @project.creator_id == current_user.id
             # debugger
             if @project.update(project_params)

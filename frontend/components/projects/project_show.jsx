@@ -7,20 +7,26 @@ class ProjectShow extends React.Component{
     constructor(props){
         super(props);
         // debugger
-        this.state = this.props.poject;
+        // this.state = this.props.poject;
     }
 
     componentDidMount(){
         // debugger;
-        this.props.fetchProjects();
         const projectId = this.props.match.params.projectId
+
+        this.props.fetchProjects();
         this.props.fetchProject(projectId);
+
+        this.props.fetchRewards();
+        this.props.fetchReward(projectId);
+        
     }
 
     render(){
         const {project, reward} = this.props
         // debugger;
-        if (!project) return null;
+        if (!project) return null;        
+            
         return(
             <div className="project-show-div">
                 <div className="project-show-subdiv1">
@@ -49,11 +55,15 @@ class ProjectShow extends React.Component{
                         <div className="project-show-subdiv2-back-backer">
                             <p>35 backers</p>
                         </div>
+                        
+                            <form action="" className="project-show-subdiv2-back-a">
+                                {
+                                    
+                                }
 
-
-                        <a className="project-show-subdiv2-back-a" href="">
-                            <button className="project-show-subdiv2-back-button"><span>Back this project</span></button>
-                        </a>
+                            <a href={`#/projects/${project.id}/backs`} className="project-show-subdiv2-back-button"><span>Back this project</span></a>
+                                {/* <button href="/projects/:projectId/backs" className="project-show-subdiv2-back-button"><span>Back this project</span></button> */}
+                            </form>
                     </div>
                 
                 </div>
@@ -74,27 +84,25 @@ class ProjectShow extends React.Component{
                         <p></p>
                     </div>
 
-                    <div className="user-div">
+                    {/* <div className="user-div">
                         <div>
                             <h4>creator</h4>
-                        </div>
+                        </div> */}
 
-                        <div>
-                            <h3>Support</h3>
-                            <label>Make a pledeg without a reward
-                                <input type="number"
-                                />
-                            </label>
-                        </div>
                         
-                    </div>
+                        
+                    {/* </div> */}
                 </div>
 
-                {/* <div>
-                    <RewardsShowContainer/>
-                </div> */}
+                <div className="support-reward-div">
+                    <div>
+                        <h3>Support</h3>
+                        <label>Make a pledeg without a reward
+                            <input type="number"
+                            />
+                        </label>
+                    </div>
 
-                <div>
                     <h4> Pledge ${reward.pledge_amount}</h4>
                     <label>INCLUDES
                     <span>{reward.title}e</span>
