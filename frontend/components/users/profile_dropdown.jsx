@@ -43,37 +43,37 @@ class profileDropDown extends React.Component {
                     <div className="profile-drop-subdiv1">
                         <p className="profile-drop-title">YOUR ACCOUNT</p>
                         <div className="profile-drop-subdiv1-sub1">
-                            <ul>
-                                <li>Saved projects</li>
-                                <li>Recommended for you</li>
-                                <li>Following</li>
-                                <li>Profile</li>
+                            <ul className="profile-drop-subdiv1-ul">
+                                <li className="profile-drop-li">Saved projects</li>
+                                <li className="profile-drop-li">Recommended for you</li>
+                                <li className="profile-drop-li">Following</li>
                             </ul>
                         </div>
 
                         <div className="profile-drop-subdiv1-sub2">
-                            <ul>
-                                <li>Settings</li>
-                                <li>Messages</li>
-                                <li>Activity</li>
+                            <ul className="profile-drop-subdiv1-ul">
+                                <li className="profile-drop-li">Profile</li>
+                                <li className="profile-drop-li">Settings</li>
+                                <li className="profile-drop-li">Messages</li>
+                                <li className="profile-drop-li">Activity</li>
                             </ul>
                         </div>
                     </div>
 
                     <div className="profile-drop-subdiv2">
                         <p className="profile-drop-title">CREATED PROJECTS</p>
-                        <ul>
-                            <li>
+                        <ul className="profile-drop-subdiv1-ul"> 
+                            <li className="">
                                 {
 
                                     projects.slice(0,3).map(project => {
                                         if (project.creator_id === currentUser.id) {
                                             return(
-                                                <li>
-                                                    <div>
+                                                <li className="">
+                                                    <div className="profile-own-project-div">
                                                         <Link to={`/projects/${project.id}/edit`}>
-                                                                <img className="profile-pictures" src={project.pictureUrl} />
-                                                                {project.title}
+                                                            <img className="profile-pictures" src={project.pictureUrl} />
+                                                            <lable className="profile-pic-lable">{project.title}</lable>
                                                         </Link>
                                                     </div>
                                                 </li>

@@ -54,11 +54,11 @@ class splashPage extends React.Component{
                             {
                                 projects.slice(0, 1).map(project => (
                                     <div>
-                                        <Link to={`/projects/${project.id}`}>
+                                        <Link to={`/projects/${project.id}`} className="feature-link">
                                             <img className="project-feature-picture1" src={project.pictureUrl}/>                                    
-                                            <div>{project.title}</div>
+                                            <h2 className="feature-title">{project.title}</h2>
                                                 <br/>
-                                            <div>{project.subtitle}</div>
+                                            <p className="feature-subtitle">{project.subtitle}</p>
                                             {/* {this.state.entites.users[project.creator_id].username} */}
                                         </Link>
                                     </div>
@@ -74,17 +74,26 @@ class splashPage extends React.Component{
                             {
                                 projects.slice(1,4).map(project => (
                                     <li key={project.id} >
-                                        <Link to={`/projects/${project.id}`} >
+                                        <Link to={`/projects/${project.id}`} className="rec-link">
                                             <div className="project-rec-li">
+                                            
                                                 <div>
                                                     <img className="project-feature-picturelist" src={project.pictureUrl} />
                                                 </div>
 
                                                 <div className="project-rec-title-li">
-                                                    {project.title}
-                                                    <br/>
-                                                    <span>55% funded</span>
+                                                    <p className="rec-title">{project.title}</p>
+                                                    {/* <br/> */}
+                                                    <span className="rec-fund-span">0% funded</span>
+
+                                                    <div className="rec-icon-div">
+                                                        <img src={window.likeURL} className="rec-icon" />
+                                                        <img src={window.dislikeURL} className="rec-icon" />
+                                                    </div>
                                                 </div>
+                                               
+                            
+                                                
                                             </div>
                                         </Link>
                                     </li>
@@ -101,22 +110,22 @@ class splashPage extends React.Component{
                 </div>
 
                 <div className="splash-fresh-div">
-                    <h4 className="splash-projects-font-rec">RECOMMENDED FOR YOU</h4>
+                    <h4 className="splash-projects-font-fresh">FRESH FAVORITES</h4>
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
                                 projects.slice(4, 8).map(project => (
                                     <li key={project.id} className="fresh-li">
-                                        <Link to={`/projects/${project.id}`} >
+                                        <Link to={`/projects/${project.id}`} className="fresh-link">
                                             <div className="project-fresh-li">
                                                 <div>
-                                                    <img className="project-feature-picturelist" src={project.pictureUrl} />
+                                                    <img className="project-fresh-picturelist" src={project.pictureUrl} />
                                                 </div>
 
                                                 <div className="project-fresh-title-li">
-                                                    {project.title}
+                                                    <p className="fresh-title">{project.title}</p>
                                                     <br />
-                                                    {project.subtitle}
+                                                    <p className="fresh-subtitle">{project.subtitle}</p>
                                                 </div>
                                             </div>
                                         </Link>
@@ -128,22 +137,22 @@ class splashPage extends React.Component{
                 </div>
 
                 <div className="splash-fresh-div">
-                    <h4 className="splash-projects-font-rec">TAKING OFF</h4>
+                    <h4 className="splash-projects-font-fresh">TAKING OFF</h4>
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
                                 projects.slice(8, 20).map(project => (
                                     <li key={project.id} className="fresh-li">
-                                        <Link to={`/projects/${project.id}`} >
+                                        <Link to={`/projects/${project.id}`} className="fresh-link" >
                                             <div className="project-fresh-li">
                                                 <div>
-                                                    <img className="project-feature-picturelist" src={project.pictureUrl} />
+                                                    <img className="project-fresh-picturelist" src={project.pictureUrl} />
                                                 </div>
 
                                                 <div className="project-fresh-title-li">
-                                                    {project.title}
+                                                    <p className="fresh-title">{project.title}</p>
                                                     <br />
-                                                    {project.subtitle}
+                                                    <p className="fresh-subtitle">{project.subtitle}</p>
                                                 </div>
                                             </div>
                                         </Link>

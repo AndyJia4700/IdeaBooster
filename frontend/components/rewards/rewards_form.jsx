@@ -31,21 +31,23 @@ class rewardsForm extends React.Component{
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="reward-div">
-                    <div className="reward-title-div">
-                        <h3 className="reward-title">Add your rewards</h3>
-                        <p className="reward-intro">Offer simple, meaningful rewards that bring backers closer to your project.</p>
+                    <div className="project-basic-top-div">
+                        <div className="project-basic-top-subdiv">
+                            <h3 className="project-basic-top-h4">Add your rewards</h3>
+                            <p className="project-basic-top-p">Offer simple, meaningful rewards that bring backers closer to your project.</p>
+                        </div>
                     </div>
 
-                    <div className="reward-details-div">
+                    <div className="project-basic-subdiv2">
                         <div className="reward-divs">
-                            <label className="reward-label">
-                                <span className="reward-span">Title</span>
+                            <label className="project-basic">
+                                <span className="project-basic-span">Title</span>
                                 <p className="reward-intro-p">Briefly describe this reward.</p>
                                 <input type="text"
                                     value={this.state.title}
                                     onChange={this.update('title')}
                                     placeholder="Signed limited-edition"
-                                    className="reward-input"
+                                    className="project-basic-input"
                                 />
                             </label>
                         </div>
