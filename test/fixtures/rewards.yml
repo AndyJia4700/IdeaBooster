@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: rewards
+#
+#  id                 :bigint           not null, primary key
+#  title              :string           not null
+#  description        :text
+#  project_id         :integer          not null
+#  pledge_amount      :integer          not null
+#  reward_quantity    :integer          not null
+#  shipping_option    :string
+#  time_limit         :date
+#  estimated_delivery :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  backer_id          :string           default([]), is an Array
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

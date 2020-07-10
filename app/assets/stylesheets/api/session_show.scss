@@ -1,0 +1,202 @@
+
+.top-bar {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom: 1px solid #eee4e7e7;;
+    padding-bottom: 10px;
+}
+
+.explore-start {
+    display: flex;
+    width: 33%;
+    
+}
+
+.explore{
+    padding-top: 20px;
+
+}
+
+.start{
+    padding-top: 20px;
+
+}
+
+.top-font {
+    padding-right: 20px;
+    font-size: 15px;
+    font-weight: 100;
+    text-decoration: none;
+    color: black;
+}
+
+.top-font:hover {
+    color: green;
+}
+
+
+@font-face {
+  font-family: kickstarter;
+  src: font-url("./font/RNS-B.ttf") format("truetype");
+}
+
+.ideaBooster-icon {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    color: #05ce78;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: kickstarter;
+    text-decoration: none;
+    padding-top: 10px;
+}
+
+div {
+  font-family: sans-serif;
+}
+
+.search-login {
+    width: 33%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.search{
+    padding-right: 30px;
+}
+
+.login-button {
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.login-button:hover{
+    color: green;
+}
+
+
+
+.signup-form-container {
+    text-align: center;
+    width: 500px;
+    display: block;
+    justify-content: center;
+    background: white;
+    border: 1px solid #eee4e7e7;
+    font-size: 25px;
+    padding-bottom: 50px;
+    padding-top: 20px;
+    margin: auto;
+
+}
+
+.div-session-background {
+    background: #f5f3f3;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+
+}
+
+.div-session-box {
+
+    background: #f5f3f3;
+
+}
+
+.signup-input {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px
+}
+
+.signup-submit {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px;
+    background-color: #009E74;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.signup-submit-Demo {
+    box-sizing: border-box;
+    padding: 12px;
+    font-size: 14px;
+    width: 80%;
+    margin: 10px;
+    background-color: #39579A;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.signup-lable {
+    display: flex;
+    padding-left: 50px;
+    font-weight: 200;
+
+}
+
+.have-account-msg {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    font-size: 15px;
+    padding-bottom: 30px;
+}
+
+.signup-errors {
+    background: red;
+    font-size: 20px;
+    color: white;
+    margin: 40px;
+}
+
+.sign-in-or-up {
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+.text {
+    display: inline-block;
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+    font-size: 14px;
+    top: -20px;
+    position: relative;
+    color: #5c5656;
+}
+
+.text-or {
+    position: relative;
+    text-align: center;
+    border-top: 1px solid #d9d4d4;
+}
+
+
+.footer{
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 200;
+    display: flex;
+    border-top: 1px solid #d9d4d4;
+}
+
+.github{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    // background-image: url(window.githubURL);
+}
+

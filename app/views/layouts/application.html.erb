@@ -7,6 +7,31 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <% if current_user %>
+      <script>
+        window.currentUser = {
+          "id": <%= current_user.id %>,
+          "username": "<%= current_user.username %>",
+          "email": "<%= current_user.email %>"
+        };
+
+        window.welcomeURL = "<%= image_url('giphy.gif')%>"
+        window.githubURL = "<%= image_url('github.png')%>"
+        window.linkedinURL = "<%= image_url('linkedin.png')%>"
+        window.userURL = "<%= image_url('user.png')%>"
+        window.basicsURL = "<%= image_url('basics.png')%>"
+        window.fundingURL = "<%= image_url('funding.png')%>"
+        window.rewardsURL = "<%= image_url('rewards.png')%>"
+        window.storyURL = "<%= image_url('story.png')%>"
+        window.peopleURL = "<%= image_url('people.png')%>"
+        window.paymentURL = "<%= image_url('payment.png')%>"
+        window.promotionURL = "<%= image_url('promotion.png')%>"
+        window.likeURL = "<%= image_url('like.png')%>"
+        window.dislikeURL = "<%= image_url('dislike.png')%>"
+
+      </script>
+    <% end %>
+    
   </head>
 
   <body>
