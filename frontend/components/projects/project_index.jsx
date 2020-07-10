@@ -23,9 +23,8 @@ class ProjectIndex extends React.Component {
                         projects.map(project => (
                             <ProjectIndexItem
                                 project={project}
-                                // users={users}
+                                key={project.id}
                                 deleteProject={deleteProject}
-                                // key={project.id}
                             />
                         ))
                     }

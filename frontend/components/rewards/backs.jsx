@@ -4,9 +4,6 @@ import { fetchProjects, fetchProject } from '../../actions/project_actions';
 import { fetchRewards, fetchReward, updateReward } from "../../actions/reward_actions";
 
 const mSTP = (state, ownProps) => {
-    // debugger;
-    // console.log(state);
-    // console.log(ownProps);
     return {
         currentUser: state.session.currentUser,
         project: state.projects[ownProps.match.params.projectId], 

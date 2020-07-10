@@ -53,7 +53,7 @@ class splashPage extends React.Component{
                         <div>
                             {
                                 projects.slice(0, 1).map(project => (
-                                    <div>
+                                    <div key={project.id}>
                                         <Link to={`/projects/${project.id}`} className="feature-link">
                                             <img className="project-feature-picture1" src={project.pictureUrl}/>                                    
                                             <h2 className="feature-title">{project.title}</h2>
@@ -72,6 +72,7 @@ class splashPage extends React.Component{
                         <ul className="splash-projects-ul">
                             <div>
                             {
+
                                 projects.slice(1,4).map(project => (
                                     <li key={project.id} >
                                         <Link to={`/projects/${project.id}`} className="rec-link">
@@ -90,9 +91,7 @@ class splashPage extends React.Component{
                                                         <img src={window.likeURL} className="rec-icon" />
                                                         <img src={window.dislikeURL} className="rec-icon" />
                                                     </div>
-                                                </div>
-                                               
-                            
+                                                </div>                                                                   
                                                 
                                             </div>
                                         </Link>

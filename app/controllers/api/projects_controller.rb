@@ -20,11 +20,10 @@ class Api::ProjectsController < ApplicationController
     end
 
     def create
-        
+        # debugger
         @project = Project.new(project_params)
         @project.creator_id = current_user.id
         if @project.save
-            # debugger
             render :show
             # render 'api/projects'
             ##create show page for each project id
@@ -36,7 +35,7 @@ class Api::ProjectsController < ApplicationController
 
     def update
         
-        @project = Project.find(params[:id])
+        @project = Project.find(params[:project][:id])
         # debugger
         if @project && @project.creator_id == current_user.id
             # debugger
@@ -54,7 +53,6 @@ class Api::ProjectsController < ApplicationController
         @project = Project.find(params[:id])
         if @project && @project.creator_id == current_user.id
             @project.destroy
-            # render "api/projects/show"
         end
     end
 

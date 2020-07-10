@@ -703,8 +703,8 @@ var mSTP = function mSTP(state) {
       category_id: '',
       location_id: '',
       funding_goal: '',
-      launch_date: '',
-      end_date: '',
+      launch_date: null,
+      end_date: null,
       pictureUrl: null,
       pictureFile: null
     },
@@ -936,13 +936,16 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault(); // this.props.action(this.state);
       // debugger
 
-      var formData = new FormData(); // formData.append('project[id]', this.state.id);
-
+      var formData = new FormData();
+      formData.append('project[id]', this.state.id);
       formData.append('project[title]', this.state.title);
       formData.append('project[subtitle]', this.state.subtitle);
       formData.append('project[funding_goal]', this.state.funding_goal);
       formData.append('project[category_id]', this.state.category_id);
       formData.append('project[location_id]', this.state.location_id);
+      formData.append('project[launch_date]', this.state.launch_date);
+      formData.append('project[end_date]', this.state.end_date);
+      console.log(this.state.id); // debugger;
 
       if (this.state.pictureFile) {
         formData.append('project[picture]', this.state.pictureFile);
@@ -965,6 +968,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       // debugger
       // console.log(this.state.id);
+      // debugger;
       var preview = this.state.pictureUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.pictureUrl
       }) : null;
@@ -1285,10 +1289,9 @@ var ProjectIndex = /*#__PURE__*/function (_React$Component) {
         className: "project-index-ul"
       }, projects.map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          project: project // users={users}
-          ,
-          deleteProject: deleteProject // key={project.id}
-
+          project: project,
+          key: project.id,
+          deleteProject: deleteProject
         });
       })));
     }
@@ -1713,7 +1716,9 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "splash-projects-font"
       }, "FEATURED PROJECT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(0, 1).map(function (project) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: project.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
           to: "/projects/".concat(project.id),
           className: "feature-link"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1869,9 +1874,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
-  // console.log(state);
-  // console.log(ownProps);
   return {
     currentUser: state.session.currentUser,
     project: state.projects[ownProps.match.params.projectId],
@@ -3222,12 +3224,11 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
         className: "profile-drop-title"
       }, "CREATED PROJECTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "profile-drop-subdiv1-ul"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: ""
       }, projects.slice(0, 3).map(function (project) {
         if (project.creator_id === currentUser.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            className: ""
+            className: "",
+            key: project.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "profile-own-project-div"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
@@ -3235,11 +3236,11 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             className: "profile-pictures",
             src: project.pictureUrl
-          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("lable", {
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
             className: "profile-pic-lable"
           }, project.title))));
         }
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/projects/new"
       }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "View All"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-drop-div2"
@@ -3690,7 +3691,7 @@ var updateProject = function updateProject(formData, projectId) {
   return $.ajax({
     method: 'PATCH',
     url: "/api/projects/".concat(projectId),
-    // url: `/api/projects/19`,
+    // url: `/api/projects/21`,
     data: formData,
     contentType: false,
     processData: false,

@@ -48,12 +48,17 @@ class ProjectForm extends React.Component{
         // this.props.action(this.state);
         // debugger
         const formData = new FormData();
-        // formData.append('project[id]', this.state.id);
+        formData.append('project[id]', this.state.id);
         formData.append('project[title]', this.state.title);
         formData.append('project[subtitle]',this.state.subtitle);
         formData.append('project[funding_goal]', this.state.funding_goal);
         formData.append('project[category_id]', this.state.category_id);
         formData.append('project[location_id]', this.state.location_id);
+        formData.append('project[launch_date]', this.state.launch_date);
+        formData.append('project[end_date]', this.state.end_date);
+        console.log(this.state.id);
+        // debugger;
+        
         if (this.state.pictureFile){
             formData.append('project[picture]', this.state.pictureFile);
         } 
@@ -68,6 +73,7 @@ class ProjectForm extends React.Component{
     render(){
         // debugger
         // console.log(this.state.id);
+        // debugger;
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
         return (
 
