@@ -9,8 +9,8 @@ const mSTP = state => ({
         category_id: '',
         location_id: '',
         funding_goal: '',
-        launch_date: null,
-        end_date: null,
+        launch_date: "",
+        end_date: "",
         pictureUrl: null,
         pictureFile: null
     },

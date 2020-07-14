@@ -10,6 +10,7 @@ class EditPostForm extends React.Component{
         // debugger
     }
 
+    
     componentDidMount(){
         // debugger
         const id = this.props.match.params.projectId
@@ -31,6 +32,7 @@ class EditPostForm extends React.Component{
         );
     }
 }
+
 
 const mSTP = (state, ownProps) => {
     // debugger;

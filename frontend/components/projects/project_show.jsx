@@ -6,19 +6,17 @@ import RewardsShowContainer from '../rewards/rewards_show_container'
 class ProjectShow extends React.Component{
     constructor(props){
         super(props);
-        // debugger
-        // this.state = this.props.poject;
     }
 
     componentDidMount(){
         // debugger;
         const projectId = this.props.match.params.projectId
-
+        // debugger;
         this.props.fetchProjects();
         this.props.fetchProject(projectId);
 
         this.props.fetchRewards();
-        this.props.fetchReward(projectId);
+        // this.props.fetchReward(projectId);
         
     }
 

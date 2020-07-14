@@ -2,14 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const SessionShow = ({ currentUser, logout, openModal}) => {
-// const SessionShow = () => {
     const sessionLinks = () => (
         <nav>
         <Link to="/login" className="login-button">login</Link>
-        {/* <Link to="/signup">Sign Up</Link> */}
         </nav>
     );
-    // return sessionLinks();
 
     const greeting = () => (
         <nav className="nav-greeting">
@@ -19,12 +16,10 @@ const SessionShow = ({ currentUser, logout, openModal}) => {
                         {currentUser.username}
                     </span>
                 </a>
-                {/* <div className="dropdown-content">
-                     <button onClick={logout}>Logout</button>
-                </div> */}
             </div>
         </nav>
     );
+
     return currentUser ? greeting() : sessionLinks();
 };
 

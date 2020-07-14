@@ -1,4 +1,7 @@
 class Api::RewardsController < ApplicationController
+    # protect_from_forgery prepend: true, with: :exception
+    skip_before_action :verify_authenticity_token
+
     def index
         @rewards = Reward.all
         render :index
@@ -30,20 +33,17 @@ class Api::RewardsController < ApplicationController
     end
 
     def update
-        # debugger;
-        # @reward = Reward.find_by(project_id: rewards[:project_id])
-        @reward = Reward.find_by(project_id: project_id)
-        # debugger
+        @reward = Reward.find(params[:id])
         if @reward.update(reward_params)
+            debugger
             render :show
         else
-            # debugger
             render json: @reward.errors.full_messages, status: 422
         end
     end
 
     def destroy
-        @reward = reward.find(params[:id])
+        @reward = Reward.find(params[:id])
         if @reward && @reward.project_id == project.id
             @reward.destroy
             # render "api/rewards/show"
@@ -53,6 +53,7 @@ class Api::RewardsController < ApplicationController
     private
 
     def reward_params
-        params.require(:reward).permit(:title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery, :backer_id)
+        # params.require(:reward).permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
+        params.permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
     end
 end

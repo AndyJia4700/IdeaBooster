@@ -13,7 +13,7 @@
 #  estimated_delivery :date
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  backer_id          :string           default([]), is an Array
+#  backer_id          :string           is an Array
 #
 class Reward < ApplicationRecord
     validates :title, presence: true, uniqueness: true
