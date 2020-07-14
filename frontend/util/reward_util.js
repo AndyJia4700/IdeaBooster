@@ -20,15 +20,14 @@ export const createReward = (reward) => (
     })
 )
 
-export const updateReward = (reward) => (
-    $.ajax({
-        method: 'PATCH',
-        url: `/api/rewards/${reward.id}`,
-        data: {
-            reward
-        }
+export const updateReward = reward =>(
+     $.ajax({
+      method: "PATCH",
+      url: `/api/rewards/${reward.id}`,
+      data:{reward},
     })
 )
+
 
 export const deleteReward = (rewardId) => (
     $.ajax({

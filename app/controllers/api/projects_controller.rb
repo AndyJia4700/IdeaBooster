@@ -25,10 +25,7 @@ class Api::ProjectsController < ApplicationController
         @project.creator_id = current_user.id
         if @project.save
             render :show
-            # render 'api/projects'
-            ##create show page for each project id
         else
-            # debugger
             render json: @project.errors.full_messages, status: 422
         end
     end
@@ -36,13 +33,10 @@ class Api::ProjectsController < ApplicationController
     def update
         
         @project = Project.find(params[:project][:id])
-        # debugger
         if @project && @project.creator_id == current_user.id
-            # debugger
             if @project.update(project_params)
                 render :show
             else
-                # debugger
                 render json: @project.errors.full_messages, status: 422
             end
         end
@@ -60,6 +54,5 @@ class Api::ProjectsController < ApplicationController
 
     def project_params
         params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal, :launch_date, :end_date, :picture)
-        # params.require(:project).permit(:title, :subtitle, :category_id, :location_id, :funding_goal, :end_date)
     end
 end

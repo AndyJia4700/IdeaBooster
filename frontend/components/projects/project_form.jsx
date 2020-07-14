@@ -1,8 +1,8 @@
 import React from 'react';
-import { updateProject } from '../../actions/project_actions';
+// import { updateProject } from '../../actions/project_actions';
 import { Link } from 'react-router-dom';
 
-updateProject
+
 class ProjectForm extends React.Component{
     constructor(props){
         super(props);
@@ -45,8 +45,7 @@ class ProjectForm extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.props.action(this.state);
-        // debugger
+        
         const formData = new FormData();
         formData.append('project[id]', this.state.id);
         formData.append('project[title]', this.state.title);
@@ -56,9 +55,7 @@ class ProjectForm extends React.Component{
         formData.append('project[location_id]', this.state.location_id);
         formData.append('project[launch_date]', this.state.launch_date);
         formData.append('project[end_date]', this.state.end_date);
-        console.log(this.state.id);
         // debugger;
-        
         if (this.state.pictureFile){
             formData.append('project[picture]', this.state.pictureFile);
         } 
@@ -98,7 +95,7 @@ class ProjectForm extends React.Component{
                         </li>
 
                         <li className="project-new-top-li">
-                            <Link to={`/projects/${this.state.id}/rewards`} className="project-new-top-a">
+                            <Link to={`/projects/${this.state.id}/rewards/edit`} className="project-new-top-a">
                                 {/* <a href="" className="project-new-top-a"> */}
                                 <img src={window.rewardsURL} className="project-new-top-img" />
                                 <br/>
