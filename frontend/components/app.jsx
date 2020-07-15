@@ -13,7 +13,8 @@ import WelcomeBar1 from './session_bar/welcome_bar_1';
 import WelcomeBar2 from './session_bar/welcome_bar_2';
 import WelcomeBar3 from './session_bar/welcome_bar_3';
 
-import Search from './search/search_container';
+import Search from './search/search';
+import Result from './search/result';
 
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
@@ -69,6 +70,8 @@ class App extends React.Component{
               <Search />
             </nav>
 
+            <Route exact path="/discovery" component={Result} />
+
             <Route exact path="/projects/hello" component={WelcomeBar} />
             <Route exact path="/projects/hello1" component={WelcomeBar1} />
             <Route exact path="/projects/hello2" component={WelcomeBar2} />
@@ -103,15 +106,12 @@ class App extends React.Component{
               path="/projects/new"
               component={ProjectCreateContainer}
             />
-
-            {/* <div className="div-session-background"> */}
             <br />
             <div className="div-session-box">
               <AuthRoute path="/signup" component={SignupContainer} />
               <AuthRoute path="/login" component={LoginContainer} />
             </div>
             <br />
-            {/* </div> */}
 
             <div className="footer">
               <div>
