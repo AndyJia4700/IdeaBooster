@@ -14,7 +14,6 @@ class ProjectIndex extends React.Component {
     render () {
         
         const {projects, users, deleteProject} = this.props
-        // debugger;
         
         return (
             <div className="project-index-div">
@@ -29,7 +28,6 @@ class ProjectIndex extends React.Component {
                         ))
                     }
                 </ul>
-                {/* <CreateProjectFormContainer/> */}
             </div>
         )
     }

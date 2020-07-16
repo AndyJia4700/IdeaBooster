@@ -13,8 +13,7 @@ import WelcomeBar1 from './session_bar/welcome_bar_1';
 import WelcomeBar2 from './session_bar/welcome_bar_2';
 import WelcomeBar3 from './session_bar/welcome_bar_3';
 
-import Search from './search/search';
-import Result from './search/result';
+import SearchResult from './search/search';
 
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
@@ -24,6 +23,8 @@ import ProjectEditContainer from './projects/edit_project_form_container';
 import RewardsCreateContainer from './rewards/create_rewards_form_container';
 import RewardsEditContainer from './rewards/edit_rewards_container';
 import Backs from './rewards/backs'
+
+// import Category from './category/category';
 
 
 class App extends React.Component{
@@ -35,7 +36,7 @@ class App extends React.Component{
             <nav className="top-bar">
               <div className="explore-start">
                 <div className="explore">
-                  <a className="top-font" href="/#/projects">
+                  <a className="top-font" href="/#/discovery">
                     Explore
                   </a>
                 </div>
@@ -66,11 +67,7 @@ class App extends React.Component{
               </div>
             </nav>
 
-            <nav className="top-bar">
-              <Search />
-            </nav>
-
-            <Route exact path="/discovery" component={Result} />
+            <Route exact path="/discovery" component={SearchResult} />
 
             <Route exact path="/projects/hello" component={WelcomeBar} />
             <Route exact path="/projects/hello1" component={WelcomeBar1} />
@@ -79,6 +76,8 @@ class App extends React.Component{
 
             <Route exact path="/" component={SplashPage} />
             <Route exact path="/projects" component={ProjectIndexContainer} />
+            {/* <Route exact path="/categories/:categoryId" component={Category}> */}
+
             <Route
               exact
               path="/projects/:projectId"
