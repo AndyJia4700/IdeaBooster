@@ -7,8 +7,8 @@ class ProjectIndex extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchProjects()
-            .then(this.props.fetchUsers()); 
+        this.props.fetchProjects();
+        this.props.fetchUsers(); 
     }
 
     render () {

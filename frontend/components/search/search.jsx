@@ -1,18 +1,22 @@
 import { connect } from "react-redux";
 import React from "react";
 import { fetchProjects } from "../../actions/project_actions";
+import { fetchUsers } from "../../actions/user_actions";
 import { Link } from "react-router-dom";
+
 
 
 const mSTP = state => {
   return {
-    projects: Object.values(state.projects)
-  }
+    projects: Object.values(state.projects),
+    users: state.users,
+  };
 }
 
 const mDTP = dispatch =>{
     return {
-        fetchProjects: () => dispatch(fetchProjects())
+      fetchProjects: () => dispatch(fetchProjects()),
+      fetchUsers: () => dispatch(fetchUsers()),
     }
 }
 
@@ -27,7 +31,9 @@ class SearchResult extends React.Component {
   }
 
   componentDidMount() {
-      this.props.fetchProjects();
+    this.props.fetchProjects();
+    this.props.fetchUsers();
+
   }
 
   update(field) {
@@ -44,6 +50,7 @@ class SearchResult extends React.Component {
 
     render() {
         let i = 0;
+        const users = this.props.users;
         const searchKey = this.state.search.toLowerCase();
         const searchedProjects = this.props.projects.map((project) => {
         if (project.title.toLowerCase().includes(searchKey)) {   
@@ -66,6 +73,7 @@ class SearchResult extends React.Component {
                         <p className="project-explore-subtitle">
                             {project.subtitle}
                         </p>
+                        <p> By {users[project.creator_id].username} </p>
                         </Link>
                     </div>
                     </div>

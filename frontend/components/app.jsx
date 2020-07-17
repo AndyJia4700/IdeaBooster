@@ -23,8 +23,7 @@ import ProjectEditContainer from './projects/edit_project_form_container';
 import RewardsCreateContainer from './rewards/create_rewards_form_container';
 import RewardsEditContainer from './rewards/edit_rewards_container';
 import Backs from './rewards/backs'
-
-// import Category from './category/category';
+import CategoryShow from './category/category_show';
 
 
 class App extends React.Component{
@@ -76,35 +75,15 @@ class App extends React.Component{
 
             <Route exact path="/" component={SplashPage} />
             <Route exact path="/projects" component={ProjectIndexContainer} />
-            {/* <Route exact path="/categories/:categoryId" component={Category}> */}
+            <Route exact path="/categories/:categoryId" component={CategoryShow}/>
+            <Route exact path="/projects/:projectId" component={ProjectShowContainer}/>
+            <Route exact path="/projects/new" component={ProjectCreateContainer}/>
+            <Route exact path="/projects/:projectId/edit" component={ProjectEditContainer}/>
 
-            <Route
-              exact
-              path="/projects/:projectId"
-              component={ProjectShowContainer}
-            />
-            <Route
-              exact
-              path="/projects/:projectId/rewards"
-              component={RewardsCreateContainer}
-            />
-            <Route exact path="/projects/:projectId/backs" component={Backs} />
+            <Route exact path="/projects/:projectId/backs" component={Backs}/>
+            <Route exact path="/projects/:projectId/rewards" component={RewardsCreateContainer}/>
+            <Route exact path="/projects/:projectId/rewards/edit" component={RewardsEditContainer}/>
 
-            <Route
-              exact
-              path="/projects/:projectId/edit"
-              component={ProjectEditContainer}
-            />
-            <Route
-              exact
-              path="/projects/:projectId/rewards/edit"
-              component={RewardsEditContainer}
-            />
-            <Route
-              exact
-              path="/projects/new"
-              component={ProjectCreateContainer}
-            />
             <br />
             <div className="div-session-box">
               <AuthRoute path="/signup" component={SignupContainer} />
@@ -122,10 +101,7 @@ class App extends React.Component{
                   <img src={window.githubURL} className="logo-icon" />
                 </a>
 
-                <a
-                  className="linkedin"
-                  href="https://www.linkedin.com/in/andy-jia-89a261114/"
-                >
+                <a className="linkedin" href="https://www.linkedin.com/in/andy-jia-89a261114/">
                   <img src={window.linkedinURL} className="logo-icon" />
                 </a>
               </div>

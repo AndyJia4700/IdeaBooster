@@ -1,5 +1,6 @@
 class Api::RewardsController < ApplicationController
     # protect_from_forgery prepend: true, with: :exception
+    before_action :ensure_logged_in, only:[:create, :update, :destroy]
     skip_before_action :verify_authenticity_token
 
     def index
@@ -21,23 +22,21 @@ class Api::RewardsController < ApplicationController
     end
 
     def create 
-        # debugger;
         @reward = Reward.new(reward_params)
-        # debugger;
         if @reward.save        
             render :show
         else
-            # debugger;
             render json: @reward.errors.full_messages, status: 422
         end
     end
 
     def update
+        debugger
         @reward = Reward.find(params[:id])
         if @reward.update(reward_params)
-            debugger
             render :show
         else
+            debugger
             render json: @reward.errors.full_messages, status: 422
         end
     end
@@ -53,7 +52,7 @@ class Api::RewardsController < ApplicationController
     private
 
     def reward_params
-        # params.require(:reward).permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
-        params.permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
+        params.require(:reward).permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
+        # params.permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
     end
 end

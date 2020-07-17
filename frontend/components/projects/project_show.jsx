@@ -82,14 +82,6 @@ class ProjectShow extends React.Component{
                         <p></p>
                     </div>
 
-                    {/* <div className="user-div">
-                        <div>
-                            <h4>creator</h4>
-                        </div> */}
-
-                        
-                        
-                    {/* </div> */}
                 </div>
 
                 <div className="support-reward-div">

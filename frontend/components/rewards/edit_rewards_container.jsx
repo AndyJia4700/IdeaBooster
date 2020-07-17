@@ -35,14 +35,15 @@ class EditReward extends React.Component {
   }
 
   update(field) {
+    debugger
     return e => this.setState({ 
-      [field]: e.currentTarget.value 
+      [field]: e.target.value 
     });
   }
 
-  render() {
-
-    const { reward } = this.props;
+  render() {    
+    // debugger;
+    const { reward } = this.props
     if (!reward) return null;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -147,7 +148,6 @@ class EditReward extends React.Component {
 }
 
 const mSTP = (state, ownProps) => {
-
   return {
     reward: state.rewards[ownProps.match.params.projectId],
   };
