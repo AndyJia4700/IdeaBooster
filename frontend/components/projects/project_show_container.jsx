@@ -10,6 +10,7 @@ const mSTP = (state, ownProps) => {
     const reward = state.rewards[projectId];
     // debugger;
 
+    
     if (!reward){
     return {
         project,

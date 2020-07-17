@@ -9,7 +9,7 @@
 class Location < ApplicationRecord
     validates :location, presence: true
 
-    has_many :projects,
-    foreign_key: :location_id,
-    class_name: "Project"
+    # has_many :projects,
+    # foreign_key: :location_id,
+    # class_name: "Project"
 end

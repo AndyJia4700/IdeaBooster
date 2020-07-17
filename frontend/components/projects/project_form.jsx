@@ -55,11 +55,12 @@ class ProjectForm extends React.Component{
         formData.append('project[location_id]', this.state.location_id);
         formData.append('project[launch_date]', this.state.launch_date);
         formData.append('project[end_date]', this.state.end_date);
-        // debugger;
         if (this.state.pictureFile){
             formData.append('project[picture]', this.state.pictureFile);
         } 
+        
         this.props.action(formData)
+        // debugger;
     }
 
     update(field){

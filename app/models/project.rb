@@ -26,13 +26,13 @@ class Project < ApplicationRecord
     foreign_key: :project_id,
     class_name: "Reward"
 
-    belongs_to :category,
-    foreign_key: :category_id,
-    class_name: "Category"
+    # belongs_to :category,
+    # foreign_key: :category_id,
+    # class_name: "Category"
 
-    belongs_to :location,
-    foreign_key: :location_id,
-    class_name: "Location"
+    # belongs_to :location,
+    # foreign_key: :location_id,
+    # class_name: "Location"
 
     
     has_one_attached :picture

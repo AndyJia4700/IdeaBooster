@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from '../../actions/project_actions';
-import ProjectIndexItem from './project_index_item';
+// import ProjectIndexItem from './project_index_item';
 import {Link} from 'react-router-dom';
-import categories from '../category/category';
+import { fetchUsers } from '../../actions/user_actions';
 
 const mSTP = state => ({
     projects: Object.values(state.projects),
+    users: state.users
 });
 
 const mDTP = dispatch => ({
     fetchProjects: () => dispatch(fetchProjects()), 
+    fetchUsers: ()=> dispatch(fetchUsers()),
 });
 
 
@@ -22,12 +24,13 @@ class splashPage extends React.Component{
 
     componentDidMount() {
         this.props.fetchProjects();
+        this.props.fetchUsers();
     }
 
     
     render() {
         
-        const { projects } = this.props;
+        const { projects, users } = this.props;
         // debugger;
         return (
 
@@ -60,7 +63,7 @@ class splashPage extends React.Component{
                                             <h2 className="feature-title">{project.title}</h2>
                                                 <br/>
                                             <p className="feature-subtitle">{project.subtitle}</p>
-                                            {/* {this.state.entites.users[project.creator_id].username} */}
+                                            <p> By {users[project.creator_id].username} </p>
                                         </Link>
                                     </div>
                                 ))
@@ -87,6 +90,8 @@ class splashPage extends React.Component{
                                                     <p className="rec-title">{project.title}</p>
                                                     {/* <br/> */}
                                                     <span className="rec-fund-span">0% funded</span>
+
+                                                    <p> By {users[project.creator_id].username} </p>
 
                                                     <div className="rec-icon-div">
                                                         <img src={window.likeURL} className="rec-icon" />
@@ -127,6 +132,8 @@ class splashPage extends React.Component{
                                                     <br />
                                                     <p className="fresh-subtitle">{project.subtitle}</p>
                                                 </div>
+
+                                                <p> By {users[project.creator_id].username} </p>
                                             </div>
                                         </Link>
                                     </li>
@@ -154,6 +161,8 @@ class splashPage extends React.Component{
                                                     <br />
                                                     <p className="fresh-subtitle">{project.subtitle}</p>
                                                 </div>
+
+                                                <p> By {users[project.creator_id].username} </p>
                                             </div>
                                         </Link>
                                     </li>
