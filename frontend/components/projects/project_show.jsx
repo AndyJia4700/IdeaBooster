@@ -23,6 +23,8 @@ class ProjectShow extends React.Component{
     render(){
         const {project, reward} = this.props
         // debugger;
+        if (!reward.total_backer) reward.total_backer = 0
+        if (!reward.total_fund) reward.total_fund = 0
         if (!project) return null;        
             
         return(
@@ -46,12 +48,12 @@ class ProjectShow extends React.Component{
                         </div>
 
                         <div className="project-show-subdiv2-back-money-div">
-                            <p className="project-show-subdiv2-back-money">$500</p>
+                        <p className="project-show-subdiv2-back-money">${reward.total_fund}</p>
                             <p>pledged of ${project.funding_goal} goal</p>
                         </div>
 
                         <div className="project-show-subdiv2-back-backer">
-                            <p>35 backers</p>
+                            <p>{reward.total_backer} backers</p>
                         </div>
                         
                             <form action="" className="project-show-subdiv2-back-a">

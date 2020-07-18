@@ -18,7 +18,7 @@ const mDTP = dispatch => {
       // fetchProjects: () => dispatch(fetchProjects()),
       // fetchProject: (projectId) => dispatch(fetchProject(projectId)),
 
-      // fetchRewards: () => dispatch(fetchRewards()),
+      fetchRewards: () => dispatch(fetchRewards()),
       fetchReward: (rewardId) => dispatch(fetchReward(rewardId)),
       updateReward: (reward) => dispatch(updateReward(reward)),
     };
@@ -29,11 +29,12 @@ class Backs extends React.Component {
     constructor(props){
         super(props)
         // debugger;
+        this.state = this.props.reward
         // this.getBackerId = this.getBackerId.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.updateBackers = this.updateBackers.bind(this);
         // this.updateAmount = this.updateAmount.bind(this);
-        // this.update = this.update.bind(this);
+        this.update = this.update.bind(this);
     };
 
     componentDidMount() {
@@ -43,7 +44,7 @@ class Backs extends React.Component {
         // this.props.fetchProjects();
         // this.props.fetchProject(id);
 
-        // this.props.fetchRewards();
+        this.props.fetchRewards();
         // this.props.fetchReward(7);
         // this.props.updateReward()
     }
@@ -51,12 +52,16 @@ class Backs extends React.Component {
 
     handleSubmit(e){
       e.preventDefault();
-      const backerId = this.props.currentUser.id;
+      // const backerId = this.props.currentUser.id;
       const amount = this.props.reward.pledge_amount;
-      // this.props.reward.backer_id.push([backerId, amount]);
-      this.props.reward.backer_id.push({backerId: [17,888]});
-      this.props.updateReward(this.props.reward);
-      console.log(this.props.reward.backer_id);
+      this.setState({
+        total_fund: (this.state.total_fund + amount),
+        total_backer: (this.state.total_backer + 1)
+      });
+
+      // this.state.total_fund
+      
+      this.props.updateReward(this.state);
     }
 
     // updateBackers(){
@@ -72,11 +77,13 @@ class Backs extends React.Component {
     // }
 
     update(field) {
-        let backer = this.props.currentUser.id;
-        // let pledge_amount = 10;
-        return e => this.setState({ 
-            [field]: this.state.backer_id.push([backer, e.currentTarget.value]),
-        })
+      // let backer = this.props.currentUser.id;
+      // let pledge_amount = 10;
+      // debugger;
+      return e => this.setState({ 
+        // [field]: this.state.backer_id.push([backer, e.currentTarget.value]),
+        [field]: e.currentTarget.value,
+      })
     }
 
 
@@ -98,7 +105,7 @@ class Backs extends React.Component {
             </div>
 
             <div>
-              <h3>Pledege without a reward</h3>
+              <h3>Pledge without a reward</h3>
               <div>
                 <p>Back it because you believe in it.</p>
                 <p>
@@ -110,8 +117,8 @@ class Backs extends React.Component {
               <div>
                 <input
                   type="number"
-                  value={this.props.backer_id}
-                  onChange={this.update("backer_id")}
+                  // value={this.state.total_fund}
+                  // onChange={this.update("total_fund")}
                 />
               </div>
 

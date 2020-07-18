@@ -26,14 +26,15 @@ class Api::RewardsController < ApplicationController
         if @reward.save        
             render :show
         else
+            # debugger
             render json: @reward.errors.full_messages, status: 422
         end
     end
 
     def update
-        # debugger
         @reward = Reward.find(params[:id])
         if @reward.update(reward_params)
+            # debugger
             render :show
         else
             # debugger
@@ -52,7 +53,7 @@ class Api::RewardsController < ApplicationController
     private
 
     def reward_params
-        params.require(:reward).permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
+        params.require(:reward).permit(:backer_id, :total_fund, :total_backer, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
         # params.permit(:backer_id, :title, :description, :project_id, :pledge_amount, :reward_quantity, :shipping_option, :time_limit, :estimated_delivery)
     end
 end

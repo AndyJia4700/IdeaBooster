@@ -1275,7 +1275,6 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this3 = this;
 
-      // debugger
       return function (e) {
         return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
@@ -1771,6 +1770,8 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
           project = _this$props.project,
           reward = _this$props.reward; // debugger;
 
+      if (!reward.total_backer) reward.total_backer = 0;
+      if (!reward.total_fund) reward.total_fund = 0;
       if (!project) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
@@ -1795,9 +1796,9 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
         className: "project-show-subdiv2-back-money-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-show-subdiv2-back-money"
-      }, "$500"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "pledged of $", project.funding_goal, " goal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "$", reward.total_fund), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "pledged of $", project.funding_goal, " goal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-subdiv2-back-backer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "35 backers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.total_backer, " backers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         action: "",
         className: "project-show-subdiv2-back-a"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -2207,7 +2208,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     // fetchProjects: () => dispatch(fetchProjects()),
     // fetchProject: (projectId) => dispatch(fetchProject(projectId)),
-    // fetchRewards: () => dispatch(fetchRewards()),
+    fetchRewards: function fetchRewards() {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
+    },
     fetchReward: function fetchReward(rewardId) {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchReward"])(rewardId));
     },
@@ -2228,37 +2231,38 @@ var Backs = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Backs);
 
     _this = _super.call(this, props); // debugger;
-    // this.getBackerId = this.getBackerId.bind(this);
+
+    _this.state = _this.props.reward; // this.getBackerId = this.getBackerId.bind(this);
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.updateBackers = this.updateBackers.bind(this);
     // this.updateAmount = this.updateAmount.bind(this);
-    // this.update = this.update.bind(this);
 
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Backs, [{
     key: "componentDidMount",
-    value: function componentDidMount() {// debugger
+    value: function componentDidMount() {
+      // debugger
       // const id = this.props.match.params.projectId
       // this.props.fetchProjects();
       // this.props.fetchProject(id);
-      // this.props.fetchRewards();
-      // this.props.fetchReward(7);
+      this.props.fetchRewards(); // this.props.fetchReward(7);
       // this.props.updateReward()
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      var backerId = this.props.currentUser.id;
-      var amount = this.props.reward.pledge_amount; // this.props.reward.backer_id.push([backerId, amount]);
+      e.preventDefault(); // const backerId = this.props.currentUser.id;
 
-      this.props.reward.backer_id.push({
-        backerId: [17, 888]
-      });
-      this.props.updateReward(this.props.reward);
-      console.log(this.props.reward.backer_id);
+      var amount = this.props.reward.pledge_amount;
+      this.setState({
+        total_fund: this.state.total_fund + amount,
+        total_backer: this.state.total_backer + 1
+      }); // this.state.total_fund
+
+      this.props.updateReward(this.state);
     } // updateBackers(){
     //     this.reward.backer_id.length
     // }
@@ -2275,10 +2279,11 @@ var Backs = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      var backer = this.props.currentUser.id; // let pledge_amount = 10;
-
+      // let backer = this.props.currentUser.id;
+      // let pledge_amount = 10;
+      // debugger;
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, _this2.state.backer_id.push([backer, e.currentTarget.value])));
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -2293,10 +2298,10 @@ var Backs = /*#__PURE__*/function (_React$Component) {
       // debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an option below")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Pledege without a reward"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Back it because you believe in it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Support the project for no reward, just because it speaks to you.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        value: this.props.backer_id,
-        onChange: this.update("backer_id")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an option below")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Pledge without a reward"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Back it because you believe in it."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Support the project for no reward, just because it speaks to you.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number" // value={this.state.total_fund}
+        // onChange={this.update("total_fund")}
+
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.reward.pledge_amount, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.reward.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.reward.description, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.reward.reward_quantity, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.reward.estimated_delivery), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Continue"));
@@ -2420,8 +2425,8 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // debugger
       // const id = this.props.match.params.projectId;
-      this.props.fetchRewards(); // this.props.fetchReward(9);
-      // this.props.updateProject(formData, id)
+      // this.props.fetchReward(id);
+      this.props.fetchRewards(); // this.props.updateProject(formData, id)
     }
   }, {
     key: "handleSubmit",
@@ -2431,14 +2436,14 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       this.props.reward.backer_id = [0, 1];
       console.log(this.props.reward);
       debugger;
-      this.props.updateReward(this.props.reward);
+      this.props.updateReward(this.state);
     }
   }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
 
-      debugger;
+      // debugger
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -2447,8 +2452,8 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       // debugger;
-      var reward = this.props.reward;
-      if (!reward) return null;
+      // const { reward } = this.props
+      // if (!reward) return null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2473,7 +2478,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
         className: "reward-intro-p"
       }, "Briefly describe this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        value: this.props.reward.title,
+        value: this.state.title,
         onChange: this.update("title"),
         placeholder: "Signed limited-edition",
         className: "project-basic-input"
@@ -2487,7 +2492,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
         className: "reward-intro-p"
       }, "Set a minimum pledge amount for this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
-        value: reward.pledge_amount,
+        value: this.state.pledge_amount,
         onChange: this.update("pledge_amount"),
         placeholder: "1",
         className: "reward-input"
@@ -2500,7 +2505,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "reward-intro-p"
       }, "Describe this reward in more detail."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        value: reward.description,
+        value: this.state.description,
         onChange: this.update("description"),
         placeholder: "Get an early copy - hot off the presses!",
         className: "reward-input-text"
@@ -2514,7 +2519,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
         className: "reward-intro-p"
       }, "Give yourself plenty of time. It's better to deliver to backers ahead of schedule than behind."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
-        value: reward.estimated_delivery,
+        value: this.state.estimated_delivery,
         onChange: this.update("estimated_delivery"),
         className: "reward-input"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2527,7 +2532,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
         className: "reward-intro-p"
       }, "You may want to limit the quantity of this reward available to backers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
-        value: reward.reward_quantity,
+        value: this.state.reward_quantity,
         onChange: this.update("reward_quantity"),
         className: "reward-input"
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2550,9 +2555,7 @@ var mDTP = function mDTP(dispatch) {
     fetchRewards: function fetchRewards() {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["fetchRewards"])());
     },
-    fetchReward: function fetchReward(projectId) {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["fetchReward"])(projectId));
-    },
+    // fetchReward: (projectId) => dispatch(fetchReward(projectId)),
     updateReward: function updateReward(reward) {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["updateReward"])(reward));
     }
@@ -4505,6 +4508,7 @@ var createReward = function createReward(reward) {
   });
 };
 var updateReward = function updateReward(reward) {
+  // debugger
   return $.ajax({
     method: "PATCH",
     url: "/api/rewards/".concat(reward.id),
