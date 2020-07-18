@@ -31,12 +31,12 @@ class Api::RewardsController < ApplicationController
     end
 
     def update
-        debugger
+        # debugger
         @reward = Reward.find(params[:id])
         if @reward.update(reward_params)
             render :show
         else
-            debugger
+            # debugger
             render json: @reward.errors.full_messages, status: 422
         end
     end
