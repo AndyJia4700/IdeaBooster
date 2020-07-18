@@ -19,8 +19,8 @@ class EditReward extends React.Component {
   componentDidMount() {
     // debugger
     // const id = this.props.match.params.projectId;
+    // this.props.fetchReward(id);
     this.props.fetchRewards();
-    // this.props.fetchReward(9);
     // this.props.updateProject(formData, id)
   }
 
@@ -31,11 +31,11 @@ class EditReward extends React.Component {
     
     console.log(this.props.reward);
     debugger
-    this.props.updateReward(this.props.reward);
+    this.props.updateReward(this.state);
   }
 
   update(field) {
-    debugger
+    // debugger
     return e => this.setState({ 
       [field]: e.target.value 
     });
@@ -43,8 +43,8 @@ class EditReward extends React.Component {
 
   render() {    
     // debugger;
-    const { reward } = this.props
-    if (!reward) return null;
+    // const { reward } = this.props
+    // if (!reward) return null;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="reward-div">
@@ -65,7 +65,7 @@ class EditReward extends React.Component {
                 <p className="reward-intro-p">Briefly describe this reward.</p>
                 <input
                   type="text"
-                  value={this.props.reward.title}
+                  value={this.state.title}
                   onChange={this.update("title")}
                   placeholder="Signed limited-edition"
                   className="project-basic-input"
@@ -81,7 +81,7 @@ class EditReward extends React.Component {
                 </p>
                 <input
                   type="number"
-                  value={reward.pledge_amount}
+                  value={this.state.pledge_amount}
                   onChange={this.update("pledge_amount")}
                   placeholder="1"
                   className="reward-input"
@@ -97,7 +97,7 @@ class EditReward extends React.Component {
                 </p>
 
                 <textarea
-                  value={reward.description}
+                  value={this.state.description}
                   onChange={this.update("description")}
                   placeholder="Get an early copy - hot off the presses!"
                   className="reward-input-text"
@@ -115,7 +115,7 @@ class EditReward extends React.Component {
 
                 <input
                   type="date"
-                  value={reward.estimated_delivery}
+                  value={this.state.estimated_delivery}
                   onChange={this.update("estimated_delivery")}
                   className="reward-input"
                 />
@@ -132,7 +132,7 @@ class EditReward extends React.Component {
 
                 <input
                   type="number"
-                  value={reward.reward_quantity}
+                  value={this.state.reward_quantity}
                   onChange={this.update("reward_quantity")}
                   className="reward-input"
                 />
@@ -156,7 +156,7 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     fetchRewards: () => dispatch(fetchRewards()),
-    fetchReward: (projectId) => dispatch(fetchReward(projectId)),
+    // fetchReward: (projectId) => dispatch(fetchReward(projectId)),
     updateReward: (reward) => dispatch(updateReward(reward)),
   };
 
