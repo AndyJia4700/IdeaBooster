@@ -26,7 +26,8 @@ class ProjectShow extends React.Component{
         if (!reward.total_backer) reward.total_backer = 0
         if (!reward.total_fund) reward.total_fund = 0
         if (!project) return null;        
-            
+        let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
+          
         return(
             <div className="project-show-div">
                 <div className="project-show-subdiv1">
@@ -42,8 +43,9 @@ class ProjectShow extends React.Component{
                     </div>
 
                     <div className="project-show-subdiv2-back">
-
-                        <div className="project-show-subdiv2-back-top">
+                        
+                        <div className="project-show-subdiv2-back-top" >
+                            
                             <p></p>
                         </div>
 

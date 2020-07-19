@@ -1773,6 +1773,7 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       if (!reward.total_backer) reward.total_backer = 0;
       if (!reward.total_fund) reward.total_fund = 0;
       if (!project) return null;
+      var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
