@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 
 const mSTP = (state) => {
-    // debugger;
     return {
         currentUser: state.session.currentUser,
         projects: Object.values(state.projects)
@@ -26,17 +25,13 @@ class profileDropDown extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidUpdate(){
-        this.props.fetchProjects();
-    }
-
     handleClick(e){
         e.preventDefault();
-        this.props.logout().then(this.props.closeModal);
+        this.props.logout().then(this.props.closeModal());
     }
+
     render(){
-        // debugger;
-        const { projects, deleteProject } = this.props
+        const { projects, currentUser } = this.props
         return (
             <div className="modal-child-div">
                 <div className="profile-drop-div1">
@@ -64,7 +59,7 @@ class profileDropDown extends React.Component {
                         <p className="profile-drop-title">CREATED PROJECTS</p>
                         <ul className="profile-drop-subdiv1-ul"> 
                                 {
-
+                                    
                                     projects.slice(0,3).map(project => {
                                         if (project.creator_id === currentUser.id) {
                                             return(

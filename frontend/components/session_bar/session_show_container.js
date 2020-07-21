@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { logout } from "../../actions/session_actions";
+// import { logout } from "../../actions/session_actions";
 import SessionShow from "./session_show";
 import { openModal } from "../../actions/modal_actions";
 
@@ -8,7 +8,7 @@ const mSTP = (state)=> ({
 });
 
 const mDTP = dispatch => ({
-    logout: () => dispatch(logout()),
+    // logout: () => dispatch(logout()),
     openModal: modal => dispatch(openModal(modal))
 });
 

@@ -1,88 +1,73 @@
-// import { connect } from "react-redux";
-// import React from "react";
+import { connect } from "react-redux";
+import React from "react";
+import { Redirect } from "react-router-dom";
 
-// const mSTP = (state) => {
-//   return {
-//     projects: Object.values(state.projects),
-//   };
-// };
+const mSTP = (state) => {
+  return {
+    projects: Object.values(state.projects),
+  };
+};
 
-// const mDTP = dispatch =>{
-//     return {
-//         fetchProjects: () => dispatch(fetchProjects())
-//     }
-// }
-
-
-// class Search extends React.Component {
-//     constructor(props){
-//         super(props);
-//         this.handleSubmit = this.handleSubmit.bind(this);
-//         this.update = this.update.bind(this);
-//         this.state = {
-//             search: "",
-//         }
-//     }
-
-//     componentDidUpdate(){
-        
-//     }
-
-//     update(field){
-//         return e => {
-//             this.setState({
-//                 [field]: e.currentTarget.value
-//             });
-//         }
-//     }
-
-//     handleSubmit(e){
-//         e.preventDefault();
-//         const searchKey = this.state.search.toLowerCase();
-//         const projects = this.props.projects
-//         for (let i = 0; i < projects.length; i++) {
-//             if (projects[i].title.toLowerCase().includes(searchKey)) {
-//             //   console.log(projects[i]);
-//             }
-//         }
-//     }
-
+class SearchBar extends React.Component {
     
-//     render(){
-//         const searchKey = this.state.search.toLowerCase();
-//         const projects = this.props.projects;
-//         for (let i = 0; i < projects.length; i++) {
-//           if (projects[i].title.toLowerCase().includes(searchKey)) {
-//             console.log(projects[i]);
-//           }
-//         }
-        
-//         // const searchedProjects = projects.map(project => (
-//         //     <li>
-//         //         {project.picture}
-//         //         {project.title}
-//         //     </li>
-//         // )
+    constructor(props){
+        super(props);
+        this.state = {
+            search: "",
+            searched: false
+        }
+        this.update = this.update.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+    }
 
-//         return (
-//           <form onSubmit={this.handleSubmit}>
-//             <input
-//               type="text"
-//               className="search-bar"
-//               placeholder="Search for projects or categories"
-//               value={this.props.search}
-//               onChange={this.update("search")}
-//             />
+    componentDidUpdate(){
+        if(this.state.searched){
+           this.setState({
+             searched: false,
+           }); 
+        }
+    }
 
-//             <div>
-//                 {/* {searchedProjects} */}
-//             </div>
+    handleSearch(e){
+        e.preventDefault;
+        this.setState({
+            searched: true
+        })
+    }
 
-//             <button> X </button>
-//           </form>
-//         );
-//     }
-// }
+    update(field){
+        return e => {
+            this.setState({
+                [field]: e.currentTarget.value
+            })
+        }
+    }
+
+    render(){
+        const searchBar = (
+          <form onSubmit={this.handleSearch}>
+            <input
+              type="text"
+              className="inputtest"
+              value={this.state.search}
+              onChange={this.update("search")}
+            />
+            <span onClick={this.props.close}> X </span>
+          </form>
+        );
+
+        const search = <p onClick={this.handleSearch}>Search</p>
+
+        // const search = this.state.searched ? <Redirect to={'/discovery'}/> : null
+        const searched = !this.state.searched ?  search: searchBar
+        return (
+            <div className="searchTest">
+                {searched}
+            </div>
+        )
+    }
+
+}
 
 
-// export default connect(mSTP, null)(Search);
+export default connect(mSTP, null)(SearchBar);

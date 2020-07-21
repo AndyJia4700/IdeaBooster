@@ -25,13 +25,13 @@ class splashPage extends React.Component{
     componentDidMount() {
         this.props.fetchProjects();
         this.props.fetchUsers();
+        // window.location.href = "";
     }
 
     
     render() {
         
         const { projects, users } = this.props;
-        // debugger;
         return (
 
             <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const SessionShow = ({ currentUser, logout, openModal}) => {
+const SessionShow = ({ currentUser, openModal}) => {
     const sessionLinks = () => (
         <nav>
         <Link to="/login" className="login-button">login</Link>
