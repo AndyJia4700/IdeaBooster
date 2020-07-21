@@ -490,6 +490,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+ // import NavBar from './session_bar/nav_bar'
 
 
 
@@ -3013,12 +3014,13 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
     };
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleSearch = _this.handleSearch.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SearchBar, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       if (this.state.searched) {
         this.setState({
           searched: false
@@ -3031,6 +3033,14 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
       e.preventDefault;
       this.setState({
         searched: true
+      });
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      e.preventDefault;
+      this.setState({
+        searched: false
       });
     }
   }, {
@@ -3053,7 +3063,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         value: this.state.search,
         onChange: this.update("search")
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-        onClick: this.props.close
+        onClick: this.handleClose
       }, " X "));
       var search = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
         onClick: this.handleSearch

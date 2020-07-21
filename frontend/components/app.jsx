@@ -5,6 +5,7 @@ import LoginContainer from './session_form/login_container';
 import SessionShowContainer from './session_bar/session_show_container';
 import { AuthRoute } from '../util/route_utils';
 
+// import NavBar from './session_bar/nav_bar'
 import SplashPage from './projects/splash_page';
 import Modal from './modal/modal';
 
@@ -90,8 +91,8 @@ class App extends React.Component{
     return (
       <div>
         <Modal />
-
         {nav}
+        {/* <NavBar/> */}
         <Route exact path="/discovery" component={SearchResult} />
 
         <Route exact path="/projects/hello" component={WelcomeBar} />

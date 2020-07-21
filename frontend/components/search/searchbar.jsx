@@ -18,9 +18,10 @@ class SearchBar extends React.Component {
         }
         this.update = this.update.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
-    componentDidUpdate(){
+    componentDidMount(){
         if(this.state.searched){
            this.setState({
              searched: false,
@@ -34,6 +35,14 @@ class SearchBar extends React.Component {
             searched: true
         })
     }
+
+    handleClose(e){
+        e.preventDefault;
+        this.setState({
+            searched: false
+        })
+    }
+
 
     update(field){
         return e => {
@@ -52,12 +61,12 @@ class SearchBar extends React.Component {
               value={this.state.search}
               onChange={this.update("search")}
             />
-            <span onClick={this.props.close}> X </span>
+            <span onClick={this.handleClose}> X </span>
           </form>
         );
-
+        
         const search = <p onClick={this.handleSearch}>Search</p>
-
+        
         // const search = this.state.searched ? <Redirect to={'/discovery'}/> : null
         const searched = !this.state.searched ?  search: searchBar
         return (
