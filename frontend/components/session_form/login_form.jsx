@@ -5,11 +5,10 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             email: "",
-            // username: "",
             password: ""
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClick = this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this);
     }
 
     update(field) {

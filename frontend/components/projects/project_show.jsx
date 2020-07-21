@@ -63,7 +63,7 @@ class ProjectShow extends React.Component{
                                     
                                 }
 
-                            <a href={`#/projects/${project.id}/backs`} className="project-show-subdiv2-back-button"><span>Back this project</span></a>
+                            <a href={`#/projects/${project.id}/backs`} className="project-show-subdiv2-back-button" ><span>Back this project</span></a>
                                 {/* <button href="/projects/:projectId/backs" className="project-show-subdiv2-back-button"><span>Back this project</span></button> */}
                             </form>
                     </div>

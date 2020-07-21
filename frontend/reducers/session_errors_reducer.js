@@ -5,13 +5,12 @@ export const sessionErrorsReducer = (state = [], action) => {
     switch (action.type) {
         case RECEIVE_SESSION_ERRORS:   
             return action.errors;
-            // return Object.assign({}, state, action.errors);
             // return null;
         case RECEIVE_CURRENT_USER:
             return [];
         default:
             return state;
     }
-}
+};
 
 export default sessionErrorsReducer;

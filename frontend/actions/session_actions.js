@@ -34,12 +34,13 @@ export const login = formUser => dispatch => (
         )
 );
 
-export const logout = () => dispatch => (
-    APIUtil.deleteSession()
+export const logout = () => dispatch => {
+    // debugger
+    return APIUtil.deleteSession()
         .then(
             () => dispatch(logoutCurrentUser()),
         )
-);
+        };
 
 
 

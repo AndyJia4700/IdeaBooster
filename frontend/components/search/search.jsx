@@ -14,10 +14,10 @@ const mSTP = state => {
 }
 
 const mDTP = dispatch =>{
-    return {
-      fetchProjects: () => dispatch(fetchProjects()),
-      fetchUsers: () => dispatch(fetchUsers()),
-    }
+  return {
+    fetchProjects: () => dispatch(fetchProjects()),
+    fetchUsers: () => dispatch(fetchUsers()),
+  }
 }
 
 class SearchResult extends React.Component {

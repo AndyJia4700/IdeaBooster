@@ -26,120 +26,83 @@ const mDTP = dispatch => {
 };
 
 class Backs extends React.Component {
-    constructor(props){
-        super(props)
-        // debugger;
-        this.state = this.props.reward
-        // this.getBackerId = this.getBackerId.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        // this.updateBackers = this.updateBackers.bind(this);
-        // this.updateAmount = this.updateAmount.bind(this);
-        this.update = this.update.bind(this);
-    };
+  constructor(props){
+      super(props)
+      // debugger;
+      this.state = this.props.reward
+      // this.getBackerId = this.getBackerId.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      // this.updateBackers = this.updateBackers.bind(this);
+      // this.updateAmount = this.updateAmount.bind(this);
+      this.update = this.update.bind(this);
+      this.forwardback = this.forwardback.bind(this)
+  };
 
-    componentDidMount() {
-
-        // debugger
-        // const id = this.props.match.params.projectId
-        // this.props.fetchProjects();
-        // this.props.fetchProject(id);
-
-        this.props.fetchRewards();
-        // this.props.fetchReward(7);
-        // this.props.updateReward()
-    }
+  componentDidMount() {
+    this.props.fetchRewards();
+  }
     
 
-    handleSubmit(e){
-      e.preventDefault();
-      // const backerId = this.props.currentUser.id;
-      const amount = this.props.reward.pledge_amount;
-      this.setState({
-        total_fund: (this.state.total_fund + amount),
-        total_backer: (this.state.total_backer + 1)
-      });
+  handleSubmit(e){
+    e.preventDefault();
+    // const backerId = this.props.currentUser.id;
+    const amount = this.props.reward.pledge_amount;
+    this.setState({
+      total_fund: (this.state.total_fund + amount),
+      total_backer: (this.state.total_backer + 1)
+    });
+    this.props.updateReward(this.state);
+    // this.forwardback
+  }
 
-      // this.state.total_fund
-      
-      this.props.updateReward(this.state);
-    }
+  forwardback(){
+    window.location.href = `#/projects/${this.props.match.params.projectId}`;
+  }
 
-    // updateBackers(){
-    //     this.reward.backer_id.length
-    // }
-
-    // updateAmount(){
-    //     const amount = this.reward.backer_id
-    //     const sum = 0;
-    //     for (let i = 0; i < amount.length; i++) {
-    //         sum += amount[1]  
-    //     }
-    // }
-
-    update(field) {
-      // let backer = this.props.currentUser.id;
-      // let pledge_amount = 10;
-      // debugger;
-      return e => this.setState({ 
-        // [field]: this.state.backer_id.push([backer, e.currentTarget.value]),
-        [field]: e.currentTarget.value,
-      })
-    }
+  update(field) {
+    return e => this.setState({ 
+      [field]: e.currentTarget.value,
+    })
+  }
 
 
-    render(){
-      
-        // console.log(this.props.reward);
-        // let backer = this.props.currentUser.id;
-        // let pledge_amount = 10;
-        // let backer_id = this.props.reward.backer_id.push([backer, pledge_amount])
-        // console.log(this.props.reward.backer_id);
-        // console.log(backer_id);
-        // debugger;
+  render(){
+    const { reward } = this.props;
 
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <h3>Support this project</h3>
-              <p>Select an option below</p>
-            </div>
+    if(!this.props.reward) return (
+      <div>
+        Fake Project, Do not waste your money!!
+      </div>
+    );
 
-            <div>
-              <h3>Pledge without a reward</h3>
-              <div>
-                <p>Back it because you believe in it.</p>
-                <p>
-                  Support the project for no reward, just because it speaks to
-                  you.
-                </p>
-              </div>
 
-              <div>
-                <input
-                  type="number"
-                  // value={this.state.total_fund}
-                  // onChange={this.update("total_fund")}
-                />
-              </div>
+    return (
+      <form onSubmit={this.handleSubmit}>
+        
+        <div>
+          <h3>Support this project</h3>
+          <p>Select an option below</p>
+        </div>
 
-              <div>{/* {this.props} */}</div>
-            </div>
-            <div>
-              {this.props.reward.pledge_amount}
-              <br />
-              {this.props.reward.title}
-              <br />
-              {this.props.reward.description}
-              <br />
-              {this.props.reward.reward_quantity}
-              <br />
-              {this.props.reward.estimated_delivery}
-            </div>
+        <div>
+          {reward.pledge_amount}
+          <br />
+          {reward.title}
+          <br />
+          {reward.description}
+          <br />
+          {reward.reward_quantity}
+          <br />
+          {reward.estimated_delivery}
+        </div>
 
-            <button type="submit">Continue</button>
-          </form>
-        );
-    }
+        <button type="submit">next</button>
+        <button type="submit" onClick={this.forwardback}>
+          Continue
+        </button>
+      </form>
+    );
+  }
     
 }
 
