@@ -14,7 +14,6 @@ class ProjectShow extends React.Component{
         // debugger;
         this.props.fetchProjects();
         this.props.fetchProject(projectId);
-
         this.props.fetchRewards();
         // this.props.fetchReward(projectId);
         
