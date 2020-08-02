@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 const mSTP = (state) => {
   return {
@@ -19,6 +19,8 @@ class SearchBar extends React.Component {
         this.update = this.update.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     componentDidMount(){
@@ -34,6 +36,7 @@ class SearchBar extends React.Component {
         this.setState({
             searched: true
         })
+        
     }
 
     handleClose(e){
@@ -43,6 +46,12 @@ class SearchBar extends React.Component {
         })
     }
 
+    handleSubmit(e){
+        e.preventDefault;
+        window.location.href = `#/discovery/${this.state.search}`;
+        window.location.reload()
+    }
+
 
     update(field){
         return e => {
@@ -50,25 +59,29 @@ class SearchBar extends React.Component {
                 [field]: e.currentTarget.value
             })
         }
+        
     }
 
     render(){
         const searchBar = (
-          <form onSubmit={this.handleSearch}>
+          <form onSubmit={this.handleSubmit}>
             <input
               type="text"
               className="inputtest"
               value={this.state.search}
               onChange={this.update("search")}
+              placeholder="Search for projects or categories"
             />
-            <span onClick={this.handleClose}> X </span>
+
+            <span className="searchbar-close" onClick={this.handleClose}>
+                <p className="searchX">X</p>
+            </span>
           </form>
         );
         
         const search = <p onClick={this.handleSearch}>Search</p>
+        const searched = !this.state.searched ? search : searchBar
         
-        // const search = this.state.searched ? <Redirect to={'/discovery'}/> : null
-        const searched = !this.state.searched ?  search: searchBar
         return (
             <div className="searchTest">
                 {searched}

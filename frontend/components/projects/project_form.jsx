@@ -9,6 +9,7 @@ class ProjectForm extends React.Component{
         this.state = this.props.project;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
         this.update = this.update.bind(this);
         // debugger;
     }
@@ -41,6 +42,12 @@ class ProjectForm extends React.Component{
         } else {
             this.setState({ pictureUrl:"", pictureFile: null});
         }
+    }
+
+    handleRedirect(e){
+        e.preventDefault();
+        window.location.href = "#/discovery/"
+
     }
 
     handleSubmit(e) {
@@ -300,7 +307,7 @@ class ProjectForm extends React.Component{
                 </div>
                 
                 
-                <button type="submit" value={this.props.formType}>Next</button>
+                <button type="submit" value={this.props.formType} onClick={this.handleRedirect}>Next</button>
                 
                 
             </form>
