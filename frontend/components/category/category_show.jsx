@@ -169,38 +169,40 @@ class Category extends React.Component{
                 </ul>
                 </div>
 
-                <div className="splash-fresh-div">
-              <h4 className="splash-projects-font-fresh">TAKING OFF</h4>
-              <ul className="splash-projects-ul">
-                <div className="fresh-div">
-                  {projects.slice(8, 20).map((project) => (
-                    <li key={project.id} className="fresh-li">
-                      <Link
-                        to={`/projects/${project.id}`}
-                        className="fresh-link"
-                      >
-                        <div className="project-fresh-li">
-                          <div>
-                            <img
-                              className="project-fresh-picturelist"
-                              src={project.pictureUrl}
-                            />
-                          </div>
+                {/* <div className="splash-fresh-div">
+                    <h4 className="splash-projects-font-fresh">TAKING OFF</h4>
+                    <ul className="splash-projects-ul">
+                        <div className="fresh-div">
+                        {projects.slice(8, 20).map((project) => (
+                            <li key={project.id} className="fresh-li">
+                            <Link
+                                to={`/projects/${project.id}`}
+                                className="fresh-link"
+                            >
+                                <div className="project-fresh-li">
+                                <div>
+                                    <img
+                                    className="project-fresh-picturelist"
+                                    src={project.pictureUrl}
+                                    />
+                                </div>
 
-                          <div className="project-fresh-title-li">
-                            <p className="fresh-title">{project.title}</p>
-                            <br />
-                            <p className="fresh-subtitle">{project.subtitle}</p>
-                          </div>
+                                <div className="project-fresh-title-li">
+                                    <p className="fresh-title">{project.title}</p>
+                                    <br />
+                                    <p className="fresh-subtitle">{project.subtitle}</p>
+                                </div>
+                                </div>
+
+                                <p> By {users[project.creator_id].username} </p>
+                            </Link>
+                            </li>
+                        ))}
                         </div>
+                    </ul>
+                </div> */}
 
-                        <p> By {users[project.creator_id].username} </p>
-                      </Link>
-                    </li>
-                  ))}
-                </div>
-              </ul>
-            </div>
+            
             </div>
         );
     }

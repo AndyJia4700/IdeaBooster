@@ -16,6 +16,7 @@ import WelcomeBar3 from './session_bar/welcome_bar_3';
 
 import SearchResult from './search/search';
 import SearchBar from './search/searchbar'
+import SearchKeyword from './search/searchkeyword'
 
 import ProjectIndexContainer from './projects/project_index_container';
 import ProjectCreateContainer from './projects/create_project_form_container';
@@ -31,8 +32,7 @@ import CategoryShow from './category/category_show';
 class App extends React.Component{
 
   render(){
-  
-    
+
     const nav = (
       <nav className="top-bar">
         <div className="explore-start">
@@ -56,7 +56,6 @@ class App extends React.Component{
         <div className="search-login">
           <div className="search">
             <h4 className="top-font">
-              {/* Search */}
               <SearchBar/>
             </h4>
           </div>
@@ -81,9 +80,21 @@ class App extends React.Component{
             <img src={window.githubURL} className="logo-icon" />
           </a>
 
-          <a className="linkedin" href="https://www.linkedin.com/in/andy-jia-89a261114/">
+          <a
+            className="linkedin"
+            href="https://www.linkedin.com/in/andy-jia-89a261114/"
+          >
             <img src={window.linkedinURL} className="logo-icon" />
           </a>
+
+          <a className="angellist" href="https://angel.co/u/hj-jia">
+            <img src={window.angellistURL} className="logo-icon" />
+          </a>
+
+          <a className="personalsite" href="https://andyjia4700.github.io/andyjiasite/">
+            <img src={window.personalsiteURL} className="logo-icon" />
+          </a>
+
         </div>
       </div>
     );
@@ -92,8 +103,9 @@ class App extends React.Component{
       <div>
         <Modal />
         {nav}
-        {/* <NavBar/> */}
+
         <Route exact path="/discovery" component={SearchResult} />
+        <Route exact path="/discovery/:keyword" component={SearchKeyword} />
 
         <Route exact path="/projects/hello" component={WelcomeBar} />
         <Route exact path="/projects/hello1" component={WelcomeBar1} />
