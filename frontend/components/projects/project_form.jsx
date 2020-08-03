@@ -9,7 +9,7 @@ class ProjectForm extends React.Component{
         this.state = this.props.project;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
-        this.handleRedirect = this.handleRedirect.bind(this);
+        // this.handleRedirect = this.handleRedirect.bind(this);
         this.update = this.update.bind(this);
         // debugger;
     }
@@ -44,11 +44,11 @@ class ProjectForm extends React.Component{
         }
     }
 
-    handleRedirect(e){
-        e.preventDefault();
-        window.location.href = "#/discovery/"
-
-    }
+    // handleRedirect(e){
+    //     e.preventDefault();
+    //     // window.location.href = "#/discovery/"
+    //     window.confirm("Your Project has been saved!");
+    // }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -165,6 +165,7 @@ class ProjectForm extends React.Component{
                         <input type="text"
                             value={this.state.title}
                             onChange={this.update('title')}
+                            maxlength="30"
                             placeholder="Radiotopia: A Storytelling Revolution"
                             className="project-basic-input"
                         />
@@ -307,7 +308,8 @@ class ProjectForm extends React.Component{
                 </div>
                 
                 
-                <button type="submit" value={this.props.formType} onClick={this.handleRedirect}>Next</button>
+                {/* <button type="submit" value={this.props.formType} onClick={this.handleRedirect}>Next</button> */}
+                <button type="submit" value={this.props.formType} className="save-button">Save</button>
                 
                 
             </form>

@@ -1201,8 +1201,8 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.project;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
-    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this)); // this.handleRedirect = this.handleRedirect.bind(this);
+
     _this.update = _this.update.bind(_assertThisInitialized(_this)); // debugger;
 
     return _this;
@@ -1245,13 +1245,12 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
           pictureFile: null
         });
       }
-    }
-  }, {
-    key: "handleRedirect",
-    value: function handleRedirect(e) {
-      e.preventDefault();
-      window.location.href = "#/discovery/";
-    }
+    } // handleRedirect(e){
+    //     e.preventDefault();
+    //     // window.location.href = "#/discovery/"
+    //     window.confirm("Your Project has been saved!");
+    // }
+
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -1382,6 +1381,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         value: this.state.title,
         onChange: this.update('title'),
+        maxlength: "30",
         placeholder: "Radiotopia: A Storytelling Revolution",
         className: "project-basic-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -1529,8 +1529,8 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         value: this.props.formType,
-        onClick: this.handleRedirect
-      }, "Next"));
+        className: "save-button"
+      }, "Save"));
     }
   }]);
 
@@ -1715,10 +1715,9 @@ var ProjectIndexItem = function ProjectIndexItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _rewards_rewards_show_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../rewards/rewards_show_container */ "./frontend/components/rewards/rewards_show_container.jsx");
-/* harmony import */ var _rewards_rewards_show_container__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_rewards_rewards_show_container__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1740,10 +1739,9 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-
- // import { fetchProjects } from '../../actions/project_actions';
-
-
+ // import {Link} from 'react-router-dom';
+// import { fetchProjects } from '../../actions/project_actions';
+// import RewardsShowContainer from '../rewards/rewards_show_container'
 
 var ProjectShow = /*#__PURE__*/function (_React$Component) {
   _inherits(ProjectShow, _React$Component);
@@ -1764,18 +1762,22 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
 
       this.props.fetchProjects();
       this.props.fetchProject(projectId);
-      this.props.fetchRewards(); // this.props.fetchReward(projectId);
+      this.props.fetchRewards();
+      this.props.fetchUsers(); // this.props.fetchReward(projectId);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           project = _this$props.project,
-          reward = _this$props.reward; // debugger;
-
+          reward = _this$props.reward;
+      if (!project) return null;
+      var today = new Date();
+      var end = new Date(project.end_date);
+      var daysLeft = Math.floor((end - today) / 86400000) + 1;
+      if (daysLeft < 1) daysLeft = (_readOnlyError("daysLeft"), 0);
       if (!reward.total_backer) reward.total_backer = 0;
       if (!reward.total_fund) reward.total_fund = 0;
-      if (!project) return null;
       var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
@@ -1800,15 +1802,24 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
         className: "project-show-subdiv2-back-money-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-show-subdiv2-back-money"
-      }, "$", reward.total_fund), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "pledged of $", project.funding_goal, " goal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "$", reward.total_fund), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-show-p"
+      }, "pledged of $", project.funding_goal, " goal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-subdiv2-back-backer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.total_backer, " backers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        action: "",
-        className: "project-show-subdiv2-back-a"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-show-subdiv2-back-num" // className="project-show-p"
+
+      }, reward.total_backer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-show-p"
+      }, " backers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-show-subdiv2-back-num" // className="project-show-p"
+
+      }, daysLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-show-p"
+      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/projects/".concat(project.id, "/backs"),
         className: "project-show-subdiv2-back-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Back this project"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Campaign"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FAQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Updates"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Community"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Back this project")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Campaign"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FAQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Updates"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Community"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-user-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "story-div"
@@ -1843,7 +1854,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
 /* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
-/* harmony import */ var _project_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project_show */ "./frontend/components/projects/project_show.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _project_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./project_show */ "./frontend/components/projects/project_show.jsx");
+
 
 
 
@@ -1875,6 +1888,9 @@ var mSTP = function mSTP(state, ownProps) {
 var mDTP = function mDTP(dispatch) {
   // debugger;
   return {
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
+    },
     fetchProjects: function fetchProjects() {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_1__["fetchProjects"])());
     },
@@ -1890,7 +1906,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_project_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_project_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -2724,44 +2740,6 @@ var rewardsForm = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (rewardsForm);
-
-/***/ }),
-
-/***/ "./frontend/components/rewards/rewards_show_container.jsx":
-/*!****************************************************************!*\
-  !*** ./frontend/components/rewards/rewards_show_container.jsx ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// import { connect } from "react-redux";
-// import { fetchRewards, fetchReward } from "../../actions/reward_actions";
-// import RewardShow from "./rewards_show";
-// const mSTP = (state, ownProps) => {
-//     const projectId = ownProps.match.params.projectId;
-//     const reward = state.rewards[projectId];
-//     if (!reward) {
-//       return {
-//         reward: {
-//           pledge_amount: 0,
-//           title: "",
-//           estimated_delivery: "",
-//           reward_quantity: "",
-//         },
-//       };
-//     } else {
-//       return {
-//         reward,
-//       };
-//     }
-// }
-// const mDTP = dispatch =>{
-//     return {
-//         fetchRewards: () => dispatch(fetchRewards()),
-//         fetchReward: (rewardId) => dispatch(fetchReward(rewardId)),
-//     }
-// }
-// export default connect(mSTP, mDTP)(RewardShow)
 
 /***/ }),
 
@@ -4197,7 +4175,7 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
       }, projects.slice(0, 3).map(function (project) {
         if (project.creator_id === currentUser.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            className: "",
+            className: "profile-project-list",
             key: project.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "profile-own-project-div"
@@ -4212,7 +4190,7 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
         }
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/projects/new"
-      }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "View All"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "View All"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-drop-div2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""

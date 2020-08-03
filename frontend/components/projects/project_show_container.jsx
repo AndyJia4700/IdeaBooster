@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { fetchProject, fetchProjects } from "../../actions/project_actions";
 import { fetchRewards, fetchReward } from "../../actions/reward_actions";
+import { fetchUsers } from '../../actions/user_actions';
 import ProjectShow from "./project_show";
 
 
@@ -9,8 +10,6 @@ const mSTP = (state, ownProps) => {
     const project = state.projects[projectId];
     const reward = state.rewards[projectId];
     // debugger;
-
-    
     if (!reward){
     return {
         project,
@@ -34,9 +33,9 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => {
     // debugger;
     return {
+        fetchUsers: ()=> dispatch(fetchUsers()),
         fetchProjects: () => dispatch(fetchProjects()),
         fetchProject: projectId => dispatch(fetchProject(projectId)),
-
         fetchRewards: () => dispatch(fetchRewards()),
         fetchReward: (rewardId) => dispatch(fetchReward(rewardId)),
     }

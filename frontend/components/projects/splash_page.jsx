@@ -32,6 +32,7 @@ class splashPage extends React.Component{
     render() {
         
         const { projects, users } = this.props;
+
         return (
 
             <div>
