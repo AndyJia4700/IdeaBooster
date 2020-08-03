@@ -77,23 +77,27 @@ class Backs extends React.Component {
 
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        
+      <form onSubmit={this.handleSubmit} className="back-form">
         <div>
           <h3>Support this project</h3>
           <p>Select an option below</p>
         </div>
 
-        <div>
-          {reward.pledge_amount}
-          <br />
-          {reward.title}
-          <br />
-          {reward.description}
-          <br />
-          {reward.reward_quantity}
-          <br />
-          {reward.estimated_delivery}
+        <div className="rewards-option-div">
+          <div className="rewards-option-subdiv1">
+            ${reward.pledge_amount} or more
+            <br />
+            <h4>{reward.title}</h4>
+            <br />
+            <p>{reward.description}</p>
+            <br />
+          </div>
+
+          <div className="rewards-option-subdiv1">
+            <p>ESTIMATED DELIVERY</p>
+            {reward.estimated_delivery}
+            <p>SHIPS TO Anywhere in the world</p>
+          </div>
         </div>
 
         <button type="submit">next</button>
