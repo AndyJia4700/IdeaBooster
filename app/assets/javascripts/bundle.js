@@ -1717,8 +1717,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1774,8 +1772,8 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       if (!project) return null;
       var today = new Date();
       var end = new Date(project.end_date);
-      var daysLeft = Math.floor((end - today) / 86400000) + 1;
-      if (daysLeft < 1) daysLeft = (_readOnlyError("daysLeft"), 0);
+      var daysLeft = Math.floor((end - today) / 86400000) + 1; // (daysLeft < 0) ? daysLeft = "End"
+
       if (!reward.total_backer) reward.total_backer = 0;
       if (!reward.total_fund) reward.total_fund = 0;
       var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
