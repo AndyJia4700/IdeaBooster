@@ -60,33 +60,22 @@ class ProjectShow extends React.Component{
                 </div>
 
                 <div className="project-show-subdiv2-back-backer">
-                  <p
-                    className="project-show-subdiv2-back-num"
-                    // className="project-show-p"
-                  >
-                    {reward.total_backer}
-                  </p>
+                  <p className="project-show-subdiv2-back-num">{reward.total_backer}</p>
                   <p className="project-show-p"> backers</p>
-                  <p
-                    className="project-show-subdiv2-back-num"
-                    // className="project-show-p"
-                  >
-                    {daysLeft}
-                  </p>
+                  <p className="project-show-subdiv2-back-num">{daysLeft}</p>
                   <p className="project-show-p"> days to go</p>
                 </div>
-
-                <a
-                  href={`#/projects/${project.id}/backs`}
-                  className="project-show-subdiv2-back-button"
+                
+                <a href={`#/projects/${project.id}/backs`} className="project-show-subdiv2-back-button"
                 >
                   <span>Back this project</span>
                 </a>
+
               </div>
             </div>
 
-            <div>
-              <ul>
+            <div className="project-show-ul-div">
+              <ul className="project-show-ul">
                 <li>Campaign</li>
                 <li>FAQ</li>
                 <li>Updates</li>

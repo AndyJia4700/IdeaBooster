@@ -1,13 +1,11 @@
 .project-show-div{
-    padding-left: 60px;
     display: flex;
     flex-direction: column;
-    // width: 60%;
 
 }
 
 .project-show-pic-div {
-    // width: cal(100% * 8/12);
+    padding-left: 60px;
     width: 66%;
     padding-right: 50px;
 }
@@ -22,6 +20,7 @@
 }
 
 .project-show-subdiv1{
+    padding-left: 60px;
     display: inline-flex;
     flex-direction: column;
     text-align: center;
@@ -41,6 +40,7 @@
 .project-show-subdiv2-back {
     // width: cal(100% * 4/12);
     width: 34%;
+    padding-right: 60px;
 }
 
 
@@ -54,13 +54,12 @@
     background: #009E74;
     border: none;
     color: white;
-    width: 85%;
     font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 75px;
-    padding-right: 75px;
     text-decoration: none;
+    display: block;
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
 }
 
 .project-show-subdiv2-back-money{
@@ -86,3 +85,19 @@
     margin-top: 5px;
 }
 
+
+.project-show-ul-div{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+
+}
+
+.project-show-ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    width: 50%;
+}
