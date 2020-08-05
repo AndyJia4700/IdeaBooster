@@ -41,7 +41,7 @@ class App extends React.Component{
               Explore
             </a>
           </div>
-
+          
           <div className="start">
             <a className="top-font" href="/#/projects/hello">
               Start a project
