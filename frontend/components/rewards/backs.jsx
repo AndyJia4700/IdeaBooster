@@ -57,6 +57,8 @@ class Backs extends React.Component {
 
   forwardback(){
     window.location.href = `#/projects/${this.props.match.params.projectId}`;
+    window.location.reload();
+    return false;
   }
 
   update(field) {
