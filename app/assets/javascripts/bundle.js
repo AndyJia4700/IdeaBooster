@@ -2282,6 +2282,8 @@ var Backs = /*#__PURE__*/function (_React$Component) {
     key: "forwardback",
     value: function forwardback() {
       window.location.href = "#/projects/".concat(this.props.match.params.projectId);
+      window.location.reload();
+      return false;
     }
   }, {
     key: "update",

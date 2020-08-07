@@ -57,6 +57,8 @@ class Backs extends React.Component {
 
   forwardback(){
     window.location.href = `#/projects/${this.props.match.params.projectId}`;
+    window.location.reload();
+    return false;
   }
 
   update(field) {
@@ -96,6 +98,7 @@ class Backs extends React.Component {
           <div className="rewards-option-subdiv1">
             <p>ESTIMATED DELIVERY</p>
             {reward.estimated_delivery}
+            
             <p>SHIPS TO Anywhere in the world</p>
           </div>
         </div>
