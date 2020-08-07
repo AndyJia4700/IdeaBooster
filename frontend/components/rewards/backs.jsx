@@ -77,7 +77,6 @@ class Backs extends React.Component {
       </div>
     );
 
-
     return (
       <form onSubmit={this.handleSubmit} className="back-form">
         <div>
