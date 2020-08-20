@@ -1775,8 +1775,8 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       var daysLeft = Math.floor((end - today) / 86400000) + 1;
       if (daysLeft < 1) daysLeft = 0;
       if (!reward.total_backer) reward.total_backer = 0;
-      if (!reward.total_fund) reward.total_fund = 0;
-      var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
+      if (!reward.total_fund) reward.total_fund = 0; // let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
