@@ -45,16 +45,14 @@ class Backs extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    // const backerId = this.props.currentUser.id;
     const amount = this.props.reward.pledge_amount;
     this.setState({
       total_fund: (this.state.total_fund + amount),
       total_backer: (this.state.total_backer + 1)
     });
     this.props.updateReward(this.state);
-    // this.forwardback
   }
-
+  
   forwardback(){
     window.location.href = `#/projects/${this.props.match.params.projectId}`;
     window.location.reload();
@@ -76,7 +74,6 @@ class Backs extends React.Component {
         Fake Project, Do not waste your money!!
       </div>
     );
-
 
     return (
       <form onSubmit={this.handleSubmit} className="back-form">

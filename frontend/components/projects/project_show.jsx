@@ -25,8 +25,13 @@ class ProjectShow extends React.Component{
         if (!project) return null;        
         const today = new Date();
         const end = new Date(project.end_date);
+<<<<<<< HEAD
         const daysLeft = Math.floor((end - today)/86400000) + 1
         // (daysLeft < 0) ? daysLeft = "End"
+=======
+        let daysLeft = Math.floor((end - today)/86400000) + 1
+        if (daysLeft < 1) daysLeft = 0;
+>>>>>>> auth
 
         if (!reward.total_backer) reward.total_backer = 0
         if (!reward.total_fund) reward.total_fund = 0

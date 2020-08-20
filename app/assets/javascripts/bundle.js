@@ -1709,136 +1709,9 @@ var ProjectIndexItem = function ProjectIndexItem(props) {
   !*** ./frontend/components/projects/project_show.jsx ***!
   \*******************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
- // import {Link} from 'react-router-dom';
-// import { fetchProjects } from '../../actions/project_actions';
-// import RewardsShowContainer from '../rewards/rewards_show_container'
-
-var ProjectShow = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProjectShow, _React$Component);
-
-  var _super = _createSuper(ProjectShow);
-
-  function ProjectShow(props) {
-    _classCallCheck(this, ProjectShow);
-
-    return _super.call(this, props);
-  }
-
-  _createClass(ProjectShow, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      // debugger;
-      var projectId = this.props.match.params.projectId; // debugger;
-
-      this.props.fetchProjects();
-      this.props.fetchProject(projectId);
-      this.props.fetchRewards();
-      this.props.fetchUsers(); // this.props.fetchReward(projectId);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          project = _this$props.project,
-          reward = _this$props.reward;
-      if (!project) return null;
-      var today = new Date();
-      var end = new Date(project.end_date);
-      var daysLeft = Math.floor((end - today) / 86400000) + 1; // (daysLeft < 0) ? daysLeft = "End"
-
-      if (!reward.total_backer) reward.total_backer = 0;
-      if (!reward.total_fund) reward.total_fund = 0;
-      var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "project-show-h"
-      }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-h"
-      }, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-pic-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "project-show-pic",
-        src: project.pictureUrl
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, project.location_id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv2-back"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv2-back-top"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv2-back-money-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-subdiv2-back-money"
-      }, "$", reward.total_fund), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-p"
-      }, "pledged of $", project.funding_goal, " goal")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-subdiv2-back-backer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-subdiv2-back-num"
-      }, reward.total_backer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-p"
-      }, " backers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-subdiv2-back-num"
-      }, daysLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "project-show-p"
-      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/projects/".concat(project.id, "/backs"),
-        className: "project-show-subdiv2-back-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Back this project")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-show-ul-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "project-show-ul"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Campaign"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FAQ"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Updates"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Community"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-user-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "story-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Story"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "support-reward-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Make a pledeg without a reward", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " Pledge $", reward.pledge_amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "INCLUDES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.title, "e")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "ESTIMATED DELIVERY", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.estimated_delivery)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "REWARD QUANTITY", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.reward_quantity))));
-    }
-  }]);
-
-  return ProjectShow;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (ProjectShow);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/andy/Downloads/Project/IdeaBooster/frontend/components/projects/project_show.jsx: Unexpected token (28:1)\n\n\u001b[0m \u001b[90m 26 | \u001b[39m        \u001b[36mconst\u001b[39m today \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mDate\u001b[39m()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 27 | \u001b[39m        \u001b[36mconst\u001b[39m end \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mDate\u001b[39m(project\u001b[33m.\u001b[39mend_date)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 29 | \u001b[39m        \u001b[36mconst\u001b[39m daysLeft \u001b[33m=\u001b[39m \u001b[33mMath\u001b[39m\u001b[33m.\u001b[39mfloor((end \u001b[33m-\u001b[39m today)\u001b[33m/\u001b[39m\u001b[35m86400000\u001b[39m) \u001b[33m+\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 30 | \u001b[39m        \u001b[90m// (daysLeft < 0) ? daysLeft = \"End\"\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 31 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n    at Object._raise (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:746:17)\n    at Object.raiseWithData (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:739:17)\n    at Object.raise (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:733:17)\n    at Object.unexpected (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:8807:16)\n    at Object.jsxParseIdentifier (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4412:12)\n    at Object.jsxParseNamespacedName (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4422:23)\n    at Object.jsxParseElementName (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4433:21)\n    at Object.jsxParseOpeningElementAt (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4519:22)\n    at Object.jsxParseElementAt (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4552:33)\n    at Object.jsxParseElement (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4626:17)\n    at Object.parseExprAtom (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:4633:19)\n    at Object.parseExprSubscripts (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9656:23)\n    at Object.parseMaybeUnary (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9636:21)\n    at Object.parseExprOps (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9506:23)\n    at Object.parseMaybeConditional (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9479:23)\n    at Object.parseMaybeAssign (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9434:21)\n    at Object.parseExpression (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:9386:23)\n    at Object.parseStatementContent (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11285:23)\n    at Object.parseStatement (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11156:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11731:25)\n    at Object.parseBlockBody (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11717:10)\n    at Object.parseBlock (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11701:10)\n    at Object.parseFunctionBody (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:10708:24)\n    at Object.parseFunctionBodyAndFinish (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:10691:10)\n    at Object.parseMethod (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:10653:10)\n    at Object.pushClassMethod (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:12156:30)\n    at Object.parseClassMemberWithIsStatic (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:12073:12)\n    at Object.parseClassMember (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:12015:10)\n    at /Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11960:14\n    at Object.withTopicForbiddingContext (/Users/andy/Downloads/Project/IdeaBooster/node_modules/@babel/parser/lib/index.js:11031:14)");
 
 /***/ }),
 
@@ -2269,14 +2142,13 @@ var Backs = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // const backerId = this.props.currentUser.id;
-
+      e.preventDefault();
       var amount = this.props.reward.pledge_amount;
       this.setState({
         total_fund: this.state.total_fund + amount,
         total_backer: this.state.total_backer + 1
       });
-      this.props.updateReward(this.state); // this.forwardback
+      this.props.updateReward(this.state);
     }
   }, {
     key: "forwardback",
