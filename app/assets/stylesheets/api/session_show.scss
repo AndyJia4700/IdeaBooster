@@ -185,11 +185,19 @@ div {
 
 
 .footer{
+    background: #023a2b;
     padding-left: 10px;
     font-size: 15px;
     font-weight: 200;
     display: flex;
     border-top: 1px solid #d9d4d4;
+}
+
+.footer-1{
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+    padding-left: 50px;
 }
 
 .github{

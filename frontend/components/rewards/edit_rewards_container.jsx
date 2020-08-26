@@ -30,7 +30,7 @@ class EditReward extends React.Component {
     this.props.reward.backer_id = [0,1]
     
     console.log(this.props.reward);
-    debugger
+    //debugger
     this.props.updateReward(this.state);
   }
 

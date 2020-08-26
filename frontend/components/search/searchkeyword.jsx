@@ -71,7 +71,7 @@ class SearchKeyword extends React.Component {
 
                   <p className="project-explore-subtitle">{project.subtitle}</p>
 
-                  <p> By {users[project.creator_id].username} </p>
+                  <p className="project-explore-subtitle"> By {users[project.creator_id].username} </p>
                 </Link>
               </div>
             </div>
