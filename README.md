@@ -11,10 +11,14 @@ Database: Postgres
 API: AWS S3
 
 Main Features:
-1. Project
-Display IdeaBooster icon on the top of the page, direct to the homepage after clicking it
+1. Encrypted password digests and ensured valid accounts by employing ActiveRecord validations with Rails in order to prevent plain-text form of passwords and also to achieve data security.
 
-Users can view all existing projects from the homepage without logging in. Any user is able to start to create a project from the homepage. However, only registered users are allowed to save their projects. This is protect by the React Authenticated routes.
+2. Connected Rails backend to AWS S3 to host all project images in order to reduce page load and improve server performance, ensuring content security with AWS IAM.
+
+3. Used AJAX request in the frontend to RESTful APIs to achieve project CRUD data manipulation through the backend server which greatly improved the request data performance.
+
+4. Built a dynamic search function to classify data either by its title name or its category.
+
 
 
 
