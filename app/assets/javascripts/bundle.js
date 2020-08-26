@@ -555,36 +555,42 @@ var App = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_bar_session_show_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)))));
       var footer = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "footer-1"
       }, "Cloned by Andrew Jia")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "logo"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "personalsite",
+        target: "_blank",
+        href: "https://andyjia4700.github.io/andyjiasite/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.personalsiteURL,
+        className: "logo-icon"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "github",
+        target: "_blank",
         href: "https://github.com/AndyJia4700"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.githubURL,
         className: "logo-icon"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "linkedin",
-        href: "https://www.linkedin.com/in/andy-jia-89a261114/"
+        target: "_blank",
+        href: "https://www.linkedin.com/in/andrew-jia-89a261114/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.linkedinURL,
         className: "logo-icon"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "angellist",
+        target: "_blank",
         href: "https://angel.co/u/hj-jia"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: window.angellistURL,
         className: "logo-icon"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "personalsite",
-        href: "https://andyjia4700.github.io/andyjiasite/"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.personalsiteURL,
-        className: "logo-icon"
       }))));
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_7__["default"], null), nav, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_modal__WEBPACK_IMPORTED_MODULE_7__["default"], null), nav, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
         path: "/discovery",
         component: _search_search__WEBPACK_IMPORTED_MODULE_12__["default"]
@@ -864,7 +870,7 @@ var Category = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           src: window.dislikeURL,
           className: "rec-icon"
-        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "))));
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " ")))));
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "empty-div"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -895,7 +901,9 @@ var Category = /*#__PURE__*/function (_React$Component) {
           className: "fresh-title"
         }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "fresh-subtitle"
-        }, project.subtitle))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " ")));
+        }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+          className: "fresh-subtitle"
+        }, " By ", users[project.creator_id].username, " ")))));
       })))));
     }
   }]);
@@ -1772,11 +1780,11 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       if (!project) return null;
       var today = new Date();
       var end = new Date(project.end_date);
-      var daysLeft = Math.floor((end - today) / 86400000) + 1;
-      if (daysLeft < 1) daysLeft = 0;
+      var daysLeft = Math.floor((end - today) / 86400000) + 1; // if (daysLeft < 1) daysLeft = 'End';
+
       if (!reward.total_backer) reward.total_backer = 0;
-      if (!reward.total_fund) reward.total_fund = 0;
-      var i = parseFloat(Math.floor(reward.total_fund / project.funding_goal * 100) + '%');
+      if (!reward.total_fund) reward.total_fund = 0; // let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2131,7 +2139,9 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
           className: "fresh-title"
         }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "fresh-subtitle"
-        }, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "))));
+        }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "fresh-subtitle"
+        }, " By ", users[project.creator_id].username, " ")))));
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-fresh-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -2158,7 +2168,9 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
           className: "fresh-title"
         }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "fresh-subtitle"
-        }, project.subtitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "))));
+        }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "fresh-subtitle"
+        }, " By ", users[project.creator_id].username, " ")))));
       })))));
     }
   }]);
@@ -2307,12 +2319,19 @@ var Backs = /*#__PURE__*/function (_React$Component) {
         className: "rewards-option-subdiv1"
       }, "$", reward.pledge_amount, " or more", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, reward.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "next"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "back-btns"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        onClick: this.forwardback
-      }, "Continue"));
+        className: "back-btn",
+        onClick: function onClick() {
+          return alert("Pledged Successfully!");
+        }
+      }, "Pledge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        onClick: this.forwardback,
+        className: "back-btn"
+      }, "Continue")));
     }
   }]);
 
@@ -2442,8 +2461,8 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       e.preventDefault(); // console.log(this.props.reward);
 
       this.props.reward.backer_id = [0, 1];
-      console.log(this.props.reward);
-      debugger;
+      console.log(this.props.reward); //debugger
+
       this.props.updateReward(this.state);
     }
   }, {
@@ -2909,7 +2928,9 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
             className: "project-explore-title"
           }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
             className: "project-explore-subtitle"
-          }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " ")))));
+          }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+            className: "project-explore-subtitle"
+          }, " By ", users[project.creator_id].username, " ")))));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
@@ -3208,7 +3229,9 @@ var SearchKeyword = /*#__PURE__*/function (_React$Component) {
             className: "project-explore-title"
           }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
             className: "project-explore-subtitle"
-          }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " ")))));
+          }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+            className: "project-explore-subtitle"
+          }, " By ", users[project.creator_id].username, " ")))));
         }
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {

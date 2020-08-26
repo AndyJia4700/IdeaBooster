@@ -34,7 +34,7 @@ class splashPage extends React.Component{
         const { projects, users } = this.props;
 
         return (
-
+            
             <div>
                 <div className="splash-category-div">
                     <ul className="splash-category-ul">
@@ -132,9 +132,9 @@ class splashPage extends React.Component{
                                                     <p className="fresh-title">{project.title}</p>
                                                     <br />
                                                     <p className="fresh-subtitle">{project.subtitle}</p>
+                                                    <p className="fresh-subtitle"> By {users[project.creator_id].username} </p>
                                                 </div>
 
-                                                <p> By {users[project.creator_id].username} </p>
                                             </div>
                                         </Link>
                                     </li>
@@ -161,9 +161,9 @@ class splashPage extends React.Component{
                                                     <p className="fresh-title">{project.title}</p>
                                                     <br />
                                                     <p className="fresh-subtitle">{project.subtitle}</p>
+                                                    <p className="fresh-subtitle"> By {users[project.creator_id].username} </p>
                                                 </div>
 
-                                                <p> By {users[project.creator_id].username} </p>
                                             </div>
                                         </Link>
                                     </li>

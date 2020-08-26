@@ -26,12 +26,12 @@ class ProjectShow extends React.Component{
         const today = new Date();
         const end = new Date(project.end_date);
         let daysLeft = Math.floor((end - today)/86400000) + 1
-        if (daysLeft < 1) daysLeft = 0;
+        // if (daysLeft < 1) daysLeft = 'End';
 
         if (!reward.total_backer) reward.total_backer = 0
         if (!reward.total_fund) reward.total_fund = 0
-        let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
-          
+        // let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
+
         return (
           <div className="project-show-div">
             <div className="project-show-subdiv1">

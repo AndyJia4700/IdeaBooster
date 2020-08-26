@@ -1,15 +1,36 @@
-.back-form{
-    padding-left: 150px;
+.back-form {
+  padding-left: 150px;
 }
 
-.rewards-option-div{
-    border: 1px solid lightgray;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    padding-left: 80px;
+.rewards-option-div {
+  border: 1px solid lightgray;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 80px;
 }
 
-.rewards-option-subdiv1{
-    width: 50%;
+.rewards-option-subdiv1 {
+  width: 50%;
 }
+
+.back-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.back-btn {
+  background: #009e74;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.back-btn:hover {
+  transform: scale(1.2);
+}
+

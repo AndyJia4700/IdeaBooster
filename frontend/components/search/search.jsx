@@ -75,7 +75,7 @@ class SearchResult extends React.Component {
                     {project.subtitle}
                   </p>
 
-                  <p> By {users[project.creator_id].username} </p>
+                  <p className="project-explore-subtitle"> By {users[project.creator_id].username} </p>
               </Link>
               </div>
             </div>

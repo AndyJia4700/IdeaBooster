@@ -41,7 +41,7 @@ class App extends React.Component{
               Explore
             </a>
           </div>
-
+          
           <div className="start">
             <a className="top-font" href="/#/projects/hello">
               Start a project
@@ -72,38 +72,40 @@ class App extends React.Component{
     const footer = (
       <div className="footer">
         <div>
-          <p className="footer-1">Cloned by Andrew Jia</p>
+          <h3 className="footer-1">Cloned by Andrew Jia</h3>
         </div>
 
         <div className="logo">
-          <a className="github" href="https://github.com/AndyJia4700">
+          <a className="personalsite" target="_blank" href="https://andyjia4700.github.io/andyjiasite/">
+            <img src={window.personalsiteURL} className="logo-icon" />
+          </a>
+
+          <a className="github" target="_blank" href="https://github.com/AndyJia4700">
             <img src={window.githubURL} className="logo-icon" />
           </a>
 
           <a
             className="linkedin"
-            href="https://www.linkedin.com/in/andy-jia-89a261114/"
+            target="_blank"
+            href="https://www.linkedin.com/in/andrew-jia-89a261114/"
           >
             <img src={window.linkedinURL} className="logo-icon" />
           </a>
 
-          <a className="angellist" href="https://angel.co/u/hj-jia">
+          <a className="angellist" target="_blank" href="https://angel.co/u/hj-jia">
             <img src={window.angellistURL} className="logo-icon" />
           </a>
 
-          <a className="personalsite" href="https://andyjia4700.github.io/andyjiasite/">
-            <img src={window.personalsiteURL} className="logo-icon" />
-          </a>
 
         </div>
       </div>
     );
 
     return (
-      <div>
+      <div className="session-div">
         <Modal />
         {nav}
-
+      
         <Route exact path="/discovery" component={SearchResult} />
         <Route exact path="/discovery/:keyword" component={SearchKeyword} />
 

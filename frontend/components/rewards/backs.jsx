@@ -95,14 +95,17 @@ class Backs extends React.Component {
           <div className="rewards-option-subdiv1">
             <p>ESTIMATED DELIVERY</p>
             {reward.estimated_delivery}
+            
             <p>SHIPS TO Anywhere in the world</p>
           </div>
         </div>
 
-        <button type="submit">next</button>
-        <button type="submit" onClick={this.forwardback}>
-          Continue
-        </button>
+        <div className="back-btns">
+          <button type="submit" className="back-btn" onClick={() => alert("Pledged Successfully!")}>Pledge</button>
+          <button type="submit" onClick={this.forwardback} className="back-btn">
+            Continue
+          </button>
+        </div>
       </form>
     );
   }
