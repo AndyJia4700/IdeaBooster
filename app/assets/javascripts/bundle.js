@@ -903,7 +903,7 @@ var Category = /*#__PURE__*/function (_React$Component) {
           className: "fresh-subtitle"
         }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
           className: "fresh-subtitle"
-        }, " By ", users[project.creator_id].username, " ")))));
+        }, " ", "By ", users[project.creator_id].username, " ")))));
       })))));
     }
   }]);
