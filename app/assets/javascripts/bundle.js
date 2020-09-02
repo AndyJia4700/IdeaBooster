@@ -2909,7 +2909,7 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
       var users = this.props.users;
       var searchKey = this.state.search.toLowerCase();
       var searchedProjects = this.props.projects.map(function (project) {
-        if (project.title.toLowerCase().includes(searchKey)) {
+        if (project.title && project.title.toLowerCase().includes(searchKey)) {
           i++;
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
             key: project.id,
