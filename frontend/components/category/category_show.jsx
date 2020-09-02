@@ -169,7 +169,10 @@ class Category extends React.Component {
                         <p className="fresh-title">{project.title}</p>
                         <br />
                         <p className="fresh-subtitle">{project.subtitle}</p>
-                        <p className="fresh-subtitle"> By {users[project.creator_id].username} </p>
+                        <p className="fresh-subtitle">
+                          {" "}
+                          By {users[project.creator_id].username}{" "}
+                        </p>
                       </div>
                     </div>
                   </Link>
