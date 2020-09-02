@@ -8,6 +8,7 @@ class ProjectShow extends React.Component{
         super(props);
     }
 
+    
     componentDidMount(){
       // debugger;
       const projectId = this.props.match.params.projectId

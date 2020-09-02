@@ -165,7 +165,7 @@ class ProjectForm extends React.Component{
                         <input type="text"
                             value={this.state.title}
                             onChange={this.update('title')}
-                            maxlength="30"
+                            maxLength="30"
                             placeholder="Radiotopia: A Storytelling Revolution"
                             className="project-basic-input"
                         />

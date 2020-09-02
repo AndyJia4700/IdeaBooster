@@ -5,6 +5,8 @@ import {
   fetchReward,
   updateReward,
 } from "../../actions/reward_actions";
+import { fetchProject, fetchProjects } from "../../actions/project_actions";
+
 
 
 class EditReward extends React.Component {
@@ -20,6 +22,10 @@ class EditReward extends React.Component {
     // debugger
     // const id = this.props.match.params.projectId;
     // this.props.fetchReward(id);
+    const projectId = this.props.match.params.projectId
+    // debugger;
+    this.props.fetchProjects();
+    this.props.fetchProject(projectId);
     this.props.fetchRewards();
     // this.props.updateProject(formData, id)
   }
@@ -45,6 +51,7 @@ class EditReward extends React.Component {
     // debugger;
     // const { reward } = this.props
     // if (!reward) return null;
+    console.log(this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="reward-div">
@@ -148,16 +155,22 @@ class EditReward extends React.Component {
 }
 
 const mSTP = (state, ownProps) => {
+  const projectId = ownProps.match.params.projectId;
+  const project = state.projects[projectId];
+  const reward = state.rewards[projectId];
+
   return {
-    reward: state.rewards[ownProps.match.params.projectId],
+    project,
+    reward,
   };
 };
 
 const mDTP = (dispatch) => {
   return {
     fetchRewards: () => dispatch(fetchRewards()),
-    // fetchReward: (projectId) => dispatch(fetchReward(projectId)),
     updateReward: (reward) => dispatch(updateReward(reward)),
+    fetchProjects: () => dispatch(fetchProjects()),
+    fetchProject: projectId => dispatch(fetchProject(projectId)),
   };
 
 };
