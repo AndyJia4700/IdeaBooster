@@ -20,10 +20,6 @@
         };
 
         window.welcomeURL = "<%= image_url('giphy.gif')%>"
-        window.githubURL = "<%= image_url('github.png')%>"
-        window.linkedinURL = "<%= image_url('linkedin.png')%>"
-        window.angellistURL = "<%= image_url('angellist.png')%>"
-        window.personalsiteURL = "<%= image_url('personalsite.png')%>"
         window.userURL = "<%= image_url('user.png')%>"
         window.basicsURL = "<%= image_url('basics.png')%>"
         window.fundingURL = "<%= image_url('funding.png')%>"
@@ -32,12 +28,21 @@
         window.peopleURL = "<%= image_url('people.png')%>"
         window.paymentURL = "<%= image_url('payment.png')%>"
         window.promotionURL = "<%= image_url('promotion.png')%>"
+      </script>
+    <% else %>
+      <script>
+        window.ideaBoosterURL = "<%= image_url('ideaBooster.png')%>"
+        window.githubURL = "<%= image_url('github.png')%>"
+        window.linkedinURL = "<%= image_url('linkedin.png')%>"
+        window.angellistURL = "<%= image_url('angellist.png')%>"
+        window.personalsiteURL = "<%= image_url('personalsite.png')%>"
         window.likeURL = "<%= image_url('like.png')%>"
         window.dislikeURL = "<%= image_url('dislike.png')%>"
-        window.ideaBoosterURL = "<%= image_url('ideaBooster.png')%>"
-
       </script>
+
     <% end %>
+
+    
     
   </head>
 
