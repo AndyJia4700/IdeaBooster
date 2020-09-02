@@ -2012,9 +2012,9 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // const { projects, users } = this.props;
-      var users = this.props.users;
-      var projects = this.shuffle();
+      var _this$props = this.props,
+          projects = _this$props.projects,
+          users = _this$props.users;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-category-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
