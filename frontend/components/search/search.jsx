@@ -50,7 +50,7 @@ class SearchResult extends React.Component {
     const users = this.props.users;    
     const searchKey = this.state.search.toLowerCase();
     const searchedProjects = this.props.projects.map((project) => {
-      if (project.title.toLowerCase().includes(searchKey)) {   
+      if ((project.title)&&(project.title.toLowerCase().includes(searchKey))) {   
         i++;
         return (
           <li key={project.id} className="project-id-li">
