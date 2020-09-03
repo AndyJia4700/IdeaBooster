@@ -307,9 +307,9 @@ class ProjectForm extends React.Component{
                     <br />
                 </div>
                 
-                
-                {/* <button type="submit" value={this.props.formType} onClick={this.handleRedirect}>Next</button> */}
-                <button type="submit" value={this.props.formType} className="save-button">Save</button>
+                <div className="project-basic-div">
+                    <button type="submit" value={this.props.formType} className="back-btn" onClick={() => alert("Project is saved")}>Save</button>
+                </div>
                 
                 
             </form>
