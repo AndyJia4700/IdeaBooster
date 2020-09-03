@@ -1,13 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  fetchRewards,
-  fetchReward,
-  updateReward,
-} from "../../actions/reward_actions";
 import { fetchProject, fetchProjects } from "../../actions/project_actions";
+import { fetchRewards, updateReward } from "../../actions/reward_actions";
+import { fetchUsers } from "../../actions/user_actions";
 
+const mSTP = (state, ownProps) => {
+  const projectId = ownProps.match.params.projectId;
+  const project = state.projects[projectId];
+  const reward = state.rewards[projectId];
+  // debugger;
+  return {
+    project,
+    reward,
+  };
+};
 
+const mDTP = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchProjects: () => dispatch(fetchProjects()),
+    fetchProject: (projectId) => dispatch(fetchProject(projectId)),
+    fetchRewards: () => dispatch(fetchRewards()),
+    updateReward: (reward) => dispatch(updateReward(reward)),
+  };
+};
 
 class EditReward extends React.Component {
   constructor(props) {
@@ -19,39 +35,33 @@ class EditReward extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
-    // const id = this.props.match.params.projectId;
-    // this.props.fetchReward(id);
-    const projectId = this.props.match.params.projectId
-    // debugger;
+    const projectId = this.props.match.params.projectId;
     this.props.fetchProjects();
     this.props.fetchProject(projectId);
     this.props.fetchRewards();
-    // this.props.updateProject(formData, id)
+    this.props.fetchUsers();
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // console.log(this.props.reward);
-    this.props.reward.backer_id = [0,1]
-    
-    console.log(this.props.reward);
-    //debugger
+    this.props.reward.backer_id = [0, 1];
     this.props.updateReward(this.state);
   }
 
   update(field) {
     // debugger
-    return e => this.setState({ 
-      [field]: e.target.value 
-    });
+    return (e) =>
+      this.setState({
+        [field]: e.target.value,
+      });
   }
 
-  render() {    
+  render() {
     // debugger;
     // const { reward } = this.props
     // if (!reward) return null;
-    console.log(this.state);
+    // debugger;
+    // console.log(this.props.reward);
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="reward-div">
@@ -153,26 +163,5 @@ class EditReward extends React.Component {
     );
   }
 }
-
-const mSTP = (state, ownProps) => {
-  const projectId = ownProps.match.params.projectId;
-  const project = state.projects[projectId];
-  const reward = state.rewards[projectId];
-
-  return {
-    project,
-    reward,
-  };
-};
-
-const mDTP = (dispatch) => {
-  return {
-    fetchRewards: () => dispatch(fetchRewards()),
-    updateReward: (reward) => dispatch(updateReward(reward)),
-    fetchProjects: () => dispatch(fetchProjects()),
-    fetchProject: projectId => dispatch(fetchProject(projectId)),
-  };
-
-};
 
 export default connect(mSTP, mDTP)(EditReward);
