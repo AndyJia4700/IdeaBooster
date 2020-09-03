@@ -86,11 +86,11 @@ class SearchResult extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
+        <div className="discovery-top-div">
+          <p className="discovery-indicate">Show me</p>
           <input
             type="text"
-            className="search-bar"
-            placeholder="Search for projects or categories"
+            className="discovery-input"
             value={this.props.search}
             onChange={this.update("search")}
           />
@@ -98,9 +98,15 @@ class SearchResult extends React.Component {
 
         <div className="project-index-div">
           <br />
-          Explore <span>{i} projects</span>
+          <p className="filter-projects">
+            Explore <span className="filter-project-nums">{i} projects</span>
+          </p>
           <br />
-          <ul className="project-index-ul">{searchedProjects}</ul>
+
+          <ul className="project-index-ul">
+            
+            {searchedProjects}
+          </ul>
         </div>
 
         {/* <button> X </button> */}
