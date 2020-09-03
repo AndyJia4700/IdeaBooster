@@ -18,7 +18,6 @@ class ProjectShow extends React.Component{
       this.props.fetchRewards();
       this.props.fetchUsers();
       // this.props.fetchReward(projectId);
-        
     }
 
     render(){

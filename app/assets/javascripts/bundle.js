@@ -1062,7 +1062,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
-/* harmony import */ var _project_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project_form */ "./frontend/components/projects/project_form.jsx");
+/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+/* harmony import */ var _project_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./project_form */ "./frontend/components/projects/project_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1090,6 +1091,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var EditPostForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditPostForm, _React$Component);
 
@@ -1098,27 +1100,26 @@ var EditPostForm = /*#__PURE__*/function (_React$Component) {
   function EditPostForm(props) {
     _classCallCheck(this, EditPostForm);
 
-    return _super.call(this, props); // debugger
+    return _super.call(this, props);
   }
 
   _createClass(EditPostForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
       var id = this.props.match.params.projectId;
       this.props.fetchProjects();
-      this.props.fetchProject(id); // this.props.updateProject(formData, id)
+      this.props.fetchProject(id);
+      this.props.fetchRewards();
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger;
       var _this$props = this.props,
           action = _this$props.action,
           project = _this$props.project,
           formType = _this$props.formType;
       if (!project) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_form__WEBPACK_IMPORTED_MODULE_4__["default"], {
         action: action,
         project: project,
         formType: formType
@@ -1145,6 +1146,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchProject: function fetchProject(projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
+    },
+    fetchRewards: function fetchRewards() {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
     },
     action: function action(formData, projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(formData, projectId));
@@ -2412,8 +2416,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
-/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2443,6 +2448,38 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+var mSTP = function mSTP(state, ownProps) {
+  var projectId = ownProps.match.params.projectId;
+  var project = state.projects[projectId];
+  var reward = state.rewards[projectId]; // debugger;
+
+  return {
+    project: project,
+    reward: reward
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUsers"])());
+    },
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProjects"])());
+    },
+    fetchProject: function fetchProject(projectId) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
+    },
+    fetchRewards: function fetchRewards() {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
+    },
+    updateReward: function updateReward(reward) {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["updateReward"])(reward));
+    }
+  };
+};
+
 var EditReward = /*#__PURE__*/function (_React$Component) {
   _inherits(EditReward, _React$Component);
 
@@ -2464,23 +2501,17 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
   _createClass(EditReward, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      // const id = this.props.match.params.projectId;
-      // this.props.fetchReward(id);
-      var projectId = this.props.match.params.projectId; // debugger;
-
+      var projectId = this.props.match.params.projectId;
       this.props.fetchProjects();
       this.props.fetchProject(projectId);
-      this.props.fetchRewards(); // this.props.updateProject(formData, id)
+      this.props.fetchRewards();
+      this.props.fetchUsers();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // console.log(this.props.reward);
-
+      e.preventDefault();
       this.props.reward.backer_id = [0, 1];
-      console.log(this.props.reward); //debugger
-
       this.props.updateReward(this.state);
     }
   }, {
@@ -2499,7 +2530,8 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       // debugger;
       // const { reward } = this.props
       // if (!reward) return null;
-      console.log(this.state);
+      // debugger;
+      // console.log(this.props.reward);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2589,33 +2621,6 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
 
   return EditReward;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-var mSTP = function mSTP(state, ownProps) {
-  var projectId = ownProps.match.params.projectId;
-  var project = state.projects[projectId];
-  var reward = state.rewards[projectId];
-  return {
-    project: project,
-    reward: reward
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    fetchRewards: function fetchRewards() {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["fetchRewards"])());
-    },
-    updateReward: function updateReward(reward) {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["updateReward"])(reward));
-    },
-    fetchProjects: function fetchProjects() {
-      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_3__["fetchProjects"])());
-    },
-    fetchProject: function fetchProject(projectId) {
-      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_3__["fetchProject"])(projectId));
-    }
-  };
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(EditReward));
 
