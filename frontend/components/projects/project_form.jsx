@@ -165,7 +165,7 @@ class ProjectForm extends React.Component{
                         <input type="text"
                             value={this.state.title}
                             onChange={this.update('title')}
-                            maxlength="30"
+                            maxLength="30"
                             placeholder="Radiotopia: A Storytelling Revolution"
                             className="project-basic-input"
                         />
@@ -307,9 +307,9 @@ class ProjectForm extends React.Component{
                     <br />
                 </div>
                 
-                
-                {/* <button type="submit" value={this.props.formType} onClick={this.handleRedirect}>Next</button> */}
-                <button type="submit" value={this.props.formType} className="save-button">Save</button>
+                <div className="project-basic-div">
+                    <button type="submit" value={this.props.formType} className="back-btn" onClick={() => alert("Project is saved")}>Save</button>
+                </div>
                 
                 
             </form>

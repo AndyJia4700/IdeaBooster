@@ -1062,7 +1062,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
-/* harmony import */ var _project_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./project_form */ "./frontend/components/projects/project_form.jsx");
+/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+/* harmony import */ var _project_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./project_form */ "./frontend/components/projects/project_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1090,6 +1091,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var EditPostForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditPostForm, _React$Component);
 
@@ -1098,27 +1100,26 @@ var EditPostForm = /*#__PURE__*/function (_React$Component) {
   function EditPostForm(props) {
     _classCallCheck(this, EditPostForm);
 
-    return _super.call(this, props); // debugger
+    return _super.call(this, props);
   }
 
   _createClass(EditPostForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
       var id = this.props.match.params.projectId;
       this.props.fetchProjects();
-      this.props.fetchProject(id); // this.props.updateProject(formData, id)
+      this.props.fetchProject(id);
+      this.props.fetchRewards();
     }
   }, {
     key: "render",
     value: function render() {
-      // debugger;
       var _this$props = this.props,
           action = _this$props.action,
           project = _this$props.project,
           formType = _this$props.formType;
       if (!project) return null;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_project_form__WEBPACK_IMPORTED_MODULE_4__["default"], {
         action: action,
         project: project,
         formType: formType
@@ -1145,6 +1146,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchProject: function fetchProject(projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
+    },
+    fetchRewards: function fetchRewards() {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
     },
     action: function action(formData, projectId) {
       return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["updateProject"])(formData, projectId));
@@ -1389,7 +1393,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         value: this.state.title,
         onChange: this.update('title'),
-        maxlength: "30",
+        maxLength: "30",
         placeholder: "Radiotopia: A Storytelling Revolution",
         className: "project-basic-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -1534,11 +1538,16 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         type: "date",
         value: this.state.end_date,
         onChange: this.update('end_date')
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
         value: this.props.formType,
-        className: "save-button"
-      }, "Save"));
+        className: "back-btn",
+        onClick: function onClick() {
+          return alert("Project is saved");
+        }
+      }, "Save")));
     }
   }]);
 
@@ -1998,6 +2007,18 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers(); // window.location.href = "";
     }
   }, {
+    key: "shuffle",
+    value: function shuffle() {
+      for (var i = this.props.projects.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [this.props.projects[j], this.props.projects[i]];
+        this.props.projects[i] = _ref[0];
+        this.props.projects[j] = _ref[1];
+      }
+
+      return this.props.projects;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -2400,7 +2421,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+/* harmony import */ var _actions_project_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/project_actions */ "./frontend/actions/project_actions.js");
+/* harmony import */ var _actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/reward_actions */ "./frontend/actions/reward_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -2429,6 +2452,39 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+var mSTP = function mSTP(state, ownProps) {
+  var projectId = ownProps.match.params.projectId;
+  var project = state.projects[projectId];
+  var reward = state.rewards[projectId]; // debugger;
+
+  return {
+    project: project,
+    reward: reward
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchUsers: function fetchUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUsers"])());
+    },
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProjects"])());
+    },
+    fetchProject: function fetchProject(projectId) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
+    },
+    fetchRewards: function fetchRewards() {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
+    },
+    updateReward: function updateReward(reward) {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["updateReward"])(reward));
+    }
+  };
+};
+
 var EditReward = /*#__PURE__*/function (_React$Component) {
   _inherits(EditReward, _React$Component);
 
@@ -2450,19 +2506,17 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
   _createClass(EditReward, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      // const id = this.props.match.params.projectId;
-      // this.props.fetchReward(id);
-      this.props.fetchRewards(); // this.props.updateProject(formData, id)
+      var projectId = this.props.match.params.projectId;
+      this.props.fetchProjects();
+      this.props.fetchProject(projectId);
+      this.props.fetchRewards();
+      this.props.fetchUsers();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // console.log(this.props.reward);
-
+      e.preventDefault();
       this.props.reward.backer_id = [0, 1];
-      console.log(this.props.reward); //debugger
-
       this.props.updateReward(this.state);
     }
   }, {
@@ -2481,10 +2535,10 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       // debugger;
       // const { reward } = this.props
       // if (!reward) return null;
+      // debugger;
+      // console.log(this.props.reward);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-basic-top-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2494,100 +2548,106 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       }, "Add your rewards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-basic-top-p"
       }, "Offer simple, meaningful rewards that bring backers closer to your project."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-basic-subdiv2"
+        className: "project-basic-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Briefly describe this reward.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "project-basic-span"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Briefly describe this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.title,
         onChange: this.update("title"),
         placeholder: "Signed limited-edition",
         className: "project-basic-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Set a minimum pledge amount for this reward.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Pledge amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Set a minimum pledge amount for this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Pledge amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.pledge_amount,
         onChange: this.update("pledge_amount"),
         placeholder: "1",
-        className: "reward-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Describe this reward in more detail.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Describe this reward in more detail."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "project-basic-span"
+      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         value: this.state.description,
         onChange: this.update("description"),
         placeholder: "Get an early copy - hot off the presses!",
-        className: "reward-input-text"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Give yourself plenty of time. It's better to deliver to backers ahead of schedule than behind.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Estimated delivery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Give yourself plenty of time. It's better to deliver to backers ahead of schedule than behind."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Estimated delivery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         value: this.state.estimated_delivery,
         onChange: this.update("estimated_delivery"),
-        className: "reward-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "You may want to limit the quantity of this reward available to backers.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Reward quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "You may want to limit the quantity of this reward available to backers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Reward quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.reward_quantity,
         onChange: this.update("reward_quantity"),
-        className: "reward-input"
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "Save"));
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "back-btn",
+        onClick: function onClick() {
+          return alert("Reward is saved");
+        }
+      }, "Save")));
     }
   }]);
 
   return EditReward;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-var mSTP = function mSTP(state, ownProps) {
-  return {
-    reward: state.rewards[ownProps.match.params.projectId]
-  };
-};
-
-var mDTP = function mDTP(dispatch) {
-  return {
-    fetchRewards: function fetchRewards() {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["fetchRewards"])());
-    },
-    // fetchReward: (projectId) => dispatch(fetchReward(projectId)),
-    updateReward: function updateReward(reward) {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_2__["updateReward"])(reward));
-    }
-  };
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(EditReward));
 
@@ -2679,8 +2739,6 @@ var rewardsForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-basic-top-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-basic-top-subdiv"
@@ -2689,77 +2747,101 @@ var rewardsForm = /*#__PURE__*/function (_React$Component) {
       }, "Add your rewards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-basic-top-p"
       }, "Offer simple, meaningful rewards that bring backers closer to your project."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "project-basic-subdiv2"
+        className: "project-basic-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Briefly describe this reward.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "project-basic-span"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Briefly describe this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.title,
-        onChange: this.update('title'),
+        onChange: this.update("title"),
         placeholder: "Signed limited-edition",
         className: "project-basic-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Set a minimum pledge amount for this reward.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Pledge amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Set a minimum pledge amount for this reward."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Pledge amount"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.pledge_amount,
-        onChange: this.update('pledge_amount'),
+        onChange: this.update("pledge_amount"),
         placeholder: "1",
-        className: "reward-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Describe this reward in more detail.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Describe this reward in more detail."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "project-basic-span"
+      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         value: this.state.description,
-        onChange: this.update('description'),
+        onChange: this.update("description"),
         placeholder: "Get an early copy - hot off the presses!",
-        className: "reward-input-text"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "Give yourself plenty of time. It's better to deliver to backers ahead of schedule than behind.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Estimated delivery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "Give yourself plenty of time. It's better to deliver to backers ahead of schedule than behind."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Estimated delivery"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         value: this.state.estimated_delivery,
-        onChange: this.update('estimated_delivery'),
-        className: "reward-input"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reward-divs"
+        onChange: this.update("estimated_delivery"),
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "project-basic-hilight"
+      }, "You may want to limit the quantity of this reward available to backers.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-subdiv2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "reward-label"
+        className: "project-basic"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "reward-span"
-      }, "Reward quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "reward-intro-p"
-      }, "You may want to limit the quantity of this reward available to backers."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "project-basic-span"
+      }, "Reward quantity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.reward_quantity,
-        onChange: this.update('reward_quantity'),
-        className: "reward-input"
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "Save"));
+        onChange: this.update("reward_quantity"),
+        className: "project-basic-input"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "project-basic-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "back-btn",
+        onClick: function onClick() {
+          return alert("Reward is saved");
+        }
+      }, "Save")));
     }
   }]);
 
@@ -2909,7 +2991,7 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
       var users = this.props.users;
       var searchKey = this.state.search.toLowerCase();
       var searchedProjects = this.props.projects.map(function (project) {
-        if (project.title.toLowerCase().includes(searchKey)) {
+        if (project.title && project.title.toLowerCase().includes(searchKey)) {
           i++;
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
             key: project.id,
@@ -2935,15 +3017,22 @@ var SearchResult = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "discovery-top-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "discovery-indicate"
+      }, "Show me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
-        className: "search-bar",
-        placeholder: "Search for projects or categories",
+        className: "discovery-input",
         value: this.props.search,
         onChange: this.update("search")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "project-index-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), "Explore ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, i, " projects"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        className: "filter-projects"
+      }, "Explore ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "filter-project-nums"
+      }, i, " projects")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
         className: "project-index-ul"
       }, searchedProjects)));
     }

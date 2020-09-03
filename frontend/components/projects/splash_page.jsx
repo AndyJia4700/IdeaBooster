@@ -28,11 +28,20 @@ class splashPage extends React.Component{
         // window.location.href = "";
     }
 
+    shuffle(){
+
+        for (let i = this.props.projects.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.props.projects[i], this.props.projects[j]] = [this.props.projects[j], this.props.projects[i]];
+        }
+        return this.props.projects;
+    }
+
     
     render() {
         
         const { projects, users } = this.props;
-
+        
         return (
             
             <div>
