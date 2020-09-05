@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
 // import {Link} from 'react-router-dom';
 // import { fetchProjects } from '../../actions/project_actions';
 // import RewardsShowContainer from '../rewards/rewards_show_container'
@@ -7,7 +6,6 @@ import { Link, Redirect } from 'react-router-dom';
 class ProjectShow extends React.Component{
     constructor(props){
       super(props);
-      this.checkCurrentUser = this.checkCurrentUser.bind(this);
     }
 
     componentDidMount(){
@@ -20,27 +18,10 @@ class ProjectShow extends React.Component{
       this.props.fetchUsers();
       // this.props.fetchReward(projectId);
     }
-    checkCurrentUser(){
-      // e.preventDefault();
-      
-      const loginPage = (
-        // <Redirect to="/login" />
-        console.log("login")
-      )
-        
-      const projectId = this.props.match.params.projectId
-      
-      const backPage = (
-        // <Redirect to={`/projects/${projectId}/backs`} />
-        console.log("back")
-      )
-      console.log(this.props.currentUser);
-      
-      return (this.props.currentUser === null) ? loginPage : backPage;
-    }
 
     render(){
-      const { project, reward, currentUser} = this.props
+      
+      const { project, reward} = this.props
       if (!project) return null;        
       const today = new Date();
       const end = new Date(project.end_date);
@@ -50,7 +31,11 @@ class ProjectShow extends React.Component{
       if (!reward.total_backer) reward.total_backer = 0
       if (!reward.total_fund) reward.total_fund = 0
         // let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
-      
+
+      const checkCurrentUser = (
+        (this.props.currentUser === null) ? <a href="#/login" className="project-show-subdiv2-back-button">Back this project</a> : <a href={`#/projects/${this.props.project.id}/backs`} className="project-show-subdiv2-back-button">Back this project</a>
+      );
+
       return (
         <div className="project-show-div">
           <div className="project-show-subdiv1">
@@ -84,11 +69,16 @@ class ProjectShow extends React.Component{
                 <p className="project-show-subdiv2-back-num">{daysLeft}</p>
                 <p className="project-show-p"> days to go</p>
               </div>
-              
-              <span onClick={this.checkCurrentUser}  className="project-show-subdiv2-back-button"
+
+              <div>
+                {checkCurrentUser}
+              </div>
+              {/* <a href={`#/projects/${project.id}/backs`} 
+                onClick={this.checkCurrentUser}
+                className="project-show-subdiv2-back-button"
               >
-                Back this project
-              </span>
+                <span>Back this project</span>
+              </a> */}
 
             </div>
           </div>
