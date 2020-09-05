@@ -9,9 +9,11 @@ const mSTP = (state, ownProps) => {
     const projectId = ownProps.match.params.projectId;
     const project = state.projects[projectId];
     const reward = state.rewards[projectId];
+    
     // debugger;
     if (!reward){
     return {
+        currentUser: state.session.currentUser,
         project,
         reward:
         {
@@ -25,6 +27,7 @@ const mSTP = (state, ownProps) => {
         return {
             project,
             reward,
+            currentUser: state.session.currentUser,
         }
     }
 

@@ -1732,6 +1732,7 @@ var ProjectIndexItem = function ProjectIndexItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1754,6 +1755,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+
  // import {Link} from 'react-router-dom';
 // import { fetchProjects } from '../../actions/project_actions';
 // import RewardsShowContainer from '../rewards/rewards_show_container'
@@ -1764,9 +1766,13 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProjectShow);
 
   function ProjectShow(props) {
+    var _this;
+
     _classCallCheck(this, ProjectShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.checkCurrentUser = _this.checkCurrentUser.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProjectShow, [{
@@ -1781,11 +1787,24 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers(); // this.props.fetchReward(projectId);
     }
   }, {
+    key: "checkCurrentUser",
+    value: function checkCurrentUser() {
+      // e.preventDefault();
+      var loginPage = // <Redirect to="/login" />
+      console.log("login");
+      var projectId = this.props.match.params.projectId;
+      var backPage = // <Redirect to={`/projects/${projectId}/backs`} />
+      console.log("back");
+      console.log(this.props.currentUser);
+      return this.props.currentUser === null ? loginPage : backPage;
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           project = _this$props.project,
-          reward = _this$props.reward;
+          reward = _this$props.reward,
+          currentUser = _this$props.currentUser;
       if (!project) return null;
       var today = new Date();
       var end = new Date(project.end_date);
@@ -1829,10 +1848,10 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
         className: "project-show-subdiv2-back-num"
       }, daysLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-show-p"
-      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/projects/".concat(project.id, "/backs"),
+      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        onClick: this.checkCurrentUser,
         className: "project-show-subdiv2-back-button"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Back this project")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Back this project"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-ul-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "project-show-ul"
@@ -1886,6 +1905,7 @@ var mSTP = function mSTP(state, ownProps) {
 
   if (!reward) {
     return {
+      currentUser: state.session.currentUser,
       project: project,
       reward: {
         pledge_amount: 0,
@@ -1897,7 +1917,8 @@ var mSTP = function mSTP(state, ownProps) {
   } else {
     return {
       project: project,
-      reward: reward
+      reward: reward,
+      currentUser: state.session.currentUser
     };
   }
 };
