@@ -73,12 +73,6 @@ class ProjectShow extends React.Component{
               <div>
                 {checkCurrentUser}
               </div>
-              {/* <a href={`#/projects/${project.id}/backs`} 
-                onClick={this.checkCurrentUser}
-                className="project-show-subdiv2-back-button"
-              >
-                <span>Back this project</span>
-              </a> */}
 
             </div>
           </div>

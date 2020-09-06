@@ -32,7 +32,7 @@ import CategoryShow from './category/category_show';
 class App extends React.Component{
 
   render(){
-
+    
     const nav = (
       <nav className="top-bar">
         <div className="explore-start">

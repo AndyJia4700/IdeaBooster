@@ -44,12 +44,6 @@ class ProjectForm extends React.Component{
         }
     }
 
-    // handleRedirect(e){
-    //     e.preventDefault();
-    //     // window.location.href = "#/discovery/"
-    //     window.confirm("Your Project has been saved!");
-    // }
-
     handleSubmit(e) {
         e.preventDefault();
         
