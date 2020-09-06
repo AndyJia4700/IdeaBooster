@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 class WelcomeBar extends React.Component{
     render() {
+        
         return(
             // <div>
                 <div className="welcome">
@@ -26,9 +27,7 @@ class WelcomeBar extends React.Component{
                             <li>FAQ</li>
                         </ul>
                     </div>
-                </div>
-
-                
+                </div>  
             // </div>
         )
     }

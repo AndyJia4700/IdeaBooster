@@ -5,19 +5,13 @@ import { fetchRewards, fetchReward, updateReward } from "../../actions/reward_ac
 
 const mSTP = (state, ownProps) => {
     // debugger;
-    return {
-        currentUser: state.session.currentUser,
-        // project: state.projects[ownProps.match.params.projectId], 
-        reward: state.rewards[ownProps.match.params.projectId],
-    }
+  return {
+    reward: state.rewards[ownProps.match.params.projectId],
+  }
 };
 
 const mDTP = dispatch => {
-    // debugger;
     return {
-      // fetchProjects: () => dispatch(fetchProjects()),
-      // fetchProject: (projectId) => dispatch(fetchProject(projectId)),
-
       fetchRewards: () => dispatch(fetchRewards()),
       fetchReward: (rewardId) => dispatch(fetchReward(rewardId)),
       updateReward: (reward) => dispatch(updateReward(reward)),
@@ -27,33 +21,52 @@ const mDTP = dispatch => {
 
 class Backs extends React.Component {
   constructor(props){
-      super(props)
-      // debugger;
-      this.state = this.props.reward
-      // this.getBackerId = this.getBackerId.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-      // this.updateBackers = this.updateBackers.bind(this);
-      // this.updateAmount = this.updateAmount.bind(this);
-      this.update = this.update.bind(this);
-      this.forwardback = this.forwardback.bind(this)
+    super(props);
+    this.state = this.props.reward;
+    this.handleSubmit1 = this.handleSubmit1.bind(this);
+    this.handleSubmit2 = this.handleSubmit2.bind(this);
+    this.update = this.update.bind(this);
+    this.forwardback = this.forwardback.bind(this);
+    // this.pledge = this.pledge.bind(this);
   };
 
   componentDidMount() {
     this.props.fetchRewards();
   }
-    
 
-  handleSubmit(e){
+
+  handleSubmit1(e) {
     e.preventDefault();
-    const amount = this.props.reward.pledge_amount;
+    const amount = document.getElementById("pledge_more").value;
     this.setState({
-      total_fund: (this.state.total_fund + amount),
-      total_backer: (this.state.total_backer + 1)
+      total_fund: parseInt(this.state.total_fund) + parseInt(amount),
+      total_backer: parseInt(this.state.total_backer + 1)
     });
     this.props.updateReward(this.state);
   }
   
+
+  handleSubmit2(e){
+    e.preventDefault();
+    const origin = this.props.reward.pledge_amount;
+    const more = document.getElementById("pledge_more").value;
+    
+    const amount = (
+      (more > origin) ? more : origin
+    );
+
+    this.setState({
+      // total_fund: parseInt(this.state.total_fund) - parseInt(amount),
+      total_fund: 0,
+      // total_backer: parseInt(this.state.total_backer + 1)
+      total_backer: 0,
+    });
+
+    this.props.updateReward(this.state);
+  }
+  
   forwardback(){
+    // e.preventDefault();
     window.location.href = `#/projects/${this.props.match.params.projectId}`;
     window.location.reload();
     return false;
@@ -74,7 +87,7 @@ class Backs extends React.Component {
         Fake Project, Do not waste your money!!
       </div>
     );
-
+    
     return (
       <form onSubmit={this.handleSubmit} className="back-form">
         <div>
@@ -83,6 +96,23 @@ class Backs extends React.Component {
         </div>
 
         <div className="rewards-option-div">
+          <input type="radio" className="back-radio" onClick={this.handleSubmit1} />
+          <div>
+            <p>
+              Pledge without a reward
+            </p>
+            <br/>
+            <p>
+              Back it because you believe in it.
+              Support the project for no reward, just because it speaks to you.
+            </p>
+            <input type="number" id=""/>
+          </div>
+        </div>
+
+        <div className="rewards-option-div">
+          <input type="radio" className="back-radio" onClick={this.handleSubmit2}/>
+          
           <div className="rewards-option-subdiv1">
             ${reward.pledge_amount} or more
             <br />
@@ -97,12 +127,18 @@ class Backs extends React.Component {
             {reward.estimated_delivery}
             
             <p>SHIPS TO Anywhere in the world</p>
+            <input type="number"
+            placeholder={reward.pledge_amount}
+            id="pledge_more"
+            />
           </div>
+
         </div>
 
         <div className="back-btns">
-          <button type="submit" className="back-btn" onClick={() => alert("Pledged Successfully!")}>Pledge</button>
-          <button type="submit" onClick={this.forwardback} className="back-btn">
+          {/* <button type="submit" className="back-btn" onClick={() => alert("Pledged Successfully!")}>Pledge</button> */}
+          
+          <button onClick={this.forwardback} className="back-btn">
             Continue
           </button>
         </div>

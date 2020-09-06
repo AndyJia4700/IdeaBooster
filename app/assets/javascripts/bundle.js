@@ -1257,12 +1257,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
           pictureFile: null
         });
       }
-    } // handleRedirect(e){
-    //     e.preventDefault();
-    //     // window.location.href = "#/discovery/"
-    //     window.confirm("Your Project has been saved!");
-    // }
-
+    }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
@@ -1732,7 +1727,6 @@ var ProjectIndexItem = function ProjectIndexItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1755,7 +1749,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-
  // import {Link} from 'react-router-dom';
 // import { fetchProjects } from '../../actions/project_actions';
 // import RewardsShowContainer from '../rewards/rewards_show_container'
@@ -1766,13 +1759,9 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProjectShow);
 
   function ProjectShow(props) {
-    var _this;
-
     _classCallCheck(this, ProjectShow);
 
-    _this = _super.call(this, props);
-    _this.checkCurrentUser = _this.checkCurrentUser.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(ProjectShow, [{
@@ -1787,24 +1776,11 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers(); // this.props.fetchReward(projectId);
     }
   }, {
-    key: "checkCurrentUser",
-    value: function checkCurrentUser() {
-      // e.preventDefault();
-      var loginPage = // <Redirect to="/login" />
-      console.log("login");
-      var projectId = this.props.match.params.projectId;
-      var backPage = // <Redirect to={`/projects/${projectId}/backs`} />
-      console.log("back");
-      console.log(this.props.currentUser);
-      return this.props.currentUser === null ? loginPage : backPage;
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           project = _this$props.project,
-          reward = _this$props.reward,
-          currentUser = _this$props.currentUser;
+          reward = _this$props.reward;
       if (!project) return null;
       var today = new Date();
       var end = new Date(project.end_date);
@@ -1813,6 +1789,13 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
       if (!reward.total_backer) reward.total_backer = 0;
       if (!reward.total_fund) reward.total_fund = 0; // let i = parseFloat(Math.floor((reward.total_fund / project.funding_goal)*100) + '%');
 
+      var checkCurrentUser = this.props.currentUser === null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/login",
+        className: "project-show-subdiv2-back-button"
+      }, "Back this project") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/projects/".concat(this.props.project.id, "/backs"),
+        className: "project-show-subdiv2-back-button"
+      }, "Back this project");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1848,10 +1831,7 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
         className: "project-show-subdiv2-back-num"
       }, daysLeft), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "project-show-p"
-      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        onClick: this.checkCurrentUser,
-        className: "project-show-subdiv2-back-button"
-      }, "Back this project"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " days to go")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, checkCurrentUser))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "project-show-ul-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "project-show-ul"
@@ -2270,17 +2250,12 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 var mSTP = function mSTP(state, ownProps) {
   // debugger;
   return {
-    currentUser: state.session.currentUser,
-    // project: state.projects[ownProps.match.params.projectId], 
     reward: state.rewards[ownProps.match.params.projectId]
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger;
   return {
-    // fetchProjects: () => dispatch(fetchProjects()),
-    // fetchProject: (projectId) => dispatch(fetchProject(projectId)),
     fetchRewards: function fetchRewards() {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
     },
@@ -2303,15 +2278,13 @@ var Backs = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Backs);
 
-    _this = _super.call(this, props); // debugger;
-
-    _this.state = _this.props.reward; // this.getBackerId = this.getBackerId.bind(this);
-
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.updateBackers = this.updateBackers.bind(this);
-    // this.updateAmount = this.updateAmount.bind(this);
-
+    _this = _super.call(this, props);
+    _this.state = _this.props.reward;
+    _this.handleSubmit1 = _this.handleSubmit1.bind(_assertThisInitialized(_this));
+    _this.handleSubmit2 = _this.handleSubmit2.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.forwardback = _this.forwardback.bind(_assertThisInitialized(_this));
+    _this.forwardback = _this.forwardback.bind(_assertThisInitialized(_this)); // this.pledge = this.pledge.bind(this);
+
     return _this;
   }
 
@@ -2321,19 +2294,35 @@ var Backs = /*#__PURE__*/function (_React$Component) {
       this.props.fetchRewards();
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
+    key: "handleSubmit1",
+    value: function handleSubmit1(e) {
       e.preventDefault();
-      var amount = this.props.reward.pledge_amount;
+      var amount = document.getElementById("pledge_more").value;
       this.setState({
-        total_fund: this.state.total_fund + amount,
-        total_backer: this.state.total_backer + 1
+        total_fund: parseInt(this.state.total_fund) + parseInt(amount),
+        total_backer: parseInt(this.state.total_backer + 1)
+      });
+      this.props.updateReward(this.state);
+    }
+  }, {
+    key: "handleSubmit2",
+    value: function handleSubmit2(e) {
+      e.preventDefault();
+      var origin = this.props.reward.pledge_amount;
+      var more = document.getElementById("pledge_more").value;
+      var amount = more > origin ? more : origin;
+      this.setState({
+        // total_fund: parseInt(this.state.total_fund) - parseInt(amount),
+        total_fund: 0,
+        // total_backer: parseInt(this.state.total_backer + 1)
+        total_backer: 0
       });
       this.props.updateReward(this.state);
     }
   }, {
     key: "forwardback",
     value: function forwardback() {
+      // e.preventDefault();
       window.location.href = "#/projects/".concat(this.props.match.params.projectId);
       window.location.reload();
       return false;
@@ -2357,20 +2346,30 @@ var Backs = /*#__PURE__*/function (_React$Component) {
         className: "back-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an option below")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        className: "back-radio",
+        onClick: this.handleSubmit1
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pledge without a reward"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Back it because you believe in it. Support the project for no reward, just because it speaks to you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        id: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rewards-option-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        className: "back-radio",
+        onClick: this.handleSubmit2
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
       }, "$", reward.pledge_amount, " or more", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, reward.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        placeholder: reward.pledge_amount,
+        id: "pledge_more"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "back-btns"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "back-btn",
-        onClick: function onClick() {
-          return alert("Pledged Successfully!");
-        }
-      }, "Pledge"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
         onClick: this.forwardback,
         className: "back-btn"
       }, "Continue")));
