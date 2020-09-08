@@ -130,13 +130,13 @@ class Category extends React.Component {
                         <div className="project-rec-title-li">
                           <p className="rec-title">{project.title}</p>
                           {/* <br/> */}
-                          <span className="rec-fund-span">0% funded</span>
+                          <span className="rec-fund-span">Funded</span>
 
+                          <p> By {users[project.creator_id].username} </p>
                           <div className="rec-icon-div">
                             <img src={window.likeURL} className="rec-icon" />
                             <img src={window.dislikeURL} className="rec-icon" />
                           </div>
-                          <p> By {users[project.creator_id].username} </p>
                         </div>
                       </div>
                     </Link>
