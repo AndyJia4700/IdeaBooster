@@ -62,7 +62,7 @@ class ProjectForm extends React.Component{
     }
 
     render(){
-        debugger;
+        // debugger;
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
         
         const RewardLink = ((this.props.project.title === "") 
