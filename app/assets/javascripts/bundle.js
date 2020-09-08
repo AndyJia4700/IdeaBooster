@@ -866,7 +866,7 @@ var Category = /*#__PURE__*/function (_React$Component) {
           className: "rec-title"
         }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           className: "rec-fund-span"
-        }, "0% funded"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        }, "Funded"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "rec-icon-div"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           src: window.likeURL,
@@ -874,7 +874,7 @@ var Category = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
           src: window.dislikeURL,
           className: "rec-icon"
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " By ", users[project.creator_id].username, " ")))));
+        }))))));
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "empty-div"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -2121,7 +2121,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
           className: "rec-title"
         }, project.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "rec-fund-span"
-        }, "0% funded"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Funded"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " By ", users[project.creator_id].username, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "rec-icon-div"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: window.likeURL,
@@ -2337,6 +2337,8 @@ var Backs = /*#__PURE__*/function (_React$Component) {
     value: function forwardback(e) {
       e.preventDefault();
       window.location.href = "#/projects/".concat(this.props.match.params.projectId);
+      window.location.reload();
+      return false;
     }
   }, {
     key: "update",

@@ -99,7 +99,7 @@ class splashPage extends React.Component{
                                                 <div className="project-rec-title-li">
                                                     <p className="rec-title">{project.title}</p>
                                                     {/* <br/> */}
-                                                    <span className="rec-fund-span">0% funded</span>
+                                                    <span className="rec-fund-span">Funded</span>
 
                                                     <p> By {users[project.creator_id].username} </p>
 
