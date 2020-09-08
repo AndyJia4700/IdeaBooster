@@ -82,15 +82,6 @@ class SearchKeyword extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        {/* <div>
-          <input
-            type="text"
-            className="search-bar"
-            placeholder="Search for projects or categories"
-            value={this.props.search}
-            onChange={this.update("search")}
-          />
-        </div> */}
 
         <div className="project-index-div">
           <br />

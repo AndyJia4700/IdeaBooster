@@ -1847,11 +1847,7 @@ var ProjectShow = /*#__PURE__*/function (_React$Component) {
         className: "support-reward-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Make a pledeg without a reward", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, " Pledge $", reward.pledge_amount), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "INCLUDES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.title, "e")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "ESTIMATED DELIVERY", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.estimated_delivery)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "REWARD QUANTITY", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, reward.reward_quantity))));
+      })))));
     }
   }]);
 
@@ -2403,6 +2399,7 @@ var Backs = /*#__PURE__*/function (_React$Component) {
         type: "number",
         id: "pledge_input",
         defaultValue: "10",
+        className: "project-basic-input",
         onChange: this.changeBtn
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "modalBtn",
@@ -2427,12 +2424,13 @@ var Backs = /*#__PURE__*/function (_React$Component) {
         className: "rewards-option-subdiv1"
       }, "$", reward.pledge_amount, " or more", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, reward.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "hidden-div2",
         className: "hidden"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         id: "pledge_more",
+        className: "project-basic-input",
         onChange: this.changeBtn,
         defaultValue: reward.pledge_amount
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -2442,7 +2440,7 @@ var Backs = /*#__PURE__*/function (_React$Component) {
           _this3.handleSubmit2(event), _this3.openModal(event);
         },
         className: "back-btn"
-      }, "Continue")))));
+      }, "Continue"))));
     }
   }]);
 
@@ -3255,7 +3253,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
         className: "inputtest",
         value: this.state.search,
         onChange: this.update("search"),
-        placeholder: "Search for projects or categories"
+        placeholder: "Search for projects"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "searchbar-close",
         onClick: this.handleClose

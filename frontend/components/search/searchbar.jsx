@@ -70,7 +70,7 @@ class SearchBar extends React.Component {
               className="inputtest"
               value={this.state.search}
               onChange={this.update("search")}
-              placeholder="Search for projects or categories"
+              placeholder="Search for projects"
             />
 
             <span className="searchbar-close" onClick={this.handleClose}>
