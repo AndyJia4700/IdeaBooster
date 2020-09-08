@@ -54,7 +54,10 @@
 
 .profile-drop-subdiv1-ul{
   list-style: none;
-  padding-left: 0
+  padding-left: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 300px;
 }
 
 .profile-drop-subdiv1{

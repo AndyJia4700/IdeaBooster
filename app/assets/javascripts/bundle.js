@@ -2021,8 +2021,10 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var users = this.props.users;
-      var projects = this.shuffle();
+      var _this$props = this.props,
+          projects = _this$props.projects,
+          users = _this$props.users; // const projects = this.shuffle();
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-category-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -2083,7 +2085,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-featured-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "splash-projects-font"
-      }, "FEATURED PROJECT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(0, 1).map(function (project) {
+      }, "FEATURED PROJECT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(3, 4).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: project.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
@@ -2103,7 +2105,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-font-rec"
       }, "RECOMMENDED FOR YOU"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "splash-projects-ul"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(1, 4).map(function (project) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(7, 10).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
@@ -2141,7 +2143,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fresh-div"
-      }, projects.slice(4, 9).map(function (project) {
+      }, projects.slice(13, 18).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id,
           className: "fresh-li"
@@ -2170,7 +2172,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fresh-div"
-      }, projects.slice(9, 13).map(function (project) {
+      }, projects.slice(20, 25).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id,
           className: "fresh-li"
@@ -2191,7 +2193,13 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         }, project.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "fresh-subtitle"
         }, " By ", users[project.creator_id].username, " ")))));
-      })))));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "empty-div"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "empty-div"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "empty-div"
+      }));
     }
   }]);
 
@@ -4381,7 +4389,7 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
         className: "profile-drop-title"
       }, "CREATED PROJECTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "profile-drop-subdiv1-ul"
-      }, projects.slice(0, 3).map(function (project) {
+      }, projects.map(function (project) {
         if (project.creator_id === currentUser.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "profile-project-list",
@@ -4399,7 +4407,7 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
         }
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#/projects/new"
-      }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "View All"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-drop-div2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: ""
