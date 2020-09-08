@@ -287,7 +287,11 @@ var fetchReward = function fetchReward(rewardId) {
       return dispatch(receiveReward(reward));
     });
   };
-};
+}; // export const fetchReward = reward => dispatch => (
+//     RewardUtil.fetchReward(reward)
+//         .then(reward => dispatch(receiveReward(reward)))
+// );
+
 var createReward = function createReward(reward) {
   return function (dispatch) {
     return _util_reward_util__WEBPACK_IMPORTED_MODULE_0__["createReward"](reward).then(function (reward) {
@@ -1904,7 +1908,6 @@ var mSTP = function mSTP(state, ownProps) {
 };
 
 var mDTP = function mDTP(dispatch) {
-  // debugger;
   return {
     fetchUsers: function fetchUsers() {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUsers"])());
@@ -2248,19 +2251,27 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var mSTP = function mSTP(state, ownProps) {
-  // debugger;
+  var projectId = ownProps.match.params.projectId;
+  var project = state.projects[projectId];
   return {
-    reward: state.rewards[ownProps.match.params.projectId]
+    project: project,
+    reward: state.rewards[projectId]
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
+    fetchProjects: function fetchProjects() {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProjects"])());
+    },
+    fetchProject: function fetchProject(projectId) {
+      return dispatch(Object(_actions_project_actions__WEBPACK_IMPORTED_MODULE_2__["fetchProject"])(projectId));
+    },
     fetchRewards: function fetchRewards() {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchRewards"])());
     },
-    fetchReward: function fetchReward(rewardId) {
-      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchReward"])(rewardId));
+    fetchReward: function fetchReward(reward) {
+      return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["fetchReward"])(reward));
     },
     updateReward: function updateReward(reward) {
       return dispatch(Object(_actions_reward_actions__WEBPACK_IMPORTED_MODULE_3__["updateReward"])(reward));
@@ -2282,9 +2293,9 @@ var Backs = /*#__PURE__*/function (_React$Component) {
     _this.state = _this.props.reward;
     _this.handleSubmit1 = _this.handleSubmit1.bind(_assertThisInitialized(_this));
     _this.handleSubmit2 = _this.handleSubmit2.bind(_assertThisInitialized(_this));
+    _this.changeBtn = _this.changeBtn.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.forwardback = _this.forwardback.bind(_assertThisInitialized(_this)); // this.pledge = this.pledge.bind(this);
-
+    _this.forwardback = _this.forwardback.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2294,10 +2305,18 @@ var Backs = /*#__PURE__*/function (_React$Component) {
       this.props.fetchRewards();
     }
   }, {
+    key: "changeBtn",
+    value: function changeBtn() {
+      var pledgeInput = document.getElementById("pledge_input").value;
+      var pledgeMore = document.getElementById("pledge_more").value;
+      pledgeInput > 0 ? document.getElementsByName("btn-test")[0].className = "back-btn" : document.getElementsByName("btn-test")[0].className = "unclickable-btn";
+      pledgeMore > this.props.reward.pledge_amount - 1 ? document.getElementsByName("btn-test")[1].className = "back-btn" : document.getElementsByName("btn-test")[1].className = "unclickable-btn";
+    }
+  }, {
     key: "handleSubmit1",
     value: function handleSubmit1(e) {
       e.preventDefault();
-      var amount = document.getElementById("pledge_more").value;
+      var amount = document.getElementById("pledge_input").value;
       this.setState({
         total_fund: parseInt(this.state.total_fund) + parseInt(amount),
         total_backer: parseInt(this.state.total_backer + 1)
@@ -2312,20 +2331,16 @@ var Backs = /*#__PURE__*/function (_React$Component) {
       var more = document.getElementById("pledge_more").value;
       var amount = more > origin ? more : origin;
       this.setState({
-        // total_fund: parseInt(this.state.total_fund) - parseInt(amount),
-        total_fund: 0,
-        // total_backer: parseInt(this.state.total_backer + 1)
-        total_backer: 0
+        total_fund: parseInt(this.state.total_fund) + parseInt(amount),
+        total_backer: parseInt(this.state.total_backer + 1)
       });
       this.props.updateReward(this.state);
     }
   }, {
     key: "forwardback",
-    value: function forwardback() {
-      // e.preventDefault();
+    value: function forwardback(e) {
+      e.preventDefault();
       window.location.href = "#/projects/".concat(this.props.match.params.projectId);
-      window.location.reload();
-      return false;
     }
   }, {
     key: "update",
@@ -2337,42 +2352,97 @@ var Backs = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "modal",
+    value: function modal() {
+      var modalBtn = document.getElementById('modalBtn');
+      modalBtn.addEventListener('click', this.openModal);
+    }
+  }, {
+    key: "openModal",
+    value: function openModal(e) {
+      e.preventDefault();
+      var modal = document.getElementById('simpleModal');
+      modal.style.display = 'block';
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
+      if (this.state === null) this.forwardback(event);
       var reward = this.props.reward;
       if (!this.props.reward) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Fake Project, Do not waste your money!!");
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "back-section"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "simpleModal",
+        className: "modal"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Thank you!!!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          _this3.handleSubmit1(event), _this3.forwardback(event);
+        },
+        className: "back-btn"
+      }, "Pledge"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an option below")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onSubmit: this.handleSubmit1,
         className: "back-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support this project"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Select an option below")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "rewards-option-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "raido-btn",
         type: "radio",
-        className: "back-radio",
-        onClick: this.handleSubmit1
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pledge without a reward"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Back it because you believe in it. Support the project for no reward, just because it speaks to you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        id: ""
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "rewards-option-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
-        className: "back-radio",
-        onClick: this.handleSubmit2
+        className: "checkbox-round",
+        onChange: function onChange() {
+          return document.getElementById("hidden-div1").className = "display";
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rewards-option-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pledge without a reward"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Back it because you believe in it. Support the project for no reward, just because it speaks to you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "hidden-div1",
+        className: "hidden"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        id: "pledge_input",
+        defaultValue: "10",
+        onChange: this.changeBtn
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "modalBtn",
+        name: "btn-test",
+        onClick: function onClick() {
+          _this3.handleSubmit1(event), _this3.openModal(event);
+        },
+        className: "back-btn"
+      }, "Continue"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onSubmit: this.handleSubmit2,
+        className: "back-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "raido-btn",
+        type: "radio",
+        className: "checkbox-round",
+        onChange: function onChange() {
+          return document.getElementById("hidden-div2").className = "display";
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rewards-option-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
       }, "$", reward.pledge_amount, " or more", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, reward.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, reward.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rewards-option-subdiv1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ESTIMATED DELIVERY"), reward.estimated_delivery, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "SHIPS TO Anywhere in the world")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "hidden-div2",
+        className: "hidden"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
-        placeholder: reward.pledge_amount,
-        id: "pledge_more"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "back-btns"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.forwardback,
+        id: "pledge_more",
+        onChange: this.changeBtn,
+        defaultValue: reward.pledge_amount
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "modalBtn",
+        name: "btn-test",
+        onClick: function onClick() {
+          _this3.handleSubmit2(event), _this3.openModal(event);
+        },
         className: "back-btn"
-      }, "Continue")));
+      }, "Continue")))));
     }
   }]);
 
@@ -4514,9 +4584,11 @@ var ProjectReducer = function ProjectReducer() {
 
   switch (action.type) {
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_PROJECTS"]:
+      // debugger;
       return Object.assign({}, oldState, action.projects);
 
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PROJECT"]:
+      // debugger;
       return Object.assign({}, oldState, _defineProperty({}, action.projectId, action.project));
 
     case _actions_project_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PROJECT"]:
@@ -4554,6 +4626,7 @@ var rewardsReducer = function rewardsReducer() {
 
   switch (action.type) {
     case _actions_reward_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_REWARDS"]:
+      // debugger;
       return Object.assign({}, state, action.rewards);
 
     case _actions_reward_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REWARD"]:
@@ -4877,10 +4950,17 @@ var fetchRewards = function fetchRewards() {
   });
 };
 var fetchReward = function fetchReward(rewardId) {
+  // debugger;
   return $.ajax({
     url: "/api/rewards/".concat(rewardId)
   });
-};
+}; // export const fetchReward = (reward) => {
+//     // debugger;
+//     return $.ajax({
+//         url: `/api/rewards/${reward.id}`
+//     })
+// }
+
 var createReward = function createReward(reward) {
   return $.ajax({
     method: 'POST',

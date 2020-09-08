@@ -27,6 +27,10 @@ export const fetchReward = rewardId => dispatch => (
     RewardUtil.fetchReward(rewardId)
         .then(reward => dispatch(receiveReward(reward)))
 );
+// export const fetchReward = reward => dispatch => (
+//     RewardUtil.fetchReward(reward)
+//         .then(reward => dispatch(receiveReward(reward)))
+// );
 
 
 

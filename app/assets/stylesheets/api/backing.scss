@@ -1,14 +1,27 @@
+.back-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .back-form {
   padding-left: 150px;
+  border: 3px solid lightgray;
+  width: 50%;
+  // height: 200px;
+  padding-left: 80px;
+  margin-bottom: 30px;
 }
 
 .rewards-option-div {
-  border: 1px solid lightgray;
-  width: 50%;
   display: flex;
   flex-direction: row;
-  padding-left: 80px;
 }
+
+.back-form:hover{
+  transform: scale(1.1);
+}
+
 
 .rewards-option-subdiv1 {
   width: 50%;
@@ -32,5 +45,62 @@
 
 .back-btn:hover {
   transform: scale(1.2);
+}
+
+.hidden{
+  display: none;
+}
+
+.modal{
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5)
+}
+
+.modal-content{
+  border-radius: 20px;
+  background-color: #f4f4f4;
+  margin: 10% auto;
+  width: 50%;
+  padding: 50px;
+  box-shadow: 0 5px 8px 0 rgba(238, 140, 48, 0.5);
+  animation-name: modalopen;
+  animation-duration: 1s;
+}
+
+#closeBtn{
+  color: #ccc;
+  float: right;
+  font-size: 30px;
+}
+
+#closeBtn:hover,#closeBtn:focus{
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes modalopen{
+  from{opacity: 0;}
+  to{opacity: 2;}
+}
+
+.unclickable-btn{
+  background: #ae0d0d;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+  font-size: 20px;
+  margin: 20px;
+  pointer-events: none;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 

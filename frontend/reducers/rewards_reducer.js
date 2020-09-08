@@ -6,6 +6,7 @@ const rewardsReducer = (state={}, action) => {
     
     switch (action.type) {
         case RECEIVE_ALL_REWARDS:
+            // debugger;
             return Object.assign({}, state, action.rewards);
         case RECEIVE_REWARD:
             return Object.assign({}, state, { [action.rewardId]: action.reward });

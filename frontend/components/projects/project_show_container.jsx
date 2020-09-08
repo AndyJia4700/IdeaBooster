@@ -34,7 +34,6 @@ const mSTP = (state, ownProps) => {
 };
 
 const mDTP = dispatch => {
-    // debugger;
     return {
         fetchUsers: ()=> dispatch(fetchUsers()),
         fetchProjects: () => dispatch(fetchProjects()),
