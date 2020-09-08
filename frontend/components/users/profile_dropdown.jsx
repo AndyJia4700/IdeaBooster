@@ -38,7 +38,7 @@ class profileDropDown extends React.Component {
                     <div className="profile-drop-subdiv1">
                         <p className="profile-drop-title">YOUR ACCOUNT</p>
                         <div className="profile-drop-subdiv1-sub1">
-                            <ul className="profile-drop-subdiv1-ul">
+                            <ul className="profile-drop-subdiv1-ull">
                                 <li className="profile-drop-li">Saved projects</li>
                                 <li className="profile-drop-li">Recommended for you</li>
                                 <li className="profile-drop-li">Following</li>
