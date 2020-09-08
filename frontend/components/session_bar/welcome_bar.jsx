@@ -1,20 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-class WelcomeBar extends React.Component{
+const mSTP = (state) => {
+    return {
+        currentUser: state.session.currentUser,
+    }
+};
+
+class WelcomeBar extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+
     render() {
+        const checkCurrentUser = (
+            (!this.props.currentUser) ? <a href="#/login" className="project-show-subdiv2-back-button">Get started</a> : <a href="#/projects/hello1" className="project-show-subdiv2-back-button">Get started</a>
+        );
         
         return(
-            // <div>
                 <div className="welcome">
                     <div className="welcome-gif-div">
                         <img src={window.welcomeURL} className="welcome-gif"/>
                         <div className="welcome-word">
                             <div>
                                 <h1 className="Big-font">Bring your creative project to life.</h1>
-                                <a href="#/projects/hello1">
-                                <button className="welcomebutton">Get started</button>
-                                </a>
+                                {checkCurrentUser}
+                                {/* <button className="welcomebutton">Get started</button> */}
                             </div>
                         </div>
                     </div>
@@ -28,9 +40,8 @@ class WelcomeBar extends React.Component{
                         </ul>
                     </div>
                 </div>  
-            // </div>
         )
     }
 }
 
-export default WelcomeBar;
+export default connect(mSTP, null)(WelcomeBar);

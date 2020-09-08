@@ -25,7 +25,6 @@ class splashPage extends React.Component{
     componentDidMount() {
         this.props.fetchProjects();
         this.props.fetchUsers();
-        // window.location.href = "";
     }
 
     shuffle(){
@@ -87,7 +86,7 @@ class splashPage extends React.Component{
                             <div>
                             {
 
-                                projects.slice(7,10).map(project => (
+                                projects.slice(34,37).map(project => (
                                     <li key={project.id} >
                                         <Link to={`/projects/${project.id}`} className="rec-link">
                                             <div className="project-rec-li">
