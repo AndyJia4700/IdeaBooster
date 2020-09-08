@@ -2021,9 +2021,8 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          projects = _this$props.projects,
-          users = _this$props.users;
+      var users = this.props.users;
+      var projects = this.shuffle();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-category-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -2142,7 +2141,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fresh-div"
-      }, projects.slice(4, 8).map(function (project) {
+      }, projects.slice(4, 9).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id,
           className: "fresh-li"
@@ -2171,7 +2170,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-ul"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "fresh-div"
-      }, projects.slice(8, 20).map(function (project) {
+      }, projects.slice(9, 13).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id,
           className: "fresh-li"

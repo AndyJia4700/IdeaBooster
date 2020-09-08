@@ -29,7 +29,6 @@ class splashPage extends React.Component{
     }
 
     shuffle(){
-
         for (let i = this.props.projects.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [this.props.projects[i], this.props.projects[j]] = [this.props.projects[j], this.props.projects[i]];
@@ -40,8 +39,9 @@ class splashPage extends React.Component{
     
     render() {
         
-        const { projects, users } = this.props;
-        
+        const { users } = this.props;
+        const projects = this.shuffle();
+
         return (
             
             <div>
@@ -129,7 +129,7 @@ class splashPage extends React.Component{
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
-                                projects.slice(4, 8).map(project => (
+                                projects.slice(4, 9).map(project => (
                                     <li key={project.id} className="fresh-li">
                                         <Link to={`/projects/${project.id}`} className="fresh-link">
                                             <div className="project-fresh-li">
@@ -158,7 +158,7 @@ class splashPage extends React.Component{
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
-                                projects.slice(8, 20).map(project => (
+                                projects.slice(9, 13).map(project => (
                                     <li key={project.id} className="fresh-li">
                                         <Link to={`/projects/${project.id}`} className="fresh-link" >
                                             <div className="project-fresh-li">
