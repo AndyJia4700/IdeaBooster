@@ -4,11 +4,18 @@ export const fetchRewards = () => (
     })
 )
 
-export const fetchReward = (rewardId) => (
-    $.ajax({
+export const fetchReward = (rewardId) => {
+    // debugger;
+    return $.ajax({
         url: `/api/rewards/${rewardId}`
     })
-)
+}
+// export const fetchReward = (reward) => {
+//     // debugger;
+//     return $.ajax({
+//         url: `/api/rewards/${reward.id}`
+//     })
+// }
 
 export const createReward = (reward) => (
     $.ajax({
