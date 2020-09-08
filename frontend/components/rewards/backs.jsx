@@ -134,6 +134,7 @@ class Backs extends React.Component {
               <div id="hidden-div1" className="hidden">
                 <input type="number" id="pledge_input" 
                 defaultValue="10"
+                className="project-basic-input"
                 onChange={this.changeBtn} 
                 />
                 <button id="modalBtn" name="btn-test" onClick={() => { this.handleSubmit1(event), this.openModal(event) }} className="back-btn">
@@ -163,19 +164,21 @@ class Backs extends React.Component {
             
             <p>SHIPS TO Anywhere in the world</p>
           </div>
-            <div id="hidden-div2" className="hidden">
-              <input type="number"
+            
+        </div>
+          <div id="hidden-div2" className="hidden">
+            <input type="number"
               id="pledge_more"
+              className="project-basic-input"
               onChange={this.changeBtn}
               defaultValue={reward.pledge_amount}
-              />
+            />
 
-              <button id="modalBtn" name="btn-test" onClick={() => { this.handleSubmit2(event), this.openModal(event)}} className="back-btn">
-                Continue
+            <button id="modalBtn" name="btn-test" onClick={() => { this.handleSubmit2(event), this.openModal(event) }} className="back-btn">
+              Continue
               </button>
-            </div>
+          </div>
 
-        </div>
         </div>
       </section>
     );

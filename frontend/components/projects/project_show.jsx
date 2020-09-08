@@ -103,7 +103,7 @@ class ProjectShow extends React.Component{
               </label>
             </div>
 
-            <h4> Pledge ${reward.pledge_amount}</h4>
+            {/* <h4> Pledge ${reward.pledge_amount}</h4>
             <label>
               INCLUDES
               <span>{reward.title}e</span>
@@ -117,8 +117,9 @@ class ProjectShow extends React.Component{
             <label htmlFor="">
               REWARD QUANTITY
               <span>{reward.reward_quantity}</span>
-            </label>
+            </label> */}
           </div>
+        
         </div>
       );
     }
