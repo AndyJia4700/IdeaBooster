@@ -39,8 +39,8 @@ class splashPage extends React.Component{
     
     render() {
         
-        const { users } = this.props;
-        const projects = this.shuffle();
+        const { projects, users } = this.props;
+        // const projects = this.shuffle();
 
         return (
             
@@ -66,7 +66,7 @@ class splashPage extends React.Component{
                         <h4 className="splash-projects-font">FEATURED PROJECT</h4>
                         <div>
                             {
-                                projects.slice(0, 1).map(project => (
+                                projects.slice(3, 4).map(project => (
                                     <div key={project.id}>
                                         <Link to={`/projects/${project.id}`} className="feature-link">
                                             <img className="project-feature-picture1" src={project.pictureUrl}/>                                    
@@ -87,7 +87,7 @@ class splashPage extends React.Component{
                             <div>
                             {
 
-                                projects.slice(1,4).map(project => (
+                                projects.slice(7,10).map(project => (
                                     <li key={project.id} >
                                         <Link to={`/projects/${project.id}`} className="rec-link">
                                             <div className="project-rec-li">
@@ -129,7 +129,7 @@ class splashPage extends React.Component{
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
-                                projects.slice(4, 9).map(project => (
+                                projects.slice(13, 18).map(project => (
                                     <li key={project.id} className="fresh-li">
                                         <Link to={`/projects/${project.id}`} className="fresh-link">
                                             <div className="project-fresh-li">
@@ -158,7 +158,7 @@ class splashPage extends React.Component{
                     <ul className="splash-projects-ul">
                         <div className="fresh-div">
                             {
-                                projects.slice(9, 13).map(project => (
+                                projects.slice(20, 25).map(project => (
                                     <li key={project.id} className="fresh-li">
                                         <Link to={`/projects/${project.id}`} className="fresh-link" >
                                             <div className="project-fresh-li">
