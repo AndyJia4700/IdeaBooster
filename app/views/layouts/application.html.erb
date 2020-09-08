@@ -13,6 +13,7 @@
     <%= javascript_include_tag 'application' %>
 
     <script>
+      window.welcomeURL = "<%= image_url('giphy.gif')%>"
       window.ideaBoosterURL = "<%= image_url('ideaBooster.png')%>"
       window.githubURL = "<%= image_url('github.png')%>"
       window.linkedinURL = "<%= image_url('linkedin.png')%>"
@@ -30,7 +31,6 @@
           "email": "<%= current_user.email %>"
         };
 
-        window.welcomeURL = "<%= image_url('giphy.gif')%>"
         window.userURL = "<%= image_url('user.png')%>"
         window.basicsURL = "<%= image_url('basics.png')%>"
         window.fundingURL = "<%= image_url('funding.png')%>"

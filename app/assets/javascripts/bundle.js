@@ -1200,7 +1200,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
- // import { updateProject } from '../../actions/project_actions';
 
 
 
@@ -1217,21 +1216,16 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = _this.props.project;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this)); // this.handleRedirect = this.handleRedirect.bind(this);
-
-    _this.update = _this.update.bind(_assertThisInitialized(_this)); // debugger;
-
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ProjectForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger
-      // subtitle = document.getElementById('welcome-subtitle')
       this.setState({
         creator_id: currentUser.id,
-        // subtitle: subtitle,
         category_id: '1',
         location_id: '1'
       });
@@ -1280,7 +1274,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         formData.append('project[picture]', this.state.pictureFile);
       }
 
-      this.props.action(formData); // debugger;
+      this.props.action(formData);
     }
   }, {
     key: "update",
@@ -1294,12 +1288,25 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger
-      // console.log(this.state.id);
-      // debugger;
+      debugger;
       var preview = this.state.pictureUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.state.pictureUrl
       }) : null;
+      var RewardLink = this.props.project.title === "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "project-new-top-a"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.rewardsURL,
+        className: "project-new-top-img"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "not-done"
+      }, "Rewards")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/projects/".concat(this.state.id, "/rewards/edit"),
+        id: "create-reward-link",
+        className: "project-new-top-a"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.rewardsURL,
+        className: "project-new-top-img"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Rewards"));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1324,13 +1331,7 @@ var ProjectForm = /*#__PURE__*/function (_React$Component) {
         className: "not-done"
       }, "Funding"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "project-new-top-li"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/projects/".concat(this.state.id, "/rewards/edit"),
-        className: "project-new-top-a"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.rewardsURL,
-        className: "project-new-top-img"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Rewards"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, RewardLink), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "project-new-top-li"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "project-new-top-a"
@@ -2004,7 +2005,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchProjects();
-      this.props.fetchUsers(); // window.location.href = "";
+      this.props.fetchUsers();
     }
   }, {
     key: "shuffle",
@@ -2105,7 +2106,7 @@ var splashPage = /*#__PURE__*/function (_React$Component) {
         className: "splash-projects-font-rec"
       }, "RECOMMENDED FOR YOU"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "splash-projects-ul"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(7, 10).map(function (project) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, projects.slice(34, 37).map(function (project) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: project.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
@@ -2597,6 +2598,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
     _this.state = _this.props.reward;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.forwardback = _this.forwardback.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2610,6 +2612,14 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
       this.props.fetchUsers();
     }
   }, {
+    key: "forwardback",
+    value: function forwardback(e) {
+      e.preventDefault();
+      window.location.href = "#/projects/".concat(this.props.match.params.projectId, "/edit");
+      window.location.reload();
+      return false;
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
@@ -2621,7 +2631,6 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      // debugger
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.target.value));
       };
@@ -2629,11 +2638,7 @@ var EditReward = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // debugger;
-      // const { reward } = this.props
-      // if (!reward) return null;
-      // debugger;
-      // console.log(this.props.reward);
+      if (this.state === null) this.forwardback(event);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3532,7 +3537,7 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3558,52 +3563,56 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var mSTP = function mSTP(state) {
+  return {
+    currentUser: state.session.currentUser
+  };
+};
+
 var WelcomeBar = /*#__PURE__*/function (_React$Component) {
   _inherits(WelcomeBar, _React$Component);
 
   var _super = _createSuper(WelcomeBar);
 
-  function WelcomeBar() {
+  function WelcomeBar(props) {
     _classCallCheck(this, WelcomeBar);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(WelcomeBar, [{
     key: "render",
     value: function render() {
-      return (
-        /*#__PURE__*/
-        // <div>
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "welcome"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "welcome-gif-div"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: window.welcomeURL,
-          className: "welcome-gif"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "welcome-word"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-          className: "Big-font"
-        }, "Bring your creative project to life."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "#/projects/hello1"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "welcomebutton"
-        }, "Get started"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "Welcome-intro-div"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          className: "Welcome-intro-li"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "How it works"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Inspiration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Why Ideabooster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Open calls"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FAQ")))) // </div>
-
-      );
+      var checkCurrentUser = !this.props.currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/login",
+        className: "project-show-subdiv2-back-button"
+      }, "Get started") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#/projects/hello1",
+        className: "project-show-subdiv2-back-button"
+      }, "Get started");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "welcome"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "welcome-gif-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.welcomeURL,
+        className: "welcome-gif"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "welcome-word"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "Big-font"
+      }, "Bring your creative project to life."), checkCurrentUser))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "Welcome-intro-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "Welcome-intro-li"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "How it works"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Inspiration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Why Ideabooster"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Open calls"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "FAQ"))));
     }
   }]);
 
   return WelcomeBar;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (WelcomeBar);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, null)(WelcomeBar));
 
 /***/ }),
 
@@ -4338,6 +4347,7 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.refreshPage = _this.refreshPage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -4348,8 +4358,19 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
       this.props.logout().then(this.props.closeModal());
     }
   }, {
+    key: "refreshPage",
+    value: function refreshPage() {
+      this.props.closeModal();
+      setTimeout(function () {
+        window.location.reload();
+        return false;
+      }, 10);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           projects = _this$props.projects,
           currentUser = _this$props.currentUser;
@@ -4390,14 +4411,15 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
       }, "CREATED PROJECTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "profile-drop-subdiv1-ul"
       }, projects.map(function (project) {
-        if (project.creator_id === currentUser.id) {
+        if (project && project.creator_id === currentUser.id) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             className: "profile-project-list",
             key: project.id
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "profile-own-project-div"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-            to: "/projects/".concat(project.id, "/edit")
+            to: "/projects/".concat(project.id, "/edit"),
+            onClick: _this2.refreshPage
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
             className: "profile-pictures",
             src: project.pictureUrl
@@ -4406,14 +4428,14 @@ var profileDropDown = /*#__PURE__*/function (_React$Component) {
           }, project.title))));
         }
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#/projects/new"
-      }, "New"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        href: "#/projects/new",
+        onClick: this.props.closeModal
+      }, "New"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-drop-div2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: ""
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "profile-drop-logout",
         onClick: this.handleClick
-      }, "Logout"))));
+      }, "Logout")));
     }
   }]);
 

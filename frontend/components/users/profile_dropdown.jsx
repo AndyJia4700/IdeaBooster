@@ -23,6 +23,7 @@ class profileDropDown extends React.Component {
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.refreshPage = this.refreshPage.bind(this);
     }
 
     handleClick(e){
@@ -30,8 +31,17 @@ class profileDropDown extends React.Component {
         this.props.logout().then(this.props.closeModal());
     }
 
+    refreshPage(){
+        this.props.closeModal();
+        setTimeout(() => {
+            window.location.reload();
+            return false;
+        }, 10);
+    }
+
     render(){
         const { projects, currentUser } = this.props
+        
         return (
             <div className="modal-child-div">
                 <div className="profile-drop-div1">
@@ -61,11 +71,11 @@ class profileDropDown extends React.Component {
                                 {
                                     
                                     projects.map(project => {
-                                        if (project.creator_id === currentUser.id) {
+                                        if (project && project.creator_id === currentUser.id) {
                                             return(
                                                 <li className="profile-project-list" key={project.id}>
                                                     <div className="profile-own-project-div">
-                                                        <Link to={`/projects/${project.id}/edit`}>
+                                                        <Link to={`/projects/${project.id}/edit`} onClick={this.refreshPage} >
                                                             <img className="profile-pictures" src={project.pictureUrl} />
                                                             <p className="profile-pic-lable">{project.title}</p>
                                                         </Link>
@@ -76,17 +86,17 @@ class profileDropDown extends React.Component {
                                     })
                                 }
                         </ul>
-                        {/* <Link to={`/projects/new`}>New</Link> */}
-                            <a href="#/projects/new">New</a>
-                            <br/>
+
+                        <a href="#/projects/new" onClick={this.props.closeModal}>New</a>
                     </div>
+
                 </div>
 
                 <div className="profile-drop-div2">
-                    <div className="">
-                        <button onClick={this.handleClick}>Logout</button>
-                    </div>
+                    <button className="profile-drop-logout" onClick={this.handleClick}>Logout</button>
                 </div>
+
+                
 
             </div>
         )

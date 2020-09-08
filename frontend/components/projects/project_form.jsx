@@ -1,5 +1,4 @@
 import React from 'react';
-// import { updateProject } from '../../actions/project_actions';
 import { Link } from 'react-router-dom';
 
 
@@ -9,17 +8,12 @@ class ProjectForm extends React.Component{
         this.state = this.props.project;
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFile = this.handleFile.bind(this);
-        // this.handleRedirect = this.handleRedirect.bind(this);
         this.update = this.update.bind(this);
-        // debugger;
     }
 
     componentDidMount(){
-        // debugger
-        // subtitle = document.getElementById('welcome-subtitle')
         this.setState({
             creator_id: currentUser.id,
-            // subtitle: subtitle,
             category_id: '1',
             location_id: '1'
         })
@@ -61,7 +55,6 @@ class ProjectForm extends React.Component{
         } 
         
         this.props.action(formData)
-        // debugger;
     }
 
     update(field){
@@ -69,10 +62,24 @@ class ProjectForm extends React.Component{
     }
 
     render(){
-        // debugger
-        // console.log(this.state.id);
-        // debugger;
+        debugger;
         const preview = this.state.pictureUrl ? <img src={this.state.pictureUrl} /> :null;
+        
+        const RewardLink = ((this.props.project.title === "") 
+            ? 
+            <a className="project-new-top-a">
+                <img src={window.rewardsURL} className="project-new-top-img" />
+                <br />
+                <span className="not-done">Rewards</span>
+            </a>
+            :   
+            <Link to={`/projects/${this.state.id}/rewards/edit`} id="create-reward-link" className="project-new-top-a">
+                <img src={window.rewardsURL} className="project-new-top-img" />
+                <br />
+                <span>Rewards</span>
+            </Link> 
+        );
+
         return (
 
             <form onSubmit={this.handleSubmit}>
@@ -96,12 +103,7 @@ class ProjectForm extends React.Component{
                         </li>
 
                         <li className="project-new-top-li">
-                            <Link to={`/projects/${this.state.id}/rewards/edit`} className="project-new-top-a">
-                                {/* <a href="" className="project-new-top-a"> */}
-                                <img src={window.rewardsURL} className="project-new-top-img" />
-                                <br/>
-                                <span>Rewards</span>
-                            </Link>
+                            {RewardLink}
                         </li>
 
                         <li className="project-new-top-li">

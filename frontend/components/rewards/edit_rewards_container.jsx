@@ -32,6 +32,7 @@ class EditReward extends React.Component {
     this.state = this.props.reward;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.forwardback = this.forwardback.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +43,13 @@ class EditReward extends React.Component {
     this.props.fetchUsers();
   }
 
+  forwardback(e) {
+    e.preventDefault();
+    window.location.href = `#/projects/${this.props.match.params.projectId}/edit`;
+    window.location.reload();
+    return false;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.reward.backer_id = [0, 1];
@@ -49,19 +57,14 @@ class EditReward extends React.Component {
   }
 
   update(field) {
-    // debugger
-    return (e) =>
-      this.setState({
-        [field]: e.target.value,
-      });
+    return (e) => this.setState({
+      [field]: e.target.value,
+    });
   }
 
   render() {
-    // debugger;
-    // const { reward } = this.props
-    // if (!reward) return null;
-    // debugger;
-    // console.log(this.props.reward);
+    if (this.state === null) this.forwardback(event);
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="project-basic-top-div">
