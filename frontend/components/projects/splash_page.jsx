@@ -181,6 +181,13 @@ class splashPage extends React.Component{
                         </div>
                     </ul>
                 </div>
+
+                <div className="empty-div">
+                </div>
+                <div className="empty-div">
+                </div>
+                <div className="empty-div">
+                </div>
                 
                 
             </div>

@@ -60,7 +60,7 @@ class profileDropDown extends React.Component {
                         <ul className="profile-drop-subdiv1-ul"> 
                                 {
                                     
-                                    projects.slice(0,3).map(project => {
+                                    projects.map(project => {
                                         if (project.creator_id === currentUser.id) {
                                             return(
                                                 <li className="profile-project-list" key={project.id}>
@@ -79,7 +79,6 @@ class profileDropDown extends React.Component {
                         {/* <Link to={`/projects/new`}>New</Link> */}
                             <a href="#/projects/new">New</a>
                             <br/>
-                            <span>View All</span>
                     </div>
                 </div>
 
